@@ -1,28 +1,28 @@
 const db = require('../database');
 
-const tapahtumat = {
+const tilitapahtumat = {
   getById: function(id, callback) {
-    return db.query('select * from tapahtumat where idtapahtumat=?', [id], callback);
+    return db.query('select * from tilitapahtumat where idtilitapahtumat=?', [id], callback);
   },
   getAll: function(callback) {
-    return db.query('select * from tapahtumat', callback);
+    return db.query('select * from tilitapahtumat', callback);
   },
-  add: function(tapahtumat, callback) {
+  add: function(tilitapahtumat, callback) {
     return db.query(
-      'insert into tapahtumat (kortinnumero,paivays,tapahtuma,summa,idkortti,idtili) values(?,?,?,?,?,?)',
-      [tapahtumat.kortinnumero, tapahtumat.paivays, tapahtumat.tapahtuma,tapahtumat.summa,tapahtumat.idkortti,tapahtumat.idtili],
+      'insert into tilitapahtumat (kortinnumero,paivays,tapahtuma,summa,idkortti,idtili) values(?,?,?,?,?,?)',
+      [tilitapahtumat.kortinnumero, tilitapahtumat.paivays, tilitapahtumat.tapahtuma,tilitapahtumat.summa,tilitapahtumat.idkortti,tilitapahtumat.idtili],
       callback
     );
   },
   delete: function(id, callback) {
-    return db.query('delete from tapahtumat where idtapahtumat=?', [id], callback);
+    return db.query('delete from tilitapahtumat where idtilitapahtumat=?', [id], callback);
   },
-  update: function(id, tapahtumat, callback) {
+  update: function(id, tilitapahtumat, callback) {
     return db.query(
-      'update tapahtumat set kortinnumero=?,paivays=?, tapahtuma=?, summa=?, idkortti=?, idtili=?, where idtapahtumat=?',
-      [tapahtumat.kortinnumero, tapahtumat.paivays, tapahtumat.tapahtuma, tapahtumat.summa,tapahtumat,idkortti,tapahtumat.idtili, id],
+      'update tilitapahtumat set kortinnumero=?,paivays=?, tapahtuma=?, summa=?, idkortti=?, idtili=?, where idtilitapahtumat=?',
+      [tilitapahtumat.kortinnumero, tilitapahtumat.paivays, tilitapahtumat.tapahtuma, tilitapahtumat.summa,tilitapahtumat,idkortti,tilitapahtumat.idtili, id],
       callback
     );
   }
 };
-module.exports = tapahtumat;
+module.exports = tilitapahtumat;

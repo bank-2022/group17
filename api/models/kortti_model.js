@@ -19,8 +19,8 @@ const kortti = {
   },
   update: function(id, kortti, callback) {
     return db.query(
-      'update kortti set korttinumero=?,pin=?, idasiakas=? idtili=? where idkortti=?',
-      [kortti.korttinumero, kortti.pin, kortti.idasiakas, kortti.idtili , id],
+      'update kortti set korttinumero=?,pin=?, idasiakas=?, idtili=? where idkortti=?',
+      [kortti.korttinumero, kortti.pin, kortti.idasiakas, kortti.idtili, id],
       callback
     );
   }
