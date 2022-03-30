@@ -19,8 +19,8 @@ const tili = {
   },
   update: function(id, tili, callback) {
     return db.query(
-      'update tili set id=?,Saldo=?, Tilinumero=? where idtili=?',
-      [tili.idtili, tili.Saldo, tili.Tilinumero, id],
+      'update tili set Saldo=?, Tilinumero=? where idtili=?',
+      [tili.Saldo, tili.Tilinumero, id],
       callback
     );
   }

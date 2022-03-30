@@ -8,6 +8,7 @@ var tiliRouter = require('./routes/tili');
 var tilitapahtumatRouter = require('./routes/tilitapahtumat');
 var asiakasRouter = require('./routes/asiakas');
 var korttiRouter = require('./routes/kortti');
+var asiakastiliRouter = require('./routes/asiakastili');
 
 
 const helmet = require('helmet');
@@ -30,5 +31,6 @@ app.use('/tili', tiliRouter);
 app.use('/tilitapahtumat', tilitapahtumatRouter);
 app.use('/asiakas', asiakasRouter);
 app.use('/kortti', korttiRouter);
+app.use('/asiakastili', asiakastiliRouter);
 
 module.exports = app;
