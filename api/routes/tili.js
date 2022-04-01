@@ -59,6 +59,7 @@ function(request, response) {
   });
 });
 
+<<<<<<< HEAD
 router.put('/nosta/:id', 
 function(request, response) {
   tili.nosta(request.params.id, request.body, function(err, dbResult) {
@@ -81,4 +82,6 @@ function(request, response) {
   });
 });
 
+=======
+>>>>>>> f9d4b1b (Restapi)
 module.exports = router;
