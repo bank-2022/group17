@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 const connection = require('../database');
+=======
+>>>>>>> f9d4b1b (Restapi)
 const db = require('../database');
 
 const tili = {
@@ -11,7 +14,11 @@ const tili = {
   add: function(tili, callback) {
     return db.query(
       'insert into tili (Saldo,Tilinumero) values(?,?)',
+<<<<<<< HEAD
       [tili.Saldo, tili.Tilinumero],
+=======
+      [tili.Saldo, tili.Tilinumero, tili.Puhelinnumero],
+>>>>>>> f9d4b1b (Restapi)
       callback
     );
   },
@@ -20,6 +27,7 @@ const tili = {
   },
   update: function(id, tili, callback) {
     return db.query(
+<<<<<<< HEAD
       'update tili set Saldo=?, Tilinumero=? where idtili=?',
       [tili.Saldo, tili.Tilinumero, id],
       callback
@@ -47,4 +55,12 @@ const tili = {
   }
 }
 
+=======
+      'update tili set Saldo=?,Tilinumero=? where idtili=?',
+      [tili.Saldo, tili.Tilinumero, id],
+      callback
+    );
+  }
+};
+>>>>>>> f9d4b1b (Restapi)
 module.exports = tili;

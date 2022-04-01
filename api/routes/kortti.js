@@ -13,7 +13,11 @@ router.get('/:id?',
       }
     });
   } else {
+<<<<<<< HEAD
     kortti.get(function(err, dbResult) {
+=======
+    kortti.getAll(function(err, dbResult) {
+>>>>>>> f9d4b1b (Restapi)
       if (err) {
         response.json(err);
       } else {
@@ -22,6 +26,7 @@ router.get('/:id?',
     });
   }
 });
+<<<<<<< HEAD
 router.post('/', 
 function(request, response) {
   kortti.add(request.body, function(err, count) {
@@ -29,10 +34,22 @@ function(request, response) {
       response.json(err);
     } else {
       response.json(request.body); 
+=======
+
+
+router.post('/', 
+function(request, response) {
+  kortti.add(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(request.body);
+>>>>>>> f9d4b1b (Restapi)
     }
   });
 });
 
+<<<<<<< HEAD
 router.delete('/:id', 
 function(request, response) {
   kortti.delete(request.params.id, function(err, count) {
@@ -40,6 +57,16 @@ function(request, response) {
       response.json(err);
     } else {
       response.json(count);
+=======
+
+router.delete('/:id', 
+function(request, response) {
+  kortti.delete(request.params.id, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+>>>>>>> f9d4b1b (Restapi)
     }
   });
 });
@@ -56,6 +83,7 @@ function(request, response) {
   });
 });
 
+<<<<<<< HEAD
 router.get('/info/:Korttinumero',
 function(request,response){
   kortti.getKorttiInfo(request.params.Korttinumero, function(err,dbResult){
@@ -67,4 +95,6 @@ function(request,response){
   });
 });
 
+=======
+>>>>>>> f9d4b1b (Restapi)
 module.exports = router;
