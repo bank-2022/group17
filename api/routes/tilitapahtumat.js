@@ -1,20 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const kortti = require('../models/kortti_model');
+const tilitapahtumat = require('../models/tilitapahtumat_model');
 
-router.get('/:idKortti?',
+router.get('/:idtilitapahtumat?',
  function(request, response) {
-  if (request.params.idKortti) {
-    kortti.getById(request.params.idKortti, function(err, dbResult) {
+  if (request.params.idtilitapahtumat) {
+tilitapahtumat.getById(request.params.idtilitapahtumat, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
         response.json(dbResult);
       }
     });
-  } 
-  else {
-    kortti.getAll(function(err, dbResult) {
+  } else {
+tilitapahtumat.getAll(function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -27,7 +26,7 @@ router.get('/:idKortti?',
 
 router.post('/', 
 function(request, response) {
-  kortti.add(request.body, function(err, dbResult) {
+tilitapahtumat.add(request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -37,9 +36,9 @@ function(request, response) {
 });
 
 
-router.delete('/:idKortti', 
+router.delete('/:idtilitapahtumat', 
 function(request, response) {
-  kortti.delete(request.params.idKortti, function(err, dbResult) {
+tilitapahtumat.delete(request.params.idtilitapahtumat, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -49,9 +48,9 @@ function(request, response) {
 });
 
 
-router.put('/:idKortti', 
+router.put('/:idtilitapahtumat', 
 function(request, response) {
-  kortti.update(request.params.idKortti, request.body, function(err, dbResult) {
+tilitapahtumat.update(request.params.idtilitapahtumat, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {

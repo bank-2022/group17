@@ -10,6 +10,9 @@ var asiakasRouter = require('./routes/asiakas');
 var korttiRouter = require('./routes/kortti');
 var tiliRouter = require('./routes/tili');
 var asiakastiliRouter = require('./routes/asiakastili');
+var tilitapahtumatRouter = require('./routes/tilitapahtumat');
+var loginRouter = require('./routes/login');
+//var userRouter = require('./routes/user');
 
 var app = express();
 
@@ -26,5 +29,8 @@ app.use('/asiakas', asiakasRouter);
 app.use('/kortti', korttiRouter);
 app.use('/tili', tiliRouter);
 app.use('/asiakastili', asiakastiliRouter);
+app.use('/tilitapahtumat', tilitapahtumatRouter);
+app.use('/login', loginRouter);
+//app.use('/user', userRouter);
 
 module.exports = app;
