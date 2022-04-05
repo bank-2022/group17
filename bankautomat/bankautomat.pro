@@ -9,14 +9,23 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bankui.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    nostawindow.cpp \
+    talletawindow.cpp
 
 HEADERS += \
-    mainwindow.h
+    bankui.h \
+    mainwindow.h \
+    nostawindow.h \
+    talletawindow.h
 
 FORMS += \
-    mainwindow.ui
+    bankui.ui \
+    mainwindow.ui \
+    nostawindow.ui \
+    talletawindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
