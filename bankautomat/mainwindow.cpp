@@ -13,3 +13,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_LuekorttiBtn_clicked()
+{
+
+}
+
+
+void MainWindow::on_AnnaPinBtn_clicked()
+{
+    //
+    pBankUI = new BankUI;
+    pBankUI->setModal(true);
+    pBankUI->exec();
+}
+
