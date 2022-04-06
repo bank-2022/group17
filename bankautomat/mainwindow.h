@@ -14,11 +14,10 @@ enum states{
     Aloitus,    //Ohjelman vakiotila
     Luekortti,
     Pankissa,   //Kun pankkiin on päästy
-    Nosta,      //
+    Nosta,
     Talleta,
     Tilitapahtumat,
-    Saldo,
-    Poistu
+    Saldo
 };
 enum events{
     avaaRFID,
@@ -37,6 +36,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void ajaTilakone(states,events);
+    void aikaKatkaisu();
+
 private slots:
     void on_LuekorttiBtn_clicked();
 
@@ -48,7 +51,7 @@ private:
 
     QString CardNum;
     QString CardPin;
-    states state;
+    states state = Aloitus;
     events event;
     QTimer timer;
 

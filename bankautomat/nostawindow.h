@@ -15,6 +15,9 @@ public:
     explicit NostaWindow(QWidget *parent = nullptr);
     ~NostaWindow();
 
+private slots:
+    void on_PoistuButton_clicked();
+
 private:
     Ui::NostaWindow *ui;
 };
