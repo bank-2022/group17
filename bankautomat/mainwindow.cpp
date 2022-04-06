@@ -6,11 +6,25 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+    state = Aloitus;
+    event = avaaRFID;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::ajaTilakone(states s, events e)
+{
+
+}
+
+void MainWindow::aikaKatkaisu()
+{
+
 }
 
 

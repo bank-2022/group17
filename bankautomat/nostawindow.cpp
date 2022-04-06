@@ -12,3 +12,10 @@ NostaWindow::~NostaWindow()
 {
     delete ui;
 }
+
+
+void NostaWindow::on_PoistuButton_clicked()
+{
+    this->close();
+}
+

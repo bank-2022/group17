@@ -12,3 +12,9 @@ TalletaWindow::~TalletaWindow()
 {
     delete ui;
 }
+
+void TalletaWindow::on_PoistuButton_clicked()
+{
+    this->close();
+}
+
