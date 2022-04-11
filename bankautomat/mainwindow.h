@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextEdit>
+#include <dllserialport.h>
+#include <QObject>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +18,18 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private:
+        DLLSerialPort * serialPortDLLTest; //TESTING
+        QString serialCardNumber;
+
+private slots:
+    void on_btnGetCardNumber_clicked();
+    void on_btnOpenSerialPort_clicked();
+    void on_btnCloseSerialPort_clicked();
+    void cardReadDoneSlot();
+
+signals:
+    void readySignal();
 
 private:
     Ui::MainWindow *ui;
