@@ -5,21 +5,21 @@ void SerialEngine::openSerialPort() //Read the serial port data and make signal
     //Debug only with: "#include <QtSerialPort/QSerialPortInfo>" and "private: *objectInfo"
     //----------------Debug-----------------------------------
     int portSize=objectInfo->availablePorts().length();
-    QString portNames[portSize];
-    int portOrderNumber=0;
+    QString currentPortToUse;
+    //int portOrderNumber=0;
     qDebug() << portSize << "serial ports found:";
 
     for(const QSerialPortInfo &info : objectInfo->availablePorts())
     {
         qDebug() << info.portName();
-        portNames[portOrderNumber] = info.portName();
-        portOrderNumber++;
+        currentPortToUse = info.portName();
     }
+
     //----------------Debug-----------------------------------
-    qDebug() << "Using port: " << portNames[0];
+    qDebug() << "Using port: " << currentPortToUse;
     objectQSerialPort = new QSerialPort(this);
     //objectQSerialPort->setPortName("COM4"); //COM-port that reader is connected to
-    objectQSerialPort->setPortName(portNames[1]);
+    objectQSerialPort->setPortName(currentPortToUse);
     objectQSerialPort->setBaudRate(QSerialPort::Baud9600);
     objectQSerialPort->setDataBits(QSerialPort::Data8);
     objectQSerialPort->setParity(QSerialPort::NoParity);
