@@ -13,11 +13,13 @@ void SerialEngine::openSerialPort() //Read the serial port data and make signal
     {
         qDebug() << info.portName();
         portNames[portOrderNumber] = info.portName();
+        portOrderNumber++;
     }
     //----------------Debug-----------------------------------
-
+    qDebug() << "Using port: " << portNames[0];
     objectQSerialPort = new QSerialPort(this);
-    objectQSerialPort->setPortName("COM4"); //COM-port that reader is connected to
+    //objectQSerialPort->setPortName("COM4"); //COM-port that reader is connected to
+    objectQSerialPort->setPortName(portNames[1]);
     objectQSerialPort->setBaudRate(QSerialPort::Baud9600);
     objectQSerialPort->setDataBits(QSerialPort::Data8);
     objectQSerialPort->setParity(QSerialPort::NoParity);
