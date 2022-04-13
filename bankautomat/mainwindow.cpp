@@ -123,7 +123,30 @@ void MainWindow::readPinHandler(events e)
 
 void MainWindow::inBankHandler(events e)
 {
+    if(e==tilitapahtumat){
 
+    }
+    else if(e==saldo){
+
+    }
+    else if(e==nosto){
+
+    }
+    else if(e==talletus){
+
+    }
+    else if(e==uusisaldo){
+
+    }
+    else if(e==poistu){
+
+    }
+    else if(e==timeout){
+
+    }
+    else{
+        qDebug()<<"Error at "<<state<<" with event "<<e;
+    }
 }
 
 
