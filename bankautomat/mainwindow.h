@@ -18,6 +18,7 @@ enum states{
 
 };
 enum events{
+    clearAll,
     openSerial,
     readCardNum,
     closeSerial,
@@ -25,6 +26,7 @@ enum events{
     readPinNum,
     closePinWindow,
     login,
+    bankUi,
     tilitapahtumat,
     saldo,
     nosto,

@@ -8,11 +8,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
+    connect(&this->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
     //connect serialPortDll, dataReadDone, this, cardNumReadDone.
 
     state=start;
-    event=openSerial;
+    event=clearAll;
     runStateMachine(state, event);
 }
 
@@ -37,15 +37,13 @@ void MainWindow::runStateMachine(states s, events e)
     case inBank:
         inBankHandler(e);
         break;
-
-
-
     }
 }
 
 void MainWindow::timeoutHandler()
 {
-
+    event=timeout;
+    runStateMachine(state,event);
 }
 
 
@@ -71,7 +69,15 @@ void MainWindow::cardNumReadDone()
 
 void MainWindow::startHandler(events e)
 {
-
+    if(e==clearAll){
+        //set all variables to default?
+        state=readCard;
+        event=openSerial;
+        runStateMachine(state,event);
+    }
+    else{
+        qDebug()<<"Error at "<<state<<" with event "<<e;
+    }
 }
 
 void MainWindow::readCardHandler(events e)
@@ -123,22 +129,37 @@ void MainWindow::readPinHandler(events e)
 
 void MainWindow::inBankHandler(events e)
 {
-    if(e==tilitapahtumat){
+    if(e==bankUi){
+        //get asiakas
+        //idletimer
 
+    }
+    else if(e==tilitapahtumat){
+        //get tilitapahtumat
+        //idletimer
     }
     else if(e==saldo){
-
+        //get tili
+        //idletimer
     }
     else if(e==nosto){
-
+        //put tili
+        //idletimer
     }
     else if(e==talletus){
-
+        //put tili
+        //idletimer
     }
     else if(e==uusisaldo){
-
+        // get tili
+        //poistu?
     }
     else if(e==poistu){
+        pBankUI->close();
+        state=start;
+        event=clearAll;
+        runStateMachine(state,event);
+
 
     }
     else if(e==timeout){
