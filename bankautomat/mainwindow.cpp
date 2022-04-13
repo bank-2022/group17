@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    button=new QPushButton();
+    connect(button,SIGNAL(clicked()),this,SLOT(sayHello()));
 
     connect(&this->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
     //connect serialPortDll, dataReadDone, this, cardNumReadDone.
@@ -44,6 +46,11 @@ void MainWindow::timeoutHandler()
 {
     event=timeout;
     runStateMachine(state,event);
+}
+
+void MainWindow::sayHello()
+{
+    qDebug()<<"button clicked";
 }
 
 

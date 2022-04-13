@@ -3,6 +3,7 @@
 
 #include "bankui.h"
 #include <QMainWindow>
+#include <QPushButton>
 #include <QTimer>
 
 
@@ -46,6 +47,7 @@ public:
 public slots:
     void runStateMachine(states s,events e);
     void timeoutHandler();
+    void sayHello();
 
 private slots:
     void on_LuekorttiBtn_clicked();
@@ -61,6 +63,7 @@ private:
     states state = start;
     events event;
     QTimer timer;
+    QPushButton  *button;
 
     void startHandler(events e);
     void readCardHandler(events e);
