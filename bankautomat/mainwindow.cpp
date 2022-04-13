@@ -1,11 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    state=start;
+    event=openSerial;
+    runStateMachine(state, event);
 }
 
 MainWindow::~MainWindow()
@@ -61,7 +66,27 @@ void MainWindow::startHandler(events e)
 
 void MainWindow::readCardHandler(events e)
 {
-
+    if(e==openSerial){
+        //pdllSerialPort.interfaceFunctionOpenSerialPort();
+        state=readCard;
+        event=readCardNum;
+        runStateMachine(state, event);
+    }
+    else if(e==readCardNum){
+        //CardNum=pdllSerialPort.interfaceFunctionReturnCardSerialNumber();
+        state=readCard;
+        event=closeSerial;
+        runStateMachine(state,event);
+    }
+    else if(e==closeSerial){
+        //pdllSerialPort.interfaceFunctionCloseSerialPort();
+        state=readPin;
+        event=openPinWindow;
+        runStateMachine(state,event);
+    }
+    else{
+        qDebug()<<"Error at "<<state<<" with event "<<e;
+    }
 }
 
 void MainWindow::readPinHandler(events e)
