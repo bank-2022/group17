@@ -11,19 +11,27 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 enum states{
-    Aloitus,    //Ohjelman vakiotila
-    Luekortti,
-    Pankissa,   //Kun pankkiin on päästy
-    Nosta,
-    Talleta,
-    Tilitapahtumat,
-    Saldo
+    start,
+    readCard, //Ohjelman vakiotila
+    readPin,
+    inBank,   //Kun pankkiin on päästy
+
 };
 enum events{
-    avaaRFID,
-    luekortti,
-    suljeRFID,
-    pinKoodi,
+    openSerial,
+    readCardNum,
+    closeSerial,
+    openPinWindow,
+    readPinNum,
+    closePinWindow,
+    login,
+    tilitapahtumat,
+    saldo,
+    nosto,
+    talletus,
+    uusisaldo,
+    poistu
+
 
 
 
@@ -37,12 +45,11 @@ public:
     ~MainWindow();
 
 public slots:
-    void ajaTilakone(states,events);
-    void aikaKatkaisu();
+    void runStateMachine(states s,events e);
+    void timeoutHandler();
 
 private slots:
     void on_LuekorttiBtn_clicked();
-
     void on_AnnaPinBtn_clicked();
 
 private:
@@ -51,9 +58,14 @@ private:
 
     QString CardNum;
     QString CardPin;
-    states state = Aloitus;
+    states state = start;
     events event;
     QTimer timer;
+
+    void startHandler(events e);
+    void readCardHandler(events e);
+    void readPinHandler(events e);
+    void inBankHandler(events e);
 
 //    dllSerialPort *pdllSerialPort;
 //    dllPinCode *pdllPinCode;
