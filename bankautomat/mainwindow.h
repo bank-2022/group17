@@ -11,10 +11,10 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 enum states{
-    start,
-    readCard, //Ohjelman vakiotila
-    readPin,
-    inBank,   //Kun pankkiin on päästy
+    start,      //Program start
+    readCard,   //Program is ready to read card
+    readPin,    //When card is read move to read pin
+    inBank,     //When login is succesful
 
 };
 enum events{
@@ -30,11 +30,8 @@ enum events{
     nosto,
     talletus,
     uusisaldo,
-    poistu
-
-
-
-
+    poistu,
+    timeout
 };
 class MainWindow : public QMainWindow
 {
