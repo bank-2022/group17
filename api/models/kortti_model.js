@@ -23,6 +23,10 @@ const kortti={
         return db.query('insert into kortti (korttinumero, pin, idasiakas, idtili) values(?,?,?,?)',
         [kortti.korttinumero, hashed_pin, kortti.idasiakas, kortti.idtili], callback);
     });
+  },
+  getKorttiInfo: function(Korttinumero, callback){
+    return db.query('SELECT asiakas.nimi, kortti.idAsiakas, kortti.Korttinumero, kortti.idKortti, tili.idtili, saldo FROM kortti INNER JOIN tili ON kortti.idtili=tili.idtili INNER JOIN asiakas ON kortti.idAsiakas=asiakas.idAsiakas WHERE kortti.Korttinumero=?'
+    , [Korttinumero], callback);
   }
 
 }

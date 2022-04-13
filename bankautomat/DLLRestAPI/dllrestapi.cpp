@@ -15,5 +15,10 @@ DLLRestAPI::~DLLRestAPI()
 
 void DLLRestAPI::login()
 {
-    pEngineClass->loginhttp();
+    pEngineClass->loginRequest();
+}
+
+void DLLRestAPI::getKorttiInfo()
+{
+    pEngineClass->GetKorttiInfo();
 }

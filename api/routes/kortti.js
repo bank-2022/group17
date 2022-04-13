@@ -56,4 +56,15 @@ function(request, response) {
   });
 });
 
+router.get('/info/:Korttinumero',
+function(request,response){
+  kortti.getKorttiInfo(request.params.Korttinumero, function(err,dbResult){
+    if(err){
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
+
 module.exports = router;

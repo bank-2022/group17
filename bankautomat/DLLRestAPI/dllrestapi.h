@@ -14,6 +14,7 @@ public:
     DLLRestAPI(QObject *parent = nullptr);
     ~DLLRestAPI();
     void login();
+    void getKorttiInfo();
     void putTili();
     void postTilitapahtuma();
     void getTilitapahtuma();

@@ -16,22 +16,28 @@ class EngineClass : public QObject
     Q_OBJECT
 public:
     EngineClass(QObject *parent = nullptr);
-    void loginhttp();
+    void loginRequest();
+    void GetKorttiInfo();
 protected:
 
 private:
     MyURL *objectMyUrl;
     QString base_url;
+    QByteArray response_data;
 
     //Login variables
     QNetworkAccessManager *loginManager;
-    QNetworkReply *reply;
-    QByteArray response_data;
-    QByteArray token;
+    QNetworkReply *loginReply;
+    QByteArray token; //Token used for http requests
     QString _testKorttiNum = "901234";
     QString _testPin = "1234";
+
+    //Info req variables
+    QNetworkAccessManager *korttiInfoManager;
+    QNetworkReply *korttiInfoReply;
 private slots:
-    void loginSlot(QNetworkReply *reply);
+    void loginSlot(QNetworkReply *loginReply);
+    void korttiInfoSlot(QNetworkReply *korttiInfoReply);
 };
 
 #endif // ENGINECLASS_H
