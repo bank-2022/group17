@@ -48,6 +48,7 @@ public slots:
 private slots:
     void on_LuekorttiBtn_clicked();
     void on_AnnaPinBtn_clicked();
+    void cardNumReadDone();
 
 private:
     Ui::MainWindow *ui;
