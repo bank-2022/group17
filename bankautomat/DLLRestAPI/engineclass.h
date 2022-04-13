@@ -20,14 +20,16 @@ public:
 protected:
 
 private:
-    QString _testID = "1";
-    QString _testPin = "1234";
     MyURL *objectMyUrl;
     QString base_url;
 
+    //Login variables
     QNetworkAccessManager *loginManager;
     QNetworkReply *reply;
     QByteArray response_data;
+    QByteArray token;
+    QString _testKorttiNum = "901234";
+    QString _testPin = "1234";
 private slots:
     void loginSlot(QNetworkReply *reply);
 };
