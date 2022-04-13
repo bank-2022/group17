@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(serialPortDLLTest,SIGNAL(dataReadDone()),this, SLOT(cardReadDoneSlot()));
     ui->labelReadySignal->setStyleSheet("QLabel { background-color : red; color : black; }");
+
 }
 
 MainWindow::~MainWindow()
@@ -32,6 +33,8 @@ void MainWindow::on_btnGetCardNumber_clicked()
 
 void MainWindow::on_btnOpenSerialPort_clicked()
 {
+    //serialPortDLLTest->interfaceSetSerialPortManually("COM4"); //Change port manually
+
     ui->labelSerialInfo->setText("Serial port: OPEN");
     serialPortDLLTest->interfaceFunctionOpenSerialPort();
 }
@@ -42,6 +45,7 @@ void MainWindow::on_btnCloseSerialPort_clicked()
     ui->labelSerialInfo->setText("Serial port: CLOSED");
     ui->labelReadySignal->setStyleSheet("QLabel { background-color : red; color : black; }");
     serialPortDLLTest->interfaceFunctionCloseSerialPort();
+    ui->labelCardNumber->setText("-Card Number-");
 
 }
 

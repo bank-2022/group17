@@ -2,23 +2,22 @@
 
 void SerialEngine::openSerialPort() //Read the serial port data and make signal
 {
-    //Debug only with: "#include <QtSerialPort/QSerialPortInfo>" and "private: *objectInfo"
-    //----------------Debug-----------------------------------
     int portSize=objectInfo->availablePorts().length();
     QString currentPortToUse;
-    //int portOrderNumber=0;
     qDebug() << portSize << "serial ports found:";
 
-    for(const QSerialPortInfo &info : objectInfo->availablePorts())
+    if(manualSerialPort=="")//Uses the last port available
     {
-        qDebug() << info.portName();
-        currentPortToUse = info.portName();
+        for(const QSerialPortInfo &info : objectInfo->availablePorts()){
+            qDebug() << info.portName();
+            currentPortToUse = info.portName();
+        }
     }
+    else //Uses manually set port
+        currentPortToUse = manualSerialPort;
 
-    //----------------Debug-----------------------------------
-    qDebug() << "Using port: " << currentPortToUse;
     objectQSerialPort = new QSerialPort(this);
-    //objectQSerialPort->setPortName("COM4"); //COM-port that reader is connected to
+    qDebug() << "Using port: " << currentPortToUse;
     objectQSerialPort->setPortName(currentPortToUse);
     objectQSerialPort->setBaudRate(QSerialPort::Baud9600);
     objectQSerialPort->setDataBits(QSerialPort::Data8);
@@ -51,13 +50,18 @@ QString SerialEngine::returnCardSerialNumber()
     return cardSerialNumber;
 }
 
+void SerialEngine::setSerialPortManually(QString port)
+{
+    manualSerialPort = port;
+}
+
 void SerialEngine::readPort()
 {
     QByteArray byteArray;
     byteArray=objectQSerialPort->readAll();
 
     if(byteArray=="")
-        qDebug() << "Can't read card from serial port...";
+        qDebug() << "Can't read card value...";
     else
     {
         //qDebug() << "-Signal read:- " << byteArray; //Full card number data

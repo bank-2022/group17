@@ -3,11 +3,9 @@
 
 #include <QObject>
 #include <QString>
-//#include <QIODevice>
 #include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo> //Debug only
+#include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
-//#include "stdlib.h"
 
 class SerialEngine : public QObject
 {
@@ -17,12 +15,14 @@ public:
     void openSerialPort();
     void closeSerialPort();
     QString returnCardSerialNumber();
+    void setSerialPortManually(QString port);   //Optional
 
 private:
-    QSerialPortInfo *objectInfo; //Debug only
+    QSerialPortInfo *objectInfo;
     QSerialPort *objectQSerialPort;
     QString *list;
     QString cardSerialNumber;
+    QString manualSerialPort;
 
 private slots:
     void readPort();
