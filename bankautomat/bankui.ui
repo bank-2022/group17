@@ -114,30 +114,30 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="Seur10tapahtBtn">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>369</x>
      <y>300</y>
-     <width>80</width>
+     <width>131</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Seuraavat 10 tapahtumaa</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="Ed10tapahtBtn">
    <property name="geometry">
     <rect>
      <x>100</x>
      <y>300</y>
-     <width>80</width>
+     <width>131</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Edelliset 10 tapahtumaa</string>
    </property>
   </widget>
  </widget>
