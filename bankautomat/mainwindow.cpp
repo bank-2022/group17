@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
+    //connect serialPortDll, dataReadDone, this, cardNumReadDone.
+
     state=start;
     event=openSerial;
     runStateMachine(state, event);
@@ -59,6 +62,13 @@ void MainWindow::on_AnnaPinBtn_clicked()
     pBankUI->exec();
 }
 
+void MainWindow::cardNumReadDone()
+{
+    state=readCard;
+    event=closeSerial;
+    runStateMachine(state,event);
+}
+
 void MainWindow::startHandler(events e)
 {
 
@@ -74,9 +84,7 @@ void MainWindow::readCardHandler(events e)
     }
     else if(e==readCardNum){
         //CardNum=pdllSerialPort.interfaceFunctionReturnCardSerialNumber();
-        state=readCard;
-        event=closeSerial;
-        runStateMachine(state,event);
+        //when card read receive signal?
     }
     else if(e==closeSerial){
         //pdllSerialPort.interfaceFunctionCloseSerialPort();
@@ -91,7 +99,26 @@ void MainWindow::readCardHandler(events e)
 
 void MainWindow::readPinHandler(events e)
 {
-
+    if(e==openPinWindow){
+        //pdllPinCode.openPinWindow();
+        state=readPin;
+        event=readPinNum;
+        runStateMachine(state,event);
+    }
+    else if(e==readPinNum){
+        //CardPin=pdllPinCode.returnPinCode();
+        //when read receive signal?
+    }
+    else if(e==closePinWindow){
+        //pdllPinCode.closePinWindow
+    }
+    else if(e==login){
+        //pdllRestApi.login
+        //true or false signal?
+    }
+    else{
+        qDebug()<<"Error at "<<state<<" with event "<<e;
+    }
 }
 
 void MainWindow::inBankHandler(events e)
