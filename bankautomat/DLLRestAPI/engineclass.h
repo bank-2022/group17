@@ -29,8 +29,8 @@ private:
     QNetworkAccessManager *loginManager;
     QNetworkReply *loginReply;
     QByteArray token; //Token used for http requests
-    QString _testKorttiNum = "901234";
-    QString _testPin = "1234";
+    QString _testKorttiNum = "52255BC";
+    QString _testPin = "0000";
 
     //Info req variables
     QNetworkAccessManager *korttiInfoManager;

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `banksimuldb` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `banksimuldb`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: banksimuldb
@@ -28,9 +26,9 @@ CREATE TABLE `asiakas` (
   `idAsiakas` int NOT NULL AUTO_INCREMENT,
   `Nimi` varchar(45) NOT NULL,
   `Osoite` varchar(45) NOT NULL,
-  `Puhelinnumero` int NOT NULL,
+  `Puhelinnumero` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idAsiakas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +37,7 @@ CREATE TABLE `asiakas` (
 
 LOCK TABLES `asiakas` WRITE;
 /*!40000 ALTER TABLE `asiakas` DISABLE KEYS */;
+INSERT INTO `asiakas` VALUES (3,'Teppo Mustonen','Torikatu 5','0401234444'),(4,'Petteri Järvi','Aukionkatu 9','0445559889'),(5,'Petteri Järvi','Aukionkatu 9','0445559889');
 /*!40000 ALTER TABLE `asiakas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,6 +64,7 @@ CREATE TABLE `asiakastili` (
 
 LOCK TABLES `asiakastili` WRITE;
 /*!40000 ALTER TABLE `asiakastili` DISABLE KEYS */;
+INSERT INTO `asiakastili` VALUES (3,3),(4,3),(4,4);
 /*!40000 ALTER TABLE `asiakastili` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,16 +77,17 @@ DROP TABLE IF EXISTS `kortti`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `kortti` (
   `idKortti` int NOT NULL AUTO_INCREMENT,
-  `Korttinumero` int NOT NULL,
-  `Pin` varchar(20) NOT NULL,
+  `Korttinumero` varchar(20) DEFAULT NULL,
+  `Pin` varchar(255) DEFAULT NULL,
   `idAsiakas` int NOT NULL,
   `idtili` int NOT NULL,
   PRIMARY KEY (`idKortti`),
+  UNIQUE KEY `Korttinumero` (`Korttinumero`),
   KEY `fk_kortti_asiakas_idx` (`idAsiakas`),
   KEY `fk_kortti_tili1_idx` (`idtili`),
   CONSTRAINT `fk_kortti_asiakas` FOREIGN KEY (`idAsiakas`) REFERENCES `asiakas` (`idAsiakas`),
   CONSTRAINT `fk_kortti_tili1` FOREIGN KEY (`idtili`) REFERENCES `tili` (`idtili`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `kortti` (
 
 LOCK TABLES `kortti` WRITE;
 /*!40000 ALTER TABLE `kortti` DISABLE KEYS */;
+INSERT INTO `kortti` VALUES (1,'901234','$2a$10$DW5KQrJRZ0.T/1YM.MEdT.J7ee1TjVgXBDkO/tC08E8PQKHE5hOEG',3,3),(6,'42316','$2a$10$IYHu/Y0b6zugV1f7UdKh8.mlXcSh0fc3mxbE5qv/XBdWPxagsNzr2',4,3),(7,'52255','$2a$10$xW32n7HilaSzF5228tULxucrCquhidgVt8dJhEzxo9vZcyevNJXo.',4,4);
 /*!40000 ALTER TABLE `kortti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +113,7 @@ CREATE TABLE `tili` (
   `Tilinumero` varchar(45) NOT NULL,
   PRIMARY KEY (`idtili`),
   UNIQUE KEY `Tilinumero_UNIQUE` (`Tilinumero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,6 +122,7 @@ CREATE TABLE `tili` (
 
 LOCK TABLES `tili` WRITE;
 /*!40000 ALTER TABLE `tili` DISABLE KEYS */;
+INSERT INTO `tili` VALUES (3,36069.2,'123'),(4,220.5,'5678');
 /*!40000 ALTER TABLE `tili` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +144,7 @@ CREATE TABLE `tilitapahtumat` (
   PRIMARY KEY (`idtilitapahtumat`),
   KEY `fk_tilitapahtumat_tili1_idx` (`idtili`),
   CONSTRAINT `fk_tilitapahtumat_tili1` FOREIGN KEY (`idtili`) REFERENCES `tili` (`idtili`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-29 10:42:48
+-- Dump completed on 2022-04-14 11:23:09

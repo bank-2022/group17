@@ -53,6 +53,22 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
 
 void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply)
 {
-    response_data=korttiInfoReply->readAll();
-    qDebug()<<response_data;
+    QByteArray response_data=korttiInfoReply->readAll();
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString info;
+
+    foreach (const QJsonValue &value, json_array) {
+        QJsonObject json_obj = value.toObject();
+        info=json_obj["nimi"].toString()+","+json_obj["Korttinumero"].toString()+","+
+            QString::number(json_obj["idAsiakas"].toInt())+","+QString::number(json_obj["idKortti"].toInt())+","+
+            QString::number(json_obj["idtili"].toInt())+","+QString::number(json_obj["saldo"].toDouble())+"\r";
+    }
+    qDebug()<<info;
+
+    korttiInfoReply->deleteLater();
+    korttiInfoManager->deleteLater();
+
+
+    //qDebug()<<response_data;
 }
