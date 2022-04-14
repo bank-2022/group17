@@ -7,9 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    button=new QPushButton();
-    connect(button,SIGNAL(clicked()),this,SLOT(sayHello()));
-
+    //connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
     connect(&this->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
     //connect serialPortDll, dataReadDone, this, cardNumReadDone.
 
@@ -44,6 +42,7 @@ void MainWindow::runStateMachine(states s, events e)
 
 void MainWindow::timeoutHandler()
 {
+    qDebug()<<"timeout!";
     event=timeout;
     runStateMachine(state,event);
 }
@@ -61,10 +60,10 @@ void MainWindow::on_LuekorttiBtn_clicked()
 
 void MainWindow::on_AnnaPinBtn_clicked()
 {
-    //
     pBankUI = new BankUI;
     pBankUI->setModal(true);
-    pBankUI->exec();
+    pBankUI->show();
+    connect(pBankUI->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
 }
 
 void MainWindow::cardNumReadDone()
@@ -96,8 +95,9 @@ void MainWindow::readCardHandler(events e)
         runStateMachine(state, event);
     }
     else if(e==readCardNum){
-        //CardNum=pdllSerialPort.interfaceFunctionReturnCardSerialNumber();
         //when card read receive signal?
+        //CardNum=pdllSerialPort.interfaceFunctionReturnCardSerialNumber();
+
     }
     else if(e==closeSerial){
         //pdllSerialPort.interfaceFunctionCloseSerialPort();

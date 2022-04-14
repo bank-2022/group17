@@ -13,19 +13,22 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     nostawindow.cpp \
-    talletawindow.cpp
+    talletawindow.cpp \
+    tapahtumatwindow.cpp
 
 HEADERS += \
     bankui.h \
     mainwindow.h \
     nostawindow.h \
-    talletawindow.h
+    talletawindow.h \
+    tapahtumatwindow.h
 
 FORMS += \
     bankui.ui \
     mainwindow.ui \
     nostawindow.ui \
-    talletawindow.ui
+    talletawindow.ui \
+    tapahtumatwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
