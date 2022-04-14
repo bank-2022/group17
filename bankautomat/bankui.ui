@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
-    <height>461</height>
+    <width>229</width>
+    <height>339</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="NostaBtn">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>100</y>
      <width>80</width>
      <height>21</height>
@@ -29,7 +29,7 @@
   <widget class="QPushButton" name="TalletaBtn">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>130</y>
      <width>80</width>
      <height>21</height>
@@ -42,7 +42,7 @@
   <widget class="QPushButton" name="SaldoBtn">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>70</y>
      <width>80</width>
      <height>21</height>
@@ -55,7 +55,7 @@
   <widget class="QPushButton" name="PoistuBtn">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>190</y>
      <width>80</width>
      <height>21</height>
@@ -81,7 +81,7 @@
   <widget class="QLabel" name="saldo_label">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>140</x>
      <y>70</y>
      <width>81</width>
      <height>16</height>
@@ -94,7 +94,7 @@
   <widget class="QPushButton" name="TapahtumatBtn">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>50</x>
      <y>160</y>
      <width>80</width>
      <height>21</height>
@@ -102,42 +102,6 @@
    </property>
    <property name="text">
     <string>Tapahtumat</string>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="TapahtumaList">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>100</y>
-     <width>401</width>
-     <height>191</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Seur10tapahtBtn">
-   <property name="geometry">
-    <rect>
-     <x>369</x>
-     <y>300</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Seuraavat 10 tapahtumaa</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Ed10tapahtBtn">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>300</y>
-     <width>131</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edelliset 10 tapahtumaa</string>
    </property>
   </widget>
  </widget>
