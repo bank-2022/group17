@@ -32,24 +32,6 @@
      <string>Open Serial Port</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnGetCardNumber">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>220</y>
-      <width>231</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Get Card Number</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnCloseSerialPort">
     <property name="geometry">
      <rect>
@@ -74,19 +56,35 @@
       <x>270</x>
       <y>220</y>
       <width>231</width>
-      <height>61</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
      </font>
     </property>
+    <property name="accessibleName">
+     <string/>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="text">
-     <string>-Card Number-</string>
+     <string>-</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="labelReadySignal">
@@ -126,6 +124,27 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelCardNumber_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>180</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Card number: </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

@@ -6,8 +6,7 @@ bankautomat/build/
 
 bankautomat/*.user
 
-DLLSerialPort/build/
+bankautomat/DLLSerialPort/*.user
 
-DLLSerialPort/*.user
 
 

@@ -19,11 +19,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
-        DLLSerialPort * serialPortDLLTest; //TESTING
+        DLLSerialPort * serialPort;
         QString serialCardNumber;
 
 private slots:
-    void on_btnGetCardNumber_clicked();
     void on_btnOpenSerialPort_clicked();
     void on_btnCloseSerialPort_clicked();
     void cardReadDoneSlot();
@@ -34,4 +33,5 @@ signals:
 private:
     Ui::MainWindow *ui;
 };
+
 #endif // MAINWINDOW_H
