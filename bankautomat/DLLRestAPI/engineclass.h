@@ -38,6 +38,8 @@ private:
 private slots:
     void loginSlot(QNetworkReply *loginReply);
     void korttiInfoSlot(QNetworkReply *korttiInfoReply);
+signals:
+    void sendKorttiInfoToDLL(QString);
 };
 
 #endif // ENGINECLASS_H

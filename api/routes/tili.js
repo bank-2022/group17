@@ -59,4 +59,15 @@ function(request, response) {
   });
 });
 
+router.put('/nosta', 
+function(request, response) {
+  tili.nosta(request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
+
 module.exports = router;

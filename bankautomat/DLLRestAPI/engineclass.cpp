@@ -58,7 +58,7 @@ void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply)
     QJsonArray json_array = json_doc.array();
     QString info;
 
-    foreach (const QJsonValue &value, json_array) {
+    foreach (const QJsonValue &value, json_array) { //Read json array
         QJsonObject json_obj = value.toObject();
         info=json_obj["nimi"].toString()+","+json_obj["Korttinumero"].toString()+","+
             QString::number(json_obj["idAsiakas"].toInt())+","+QString::number(json_obj["idKortti"].toInt())+","+
@@ -69,6 +69,6 @@ void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply)
     korttiInfoReply->deleteLater();
     korttiInfoManager->deleteLater();
 
-
-    //qDebug()<<response_data;
+    emit sendKorttiInfoToDLL(info);
+    qDebug()<<"At engine SIGNAL function = sendKorttiInfoToDLL";
 }

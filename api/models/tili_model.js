@@ -1,3 +1,4 @@
+const connection = require('../database');
 const db = require('../database');
 
 const tili = {
@@ -23,6 +24,13 @@ const tili = {
       [tili.Saldo, tili.Tilinumero, id],
       callback
     );
+  },
+  nosta: function(tili_id,amount,Korttinumero,kortti_id, callback){
+    return connection.query('call nosta(?,?,?,?)',
+    [tili_id,amount,Korttinumero,kortti_id],
+    callback
+    );
   }
-};
+}
+
 module.exports = tili;

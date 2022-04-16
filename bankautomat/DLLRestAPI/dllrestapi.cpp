@@ -3,14 +3,19 @@
 DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
 {
     qDebug()<<"DLL luotu";
-    pEngineClass = new EngineClass;
+    pEngineClass = new EngineClass(this);
+
+    connect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
+            this,SLOT(recvKorttiInfoFromEngine(QString)));
 }
 
 DLLRestAPI::~DLLRestAPI()
 {
-        qDebug()<<"DLL tuhottu";
-        delete pEngineClass;
-        pEngineClass = nullptr;
+    qDebug()<<"DLL tuhottu";
+    disconnect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
+        this,SLOT(recvKorttiInfoFromEngine));
+    delete pEngineClass;
+    pEngineClass = nullptr;
 }
 
 void DLLRestAPI::login()
@@ -21,4 +26,10 @@ void DLLRestAPI::login()
 void DLLRestAPI::getKorttiInfo()
 {
     pEngineClass->GetKorttiInfo();
+}
+
+void DLLRestAPI::recvKorttiInfoFromEngine(QString info)
+{
+    qDebug()<<"At  DLL restapi SLOT function = recvKorttiInfoFromEngine";
+    emit sendKorttiInfoToExe(info);
 }
