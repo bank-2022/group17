@@ -15,8 +15,10 @@ public:
     explicit TalletaWindow(QWidget *parent = nullptr);
     ~TalletaWindow();
 
-private slots:
+signals:
+    void resetTimer();
 
+private slots:
     void on_PoistuButton_clicked();    
     void on_TalletaButton_clicked();
     void on_PeruutaButton_clicked();

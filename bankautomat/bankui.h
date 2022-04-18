@@ -21,14 +21,16 @@ public:
     explicit BankUI(QWidget *parent = nullptr);
     ~BankUI();
      QTimer *timer;
-
+signals:
+     void timeout();
 private slots:
     void on_NostaBtn_clicked();
     void on_TalletaBtn_clicked();
     void on_TapahtumatBtn_clicked();
     void on_PoistuBtn_clicked();
     void on_SaldoBtn_clicked();
-    void timeout();
+    void timerReset();
+    void timeoutcheck();
 
 private:
     Ui::BankUI *ui;

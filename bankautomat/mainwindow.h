@@ -47,12 +47,16 @@ public:
 public slots:
     void runStateMachine(states s,events e);
     void timeoutHandler();
-    void sayHello();
+
+signals:
+    void cardReadDone();
+    void pinReadDone();
 
 private slots:
     void on_LuekorttiBtn_clicked();
     void on_AnnaPinBtn_clicked();
     void cardNumReadDone();
+    void pinNumReadDone ();
 
 private:
     Ui::MainWindow *ui;
