@@ -15,6 +15,19 @@ TapahtumatWindow::~TapahtumatWindow()
 
 void TapahtumatWindow::on_Ed10tapahtBtn_clicked()
 {
+    emit resetTimer();
+}
 
+
+void TapahtumatWindow::on_poistuBtn_clicked()
+{
+    this->close();
+    emit resetTimer();
+}
+
+
+void TapahtumatWindow::on_Seur10tapahtBtn_clicked()
+{
+    emit resetTimer();
 }
 

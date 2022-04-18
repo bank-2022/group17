@@ -7,9 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
-    connect(&this->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
     //connect serialPortDll, dataReadDone, this, cardNumReadDone.
+
+    connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
+    connect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
 
     state=start;
     event=clearAll;
@@ -47,23 +48,16 @@ void MainWindow::timeoutHandler()
     runStateMachine(state,event);
 }
 
-void MainWindow::sayHello()
-{
-    qDebug()<<"button clicked";
-}
 
 
 void MainWindow::on_LuekorttiBtn_clicked()
 {
-
+    emit cardReadDone();
 }
 
 void MainWindow::on_AnnaPinBtn_clicked()
 {
-    pBankUI = new BankUI;
-    pBankUI->setModal(true);
-    pBankUI->show();
-    connect(pBankUI->timer,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
+    emit pinReadDone();
 }
 
 void MainWindow::cardNumReadDone()
@@ -73,22 +67,32 @@ void MainWindow::cardNumReadDone()
     runStateMachine(state,event);
 }
 
+void MainWindow::pinNumReadDone()
+{
+    //login
+    state=inBank;
+    event=bankUi;
+    runStateMachine(state,event);
+}
+
 void MainWindow::startHandler(events e)
 {
     if(e==clearAll){
+        qDebug()<<"e=clearAll";
         //set all variables to default?
         state=readCard;
         event=openSerial;
         runStateMachine(state,event);
     }
     else{
-        qDebug()<<"Error at "<<state<<" with event "<<e;
+        qDebug()<<"Error at starthandler with event "<<e;
     }
 }
 
 void MainWindow::readCardHandler(events e)
 {
     if(e==openSerial){
+        qDebug()<<"e=OpenSerial";
         //pdllSerialPort.interfaceFunctionOpenSerialPort();
         state=readCard;
         event=readCardNum;
@@ -100,19 +104,21 @@ void MainWindow::readCardHandler(events e)
 
     }
     else if(e==closeSerial){
+        qDebug()<<"e=closeSerial";
         //pdllSerialPort.interfaceFunctionCloseSerialPort();
         state=readPin;
         event=openPinWindow;
         runStateMachine(state,event);
     }
     else{
-        qDebug()<<"Error at "<<state<<" with event "<<e;
+        qDebug()<<"Error at cardhandler with event "<<e;
     }
 }
 
 void MainWindow::readPinHandler(events e)
 {
     if(e==openPinWindow){
+        qDebug()<<"e=open=Pin";
         //pdllPinCode.openPinWindow();
         state=readPin;
         event=readPinNum;
@@ -130,30 +136,37 @@ void MainWindow::readPinHandler(events e)
         //true or false signal?
     }
     else{
-        qDebug()<<"Error at "<<state<<" with event "<<e;
+        qDebug()<<"Error at pinhandler with event "<<e;
     }
 }
 
 void MainWindow::inBankHandler(events e)
 {
     if(e==bankUi){
-        //get asiakas
-        //idletimer
+        qDebug()<<"e=bankui";
+        pBankUI = new BankUI;
+        pBankUI->setModal(true);
+        pBankUI->show();
+        connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
 
     }
     else if(e==tilitapahtumat){
+         qDebug()<<"e=tapahtumat";
         //get tilitapahtumat
         //idletimer
     }
     else if(e==saldo){
+        qDebug()<<"e=saldo";
         //get tili
         //idletimer
     }
     else if(e==nosto){
+        qDebug()<<"e=nosto";
         //put tili
         //idletimer
     }
     else if(e==talletus){
+        qDebug()<<"e=talletus";
         //put tili
         //idletimer
     }
@@ -162,18 +175,21 @@ void MainWindow::inBankHandler(events e)
         //poistu?
     }
     else if(e==poistu){
+        qDebug()<<"e=poistu";
         pBankUI->close();
+        pBankUI->deleteLater();
+        pBankUI=nullptr;
         state=start;
         event=clearAll;
         runStateMachine(state,event);
-
-
     }
     else if(e==timeout){
-
+        state=inBank;
+        event=poistu;
+        runStateMachine(state,event);
     }
     else{
-        qDebug()<<"Error at "<<state<<" with event "<<e;
+        qDebug()<<"Error at bankhandler with event "<<e;
     }
 }
 

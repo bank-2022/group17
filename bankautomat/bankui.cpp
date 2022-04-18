@@ -1,5 +1,6 @@
 #include "bankui.h"
 #include "ui_bankui.h"
+#include <QDebug>
 
 
 BankUI::BankUI(QWidget *parent) :
@@ -9,39 +10,48 @@ BankUI::BankUI(QWidget *parent) :
     ui->setupUi(this);
     elapse_timer.start();
     timer=new QTimer(this);
-    timer->start(2000);
+    timer->start(1000);     //1s timer to timeout check
+    qDebug()<<"bank constru";
+    connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
 }
 
 BankUI::~BankUI()
 {
+    qDebug()<<"bank destro";
     delete ui;
+    timer->deleteLater();
+    timer=nullptr;
+    //set all variables to default?
 }
 
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
-    pNostaWindow = new NostaWindow;
+    pNostaWindow = new NostaWindow(this);
     pNostaWindow->setModal(true);
-    pNostaWindow->exec();
+    pNostaWindow->show();
+    connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
-    pTalletaWindow = new TalletaWindow;
+    pTalletaWindow = new TalletaWindow(this);
     pTalletaWindow->setModal(true);
-    pTalletaWindow->exec();
+    pTalletaWindow->show();
+    connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
-    pTapahtumatWindow=new TapahtumatWindow;
+    pTapahtumatWindow=new TapahtumatWindow(this);
     pTapahtumatWindow->setModal(true);
-    pTapahtumatWindow->exec();
+    pTapahtumatWindow->show();
     //get tapahtumat
+    connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 
@@ -60,11 +70,18 @@ void BankUI::on_SaldoBtn_clicked()
     ui->saldo_label->setText(saldo+" €");
 }
 
-void BankUI::timeout()
+void BankUI::timerReset()
 {
+    elapse_timer.restart();
+    qDebug()<<"timer reset";
+}
 
-    if(elapse_timer.elapsed()>10000){
-        this->close();
+void BankUI::timeoutcheck()
+{
+    qDebug()<<"timeout check.. elapsed time= "<<elapse_timer.elapsed();
+    if(elapse_timer.elapsed()>10000){ // 10s to timeout
+        qDebug()<<"emit timeout";
+        emit timeout();
     }
 }
 

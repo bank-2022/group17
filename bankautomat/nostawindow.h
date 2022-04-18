@@ -15,6 +15,9 @@ public:
     explicit NostaWindow(QWidget *parent = nullptr);
     ~NostaWindow();
 
+signals:
+    void resetTimer();
+
 private slots:
     void on_PoistuButton_clicked();
     void on_VahvitaNostoBtn_clicked();
