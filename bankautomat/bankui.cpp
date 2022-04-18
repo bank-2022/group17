@@ -57,7 +57,7 @@ void BankUI::on_TapahtumatBtn_clicked()
 
 void BankUI::on_PoistuBtn_clicked()
 {
-    this->close();
+    emit poistuSignal();
 }
 
 

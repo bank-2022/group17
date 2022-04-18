@@ -47,6 +47,7 @@ public:
 public slots:
     void runStateMachine(states s,events e);
     void timeoutHandler();
+    void poistuHandler();
 
 signals:
     void cardReadDone();
