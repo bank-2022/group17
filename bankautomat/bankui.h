@@ -23,6 +23,7 @@ public:
      QTimer *timer;
 signals:
      void timeout();
+     void poistuSignal();
 private slots:
     void on_NostaBtn_clicked();
     void on_TalletaBtn_clicked();

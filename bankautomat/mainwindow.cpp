@@ -48,6 +48,13 @@ void MainWindow::timeoutHandler()
     runStateMachine(state,event);
 }
 
+void MainWindow::poistuHandler()
+{
+    qDebug()<<"poistu handler";
+    event=poistu;
+    runStateMachine(state,event);
+}
+
 
 
 void MainWindow::on_LuekorttiBtn_clicked()
@@ -148,6 +155,7 @@ void MainWindow::inBankHandler(events e)
         pBankUI->setModal(true);
         pBankUI->show();
         connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
+        connect(pBankUI,SIGNAL(poistuSignal()),this,SLOT(poistuHandler()));
 
     }
     else if(e==tilitapahtumat){
