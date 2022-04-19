@@ -6,3 +6,6 @@ bankautomat/build/
 
 bankautomat/*.user
 
+bankautomat/pincode/DLLPinCode/*.user
+
+bankautomat/pincode/DLLPinCode/build
