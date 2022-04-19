@@ -14,18 +14,18 @@ public:
     DLLRestAPI(QObject *parent = nullptr);
     ~DLLRestAPI();
     void login();
-    void getKorttiInfo();
     void putTili();
     void postTilitapahtuma();
     void getTilitapahtuma();
-    void getAsiakas();
-    void getTili();
 private:
     EngineClass *pEngineClass;
 signals:
     void sendKorttiInfoToExe(QString);
 public slots:
     void recvKorttiInfoFromEngine(QString);
+    void recvGenerateKorttiInfoCommand(QString);
+    void recvLoginCommand(QString, QString);
+    void recvNostaCommand(QString,float,QString,QString);
 };
 
 #endif // DLLRESTAPI_H

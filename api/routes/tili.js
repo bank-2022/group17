@@ -59,9 +59,9 @@ function(request, response) {
   });
 });
 
-router.put('/nosta', 
+router.put('/nosta/:id', 
 function(request, response) {
-  tili.nosta(request.body, function(err, dbResult) {
+  tili.nosta(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {

@@ -25,9 +25,13 @@ const tili = {
       callback
     );
   },
-  nosta: function(tili_id,amount,Korttinumero,kortti_id, callback){
-    return connection.query('call nosta(?,?,?,?)',
-    [tili_id,amount,Korttinumero,kortti_id],
+  nosta: function(id, myArray,callback){
+    var Summa=myArray.Summa;
+    var Korttinumero=myArray.Korttinumero;
+    var idkortti=myArray.idkortti;
+    return db.query(
+      'call nosta(?,?,?,?)',
+    [id,Summa,Korttinumero,idkortti],
     callback
     );
   }

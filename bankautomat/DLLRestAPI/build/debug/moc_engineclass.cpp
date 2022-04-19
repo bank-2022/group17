@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_EngineClass_t {
-    QByteArrayData data[8];
-    char stringdata0[100];
+    QByteArrayData data[10];
+    char stringdata0[121];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,12 +38,15 @@ QT_MOC_LITERAL(3, 33, 9), // "loginSlot"
 QT_MOC_LITERAL(4, 43, 14), // "QNetworkReply*"
 QT_MOC_LITERAL(5, 58, 10), // "loginReply"
 QT_MOC_LITERAL(6, 69, 14), // "korttiInfoSlot"
-QT_MOC_LITERAL(7, 84, 15) // "korttiInfoReply"
+QT_MOC_LITERAL(7, 84, 15), // "korttiInfoReply"
+QT_MOC_LITERAL(8, 100, 9), // "nostaSlot"
+QT_MOC_LITERAL(9, 110, 10) // "nostaReply"
 
     },
     "EngineClass\0sendKorttiInfoToDLL\0\0"
     "loginSlot\0QNetworkReply*\0loginReply\0"
-    "korttiInfoSlot\0korttiInfoReply"
+    "korttiInfoSlot\0korttiInfoReply\0nostaSlot\0"
+    "nostaReply"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +56,7 @@ static const uint qt_meta_data_EngineClass[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,11 +64,12 @@ static const uint qt_meta_data_EngineClass[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   29,    2, 0x06 /* Public */,
+       1,    1,   34,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    1,   32,    2, 0x08 /* Private */,
-       6,    1,   35,    2, 0x08 /* Private */,
+       3,    1,   37,    2, 0x08 /* Private */,
+       6,    1,   40,    2, 0x08 /* Private */,
+       8,    1,   43,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -73,6 +77,7 @@ static const uint qt_meta_data_EngineClass[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 4,    5,
     QMetaType::Void, 0x80000000 | 4,    7,
+    QMetaType::Void, 0x80000000 | 4,    9,
 
        0        // eod
 };
@@ -86,6 +91,7 @@ void EngineClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->sendKorttiInfoToDLL((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->loginSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 2: _t->korttiInfoSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 3: _t->nostaSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -99,6 +105,13 @@ void EngineClass::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
             break;
         case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QNetworkReply* >(); break;
+            }
+            break;
+        case 3:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -147,13 +160,13 @@ int EngineClass::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

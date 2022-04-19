@@ -16,8 +16,9 @@ class EngineClass : public QObject
     Q_OBJECT
 public:
     EngineClass(QObject *parent = nullptr);
-    void loginRequest();
-    void GetKorttiInfo();
+    void loginRequest(QString, QString);
+    void GetKorttiInfo(QString);
+    void nosta(QString,float,QString,QString);
 protected:
 
 private:
@@ -29,15 +30,21 @@ private:
     QNetworkAccessManager *loginManager;
     QNetworkReply *loginReply;
     QByteArray token; //Token used for http requests
-    QString _testKorttiNum = "52255BC";
-    QString _testPin = "0000";
+    //QString _testKorttiNum = "52255BC";
+    //QString _testPin = "0000";
 
     //Info req variables
     QNetworkAccessManager *korttiInfoManager;
     QNetworkReply *korttiInfoReply;
+
+    //Nosta variables
+    QNetworkAccessManager *nostaManager;
+    QNetworkReply *nostaReply;
+
 private slots:
     void loginSlot(QNetworkReply *loginReply);
     void korttiInfoSlot(QNetworkReply *korttiInfoReply);
+    void nostaSlot(QNetworkReply *nostaReply);
 signals:
     void sendKorttiInfoToDLL(QString);
 };

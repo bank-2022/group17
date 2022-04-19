@@ -6,13 +6,13 @@ EngineClass::EngineClass(QObject *parent) : QObject(parent)
     base_url = objectMyUrl->getBase_url();
 }
 
-void EngineClass::loginRequest()
+void EngineClass::loginRequest(QString Korttinumero, QString Pin)
 {
     qDebug()<<"base_url"+base_url; //Url debug
 
     QJsonObject jsonObj; //Json object with login credentials
-    jsonObj.insert("Korttinumero", _testKorttiNum);
-    jsonObj.insert("pin", _testPin); //Insert login credentials
+    jsonObj.insert("Korttinumero", Korttinumero);
+    jsonObj.insert("pin", Pin); //Insert login credentials
 
 
     QNetworkRequest request((base_url+"/login")); //Url for login request
@@ -24,17 +24,33 @@ void EngineClass::loginRequest()
     loginReply = loginManager->post(request, QJsonDocument(jsonObj).toJson()); //Login post
 }
 
-void EngineClass::GetKorttiInfo()
+void EngineClass::GetKorttiInfo(QString Korttinumero)
 {
-    QNetworkRequest request((base_url+"/kortti/info/"+_testKorttiNum)); //Url for kortti info request
+    QNetworkRequest request((base_url+"/kortti/info/"+Korttinumero)); //Url for kortti info request
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"); //Data form in body
-
     request.setRawHeader(QByteArray("Authorization"),(token)); //WEBTOKEN
 
     korttiInfoManager = new QNetworkAccessManager(this);
     connect(korttiInfoManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(korttiInfoSlot(QNetworkReply*)));
 
     korttiInfoReply = korttiInfoManager->get(request);
+}
+
+void EngineClass::nosta(QString idtili, float summa, QString Korttinumero, QString idkortti)
+{
+    QJsonObject jsonObj; //Json object with nosta parameters
+    jsonObj.insert("Summa", summa);
+    jsonObj.insert("Korttinumero", Korttinumero);
+    jsonObj.insert("idkortti", idkortti); //Insert nosta parameters
+
+    QNetworkRequest request((base_url+"/tili/nosta/"+idtili));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"); //Data form in body
+    request.setRawHeader(QByteArray("Authorization"),(token)); //WEBTOKEN
+
+    nostaManager = new QNetworkAccessManager(this);
+    connect(nostaManager,SIGNAL(finished(QNetworkReply*)),this,SLOT(nostaSlot(QNetworkReply*)));
+
+    nostaReply = nostaManager->put(request, QJsonDocument(jsonObj).toJson()); //Nosta put
 }
 
 void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered when finish signal gets raised from login request
@@ -51,7 +67,7 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
     }
 }
 
-void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply)
+void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply) //Read json data when request finished
 {
     QByteArray response_data=korttiInfoReply->readAll();
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
@@ -71,4 +87,11 @@ void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply)
 
     emit sendKorttiInfoToDLL(info);
     qDebug()<<"At engine SIGNAL function = sendKorttiInfoToDLL";
+}
+
+void EngineClass::nostaSlot(QNetworkReply *nostaReply) //Slot for debug purposes
+{
+    response_data=nostaReply->readAll(); //Insert reply data to variable
+    qDebug()<<response_data; //Debug response data
+    qDebug()<<"Nosto slot executed";
 }
