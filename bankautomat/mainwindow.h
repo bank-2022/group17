@@ -49,18 +49,20 @@ public slots:
     void runStateMachine(states s,events e);
     void timeoutHandler();
     void poistuHandler();
-    void pinCodeNum(QString pin);
+    void pinCodeNum(QString pin); //slot for receiving pincode signal
+    void readyToReadCardNum();
 
 signals:
     void cardReadDone();  //test signal
     void pinReadDone();   //test signal
+    void eventSignal(states,events); //signal for state & event changes
 
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button
     void on_AnnaPinBtn_clicked();   //test button
-    void cardNumReadDone();
-    void pinNumReadDone ();
+    void cardNumReadDone();         //test slot
+    void pinNumReadDone ();         //test slot
 
 private:
     Ui::MainWindow *ui;
@@ -74,14 +76,10 @@ private:
     DLLPinCode *pDllPinCode;
     DLLSerialPort *pDllSerialPort;
 
-    void startHandler(events e);
+    void startHandler(events e);    //state handlers
     void readCardHandler(events e);
     void readPinHandler(events e);
     void inBankHandler(events e);
-
-
-//    dllSerialPort *pdllSerialPort;
-//    dllRestApi *pdllRestApi;
 
 };
 #endif // MAINWINDOW_H
