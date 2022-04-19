@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QTimer>
-
+#include "dllpincode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -48,10 +48,12 @@ public slots:
     void runStateMachine(states s,events e);
     void timeoutHandler();
     void poistuHandler();
+    void pinCodeNum(QString pin);
 
 signals:
     void cardReadDone();
     void pinReadDone();
+
 
 private slots:
     void on_LuekorttiBtn_clicked();
@@ -70,13 +72,15 @@ private:
     QTimer timer;
     QPushButton  *button;
 
+    DLLPinCode *pDllPinCode;
+
     void startHandler(events e);
     void readCardHandler(events e);
     void readPinHandler(events e);
     void inBankHandler(events e);
 
+
 //    dllSerialPort *pdllSerialPort;
-//    dllPinCode *pdllPinCode;
 //    dllRestApi *pdllRestApi;
 
 };
