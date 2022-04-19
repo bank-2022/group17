@@ -2,6 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -9,34 +10,21 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    bankui.cpp \
     main.cpp \
-    mainwindow.cpp \
-    nostawindow.cpp \
-    talletawindow.cpp \
-    tapahtumatwindow.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    bankui.h \
-    mainwindow.h \
-    nostawindow.h \
-    talletawindow.h \
-    tapahtumatwindow.h
+    mainwindow.h
 
 FORMS += \
-    bankui.ui \
-    mainwindow.ui \
-    nostawindow.ui \
-    talletawindow.ui \
-    tapahtumatwindow.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+win32: LIBS += -L$$PWD/../DLLPinCode/build/debug/ -lDLLPinCode
 
-win32: LIBS += -L$$PWD/Pincode/DLLPinCode/build/debug/ -lDLLPinCode
-
-INCLUDEPATH += $$PWD/Pincode/DLLPinCode
-DEPENDPATH += $$PWD/Pincode/DLLPinCode
+INCLUDEPATH += $$PWD/../DLLPinCode
+DEPENDPATH += $$PWD/../DLLPinCode

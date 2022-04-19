@@ -7,8 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect serialPortDll, dataReadDone, this, cardNumReadDone.
 
+    pDllPinCode=new DLLPinCode;
+
+    connect(pDllPinCode,SIGNAL(sendPinToExe(QString)),this,SLOT(pinCodeNum(QString)));
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
     connect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
 
@@ -55,6 +57,12 @@ void MainWindow::poistuHandler()
     runStateMachine(state,event);
 }
 
+void MainWindow::pinCodeNum(QString pin)
+{
+    CardPin=pin;
+    qDebug()<<"Sain numeron"<<CardPin;
+}
+
 
 
 void MainWindow::on_LuekorttiBtn_clicked()
@@ -64,7 +72,10 @@ void MainWindow::on_LuekorttiBtn_clicked()
 
 void MainWindow::on_AnnaPinBtn_clicked()
 {
-    emit pinReadDone();
+    //emit pinReadDone();
+    state=readPin;
+    event=openPinWindow;
+    runStateMachine(state,event);
 }
 
 void MainWindow::cardNumReadDone()
@@ -126,7 +137,7 @@ void MainWindow::readPinHandler(events e)
 {
     if(e==openPinWindow){
         qDebug()<<"e=open=Pin";
-        //pdllPinCode.openPinWindow();
+        pDllPinCode->openPinWindow();
         state=readPin;
         event=readPinNum;
         runStateMachine(state,event);
@@ -136,7 +147,7 @@ void MainWindow::readPinHandler(events e)
         //when read receive signal?
     }
     else if(e==closePinWindow){
-        //pdllPinCode.closePinWindow
+        pDllPinCode->closePinWindow();
     }
     else if(e==login){
         //pdllRestApi.login
