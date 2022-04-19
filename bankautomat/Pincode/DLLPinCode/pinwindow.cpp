@@ -7,6 +7,11 @@ PinWindow::PinWindow(QWidget *parent) :
     ui(new Ui::PinWindow)
 {
     ui->setupUi(this);
+    ui->lineEdit->setText("Syötä pin");
+    //ui->lineEdit->setEchoMode(QLineEdit::Password);
+    ui->lineEdit->setEchoMode(QLineEdit::Normal);
+    //connect(this,SIGNAL(checkLineEdit(bool)),
+    //         this,SLOT(lineEditChecker(bool)));
 }
 
 PinWindow::~PinWindow()
@@ -22,79 +27,211 @@ QString PinWindow::returnPinCode()
 
 void PinWindow::on_pushButton_1_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "1");
+
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "1");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "1");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "1");
+    }
+
 }
 
 
 void PinWindow::on_pushButton_2_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "2");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "2");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "2");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "2");
+    }
 }
 
 
 void PinWindow::on_pushButton_3_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "3");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "3");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "3");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "3");
+    }
 }
 
 
 void PinWindow::on_pushButton_4_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "4");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "4");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "4");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "4");
+    }
 }
 
 
 void PinWindow::on_pushButton_5_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "5");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "5");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "5");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "5");
+    }
 }
 
 
 void PinWindow::on_pushButton_6_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "6");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "6");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "6");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "6");
+    }
 }
 
 
 void PinWindow::on_pushButton_7_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "7");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "7");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "7");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "7");
+    }
 }
 
 
 void PinWindow::on_pushButton_8_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "8");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "8");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "8");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "8");
+    }
 }
 
 
 void PinWindow::on_pushButton_9_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "9");
+    //emit checkLineEdit(false);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "9");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "9");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "9");
+    }
 }
 
 
 void PinWindow::on_pushButton_0_clicked()
 {
-    ui->lineEdit->setText(ui->lineEdit->text()+ "0");
+    //emit checkLineEdit(true);
+    //ui->lineEdit->setText(ui->lineEdit->text()+ "0");
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->setText(ui->lineEdit->text()+ "0");
+    }
+    else{
+        ui->lineEdit->setText(ui->lineEdit->text()+ "0");
+    }
 }
 
 
 void PinWindow::on_PushButton_Back_clicked()
+
 {
-    ui->lineEdit->backspace();
+    //emit checkLineEdit(true);
+    //ui->lineEdit->backspace();
+    if(checker == false){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        checker = true;
+        ui->lineEdit->backspace();
+    }
+    else{
+        ui->lineEdit->backspace();
+    }
 }
 
 
 void PinWindow::on_PushButton_Ok_clicked()
 {
     emit sendPinCode(ui->lineEdit->text());
-    //close();
+    close();
     ui->lineEdit->clear();
+    checker = false;
+    ui->lineEdit->setText("Syötä pin");
+    ui->lineEdit->setEchoMode(QLineEdit::Normal);
+
+}
+/*
+void PinWindow::lineEditChecker(bool f)
+{
+    qDebug()<<"lineeditchecker signal";
+
+    if(f == true){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        qDebug()<<f;
+
+
+
+    }
+    qDebug()<<f;
 
 }
 
-
+*/
 
 
 

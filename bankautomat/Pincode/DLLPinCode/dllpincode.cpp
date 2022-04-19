@@ -37,6 +37,7 @@ void DLLPinCode::closePinWindow()
 
 void DLLPinCode::returnPinCode(QString pin)
 {
+    qDebug()<<"SignalPinToExe";
     emit sendPinToExe(pin);
 }
 

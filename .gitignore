@@ -6,6 +6,7 @@ bankautomat/build/
 
 bankautomat/*.user
 
+<<<<<<< HEAD
 bankautomat/DLLPinCode/*.user
 
 bankautomat/DLLPinCode/build/
@@ -17,3 +18,9 @@ bankautomat/DLLSerialPort/build/
 bankautomat/DLLRestAPI/build/
 
 bankautomat/DLLRestAPI/*.user
+=======
+bankautomat/Pincode/DLLPinCode/build/
+
+bankautomat/Pincode/PinCode/build/
+
+>>>>>>> f81cc97 (Syötä pin teksti)

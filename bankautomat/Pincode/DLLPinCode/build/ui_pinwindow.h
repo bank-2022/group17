@@ -45,7 +45,7 @@ public:
         PinWindow->resize(384, 420);
         gridLayoutWidget = new QWidget(PinWindow);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(70, 40, 241, 331));
+        gridLayoutWidget->setGeometry(QRect(70, 40, 254, 331));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -111,7 +111,6 @@ public:
 
         lineEdit = new QLineEdit(gridLayoutWidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setEchoMode(QLineEdit::Password);
 
         gridLayout->addWidget(lineEdit, 0, 1, 1, 1);
 
