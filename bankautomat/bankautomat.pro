@@ -40,3 +40,8 @@ win32: LIBS += -L$$PWD/Pincode/DLLPinCode/build/debug/ -lDLLPinCode
 
 INCLUDEPATH += $$PWD/Pincode/DLLPinCode
 DEPENDPATH += $$PWD/Pincode/DLLPinCode
+
+win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
+
+INCLUDEPATH += $$PWD/DLLSerialPort
+DEPENDPATH += $$PWD/DLLSerialPort

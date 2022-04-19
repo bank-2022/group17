@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     pDllPinCode=new DLLPinCode;
+    pDllSerialPort=new DLLSerialPort;
 
     connect(pDllPinCode,SIGNAL(sendPinToExe(QString)),this,SLOT(pinCodeNum(QString)));
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
@@ -22,6 +23,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete pDllSerialPort;
+    delete pDllPinCode;
+
+    pDllSerialPort=nullptr;
+    pDllPinCode=nullptr;
 }
 
 void MainWindow::runStateMachine(states s, events e)
