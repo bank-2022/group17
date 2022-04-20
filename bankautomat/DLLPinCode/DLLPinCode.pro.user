@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.1, 2022-04-19T13:02:23. -->
+<!-- Written by QtCreator 5.0.1, 2022-04-20T13:08:48. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -99,9 +99,9 @@
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\Pincode\DLLPinCode\build\
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\DLLPinCode\build\
 </value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/Pincode/DLLPinCode/build/
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/DLLPinCode/build/
 </value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -139,9 +139,9 @@
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\Pincode\DLLPinCode\build\
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\DLLPinCode\build\
 </value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/Pincode/DLLPinCode/build/
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/DLLPinCode/build/
 </value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -181,9 +181,9 @@
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\Pincode\DLLPinCode\build\
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\ilari\OneDrive\Työpöytä\Kevään 22 projekti\group17\bankautomat\DLLPinCode\build\
 </value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/Pincode/DLLPinCode/build/
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory.shadowDir">C:/Users/ilari/OneDrive/Työpöytä/Kevään 22 projekti/group17/bankautomat/DLLPinCode/build/
 </value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">

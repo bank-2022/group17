@@ -36,10 +36,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-win32: LIBS += -L$$PWD/Pincode/DLLPinCode/build/debug/ -lDLLPinCode
+win32: LIBS += -L$$PWD/DLLPinCode/build/debug/ -lDLLPinCode
 
-INCLUDEPATH += $$PWD/Pincode/DLLPinCode
-DEPENDPATH += $$PWD/Pincode/DLLPinCode
+INCLUDEPATH += $$PWD/DLLPinCode
+DEPENDPATH += $$PWD/DLLPinCode
 
 win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
 
