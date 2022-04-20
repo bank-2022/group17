@@ -6,9 +6,9 @@ bankautomat/build/
 
 bankautomat/*.user
 
-bankautomat/Pincode/DLLPinCode/*.user
+bankautomat/DLLPinCode/*.user
 
-bankautomat/Pincode/DLLPinCode/build/
+bankautomat/DLLPinCode/build/
 
 bankautomat/DLLSerialPort/*.user
 
