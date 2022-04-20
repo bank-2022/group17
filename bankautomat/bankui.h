@@ -31,7 +31,6 @@ private slots:
     void on_SaldoBtn_clicked();
     void timerReset();
     void timeoutcheck();
-
 private:
     Ui::BankUI *ui;
     NostaWindow *pNostaWindow;
