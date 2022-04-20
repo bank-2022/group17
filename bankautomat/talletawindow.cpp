@@ -28,6 +28,7 @@ void TalletaWindow::on_TalletaButton_clicked()
     qDebug()<<"talletus summa"<<talletaSum;
     //signal from here?
     emit resetTimer();
+    this->close();
 }
 
 
