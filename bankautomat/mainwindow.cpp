@@ -84,10 +84,8 @@ void MainWindow::readyToReadCardNum()
 {
     state=readCard;
     event=readCardNum;
-    runStateMachine(state,event);
+    emit eventSignal(state,event);
 }
-
-
 
 void MainWindow::on_LuekorttiBtn_clicked()
 {
@@ -105,8 +103,8 @@ void MainWindow::on_AnnaPinBtn_clicked()
 void MainWindow::cardNumReadDone()
 {
     state=readCard;
-    event=closeSerial;
-    runStateMachine(state,event);
+    event=readCardNum;
+    emit eventSignal(state,event);
 }
 
 void MainWindow::pinNumReadDone()
@@ -114,23 +112,19 @@ void MainWindow::pinNumReadDone()
     //login
     state=inBank;
     event=bankUi;
-    runStateMachine(state,event);
+    emit eventSignal(state,event);
 }
 
 void MainWindow::startHandler(events e)
 {
     if(e==clearAll){
         qDebug()<<"e=clearAll";
-        //set all variables to default?
-        qDebug()<<"cardnum1 "<<CardNum;
-        qDebug()<<"cardpin1 "<<CardPin;
+        //set all variables to default
         CardNum=nullptr;
         CardPin=nullptr;
-        qDebug()<<"cardnum2 "<<CardNum;
-        qDebug()<<"cardpin2 "<<CardPin;
         state=readCard;
         event=openSerial;
-        runStateMachine(state,event);
+        emit eventSignal(state, event);
     }
     else{
         qDebug()<<"Error at starthandler with event "<<e;
@@ -145,13 +139,11 @@ void MainWindow::readCardHandler(events e)
     }
     else if(e==readCardNum){
         qDebug()<<"e=readCardNum";
-        //when card read receive signal?
         CardNum=pDllSerialPort->interfaceFunctionReturnCardSerialNumber();
+        qDebug()<<"cardnum is "<<CardNum;
         state=readCard;
         event=closeSerial;
         emit eventSignal(state,event);
-
-
     }
     else if(e==closeSerial){
         qDebug()<<"e=closeSerial";
@@ -159,7 +151,6 @@ void MainWindow::readCardHandler(events e)
         state=readPin;
         event=openPinWindow;
         emit eventSignal(state,event);
-        //runStateMachine(state,event);
     }
     else{
         qDebug()<<"Error at cardhandler with event "<<e;
@@ -171,23 +162,22 @@ void MainWindow::readPinHandler(events e)
     if(e==openPinWindow){
         qDebug()<<"e=openPin";
         pDllPinCode->openPinWindow();
-//        state=readPin;
-//        event=readPinNum;
-//        emit eventSignal(state,event);
-//        //runStateMachine(state,event);
     }
     else if(e==readPinNum){
         qDebug()<<"e=readPinNum";
-        //Pin received by signal see slot pinCodeNum()
+        //Pin received by signal, see slot pinCodeNum()
     }
     else if(e==closePinWindow){
         qDebug()<<"e=closePinWindow";
         pDllPinCode->closePinWindow();
+        state=readPin;
+        event=login;
+        emit eventSignal(state, event);
     }
     else if(e==login){
         qDebug()<<"e=login";
         //pdllRestApi.login
-        //true or false signal?
+        //boolean signal?
     }
     else{
         qDebug()<<"Error at pinhandler with event "<<e;
@@ -221,6 +211,7 @@ void MainWindow::inBankHandler(events e)
         //put tili       
     }
     else if(e==uusisaldo){
+        qDebug()<<"e=uusi saldo";
         // get tili
     }
     else if(e==poistu){
@@ -230,14 +221,13 @@ void MainWindow::inBankHandler(events e)
         pBankUI=nullptr;
         state=start;
         event=clearAll;
-        runStateMachine(state,event);
+        emit eventSignal(state,event);
     }
     else if(e==timeout){
         qDebug()<<"e=timeout";
         state=inBank;
         event=poistu;
-        runStateMachine(state,event);
-    }
+        emit eventSignal(state,event);    }
     else{
         qDebug()<<"Error at bankhandler with event "<<e;
     }
