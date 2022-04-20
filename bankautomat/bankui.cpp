@@ -21,7 +21,6 @@ BankUI::~BankUI()
     delete ui;
     timer->deleteLater();
     timer=nullptr;
-    //set all variables to default?
 }
 
 void BankUI::on_NostaBtn_clicked()
@@ -33,7 +32,6 @@ void BankUI::on_NostaBtn_clicked()
     connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
-
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
@@ -42,7 +40,6 @@ void BankUI::on_TalletaBtn_clicked()
     pTalletaWindow->show();
     connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
-
 
 void BankUI::on_TapahtumatBtn_clicked()
 {
@@ -54,12 +51,10 @@ void BankUI::on_TapahtumatBtn_clicked()
     connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
-
 void BankUI::on_PoistuBtn_clicked()
 {
     emit poistuSignal();
 }
-
 
 void BankUI::on_SaldoBtn_clicked()
 {
@@ -79,7 +74,7 @@ void BankUI::timerReset()
 void BankUI::timeoutcheck()
 {
     qDebug()<<"timeout check.. elapsed time= "<<elapse_timer.elapsed();
-    if(elapse_timer.elapsed()>10000){ // 10s to timeout
+    if(elapse_timer.elapsed()>30000){ // 30s to timeout
         qDebug()<<"emit timeout";
         emit timeout();
     }

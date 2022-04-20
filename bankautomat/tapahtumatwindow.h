@@ -19,13 +19,13 @@ signals:
     void resetTimer();
 private slots:
     void on_Ed10tapahtBtn_clicked();
-
     void on_poistuBtn_clicked();
-
     void on_Seur10tapahtBtn_clicked();
 
 private:
     Ui::TapahtumatWindow *ui;
+
+    QString tilitapahtumat;
 };
 
 #endif // TAPAHTUMATWINDOW_H

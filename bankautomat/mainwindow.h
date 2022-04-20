@@ -17,7 +17,6 @@ enum states{
     readCard,   //Program is ready to read card
     readPin,    //When card is read move to read pin
     inBank,     //When login is succesful
-
 };
 enum events{
     clearAll,
@@ -56,7 +55,6 @@ signals:
     void cardReadDone();  //test signal
     void pinReadDone();   //test signal
     void eventSignal(states,events); //signal for state & event changes
-
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button

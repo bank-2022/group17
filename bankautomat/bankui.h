@@ -20,7 +20,6 @@ class BankUI : public QDialog
 public:
     explicit BankUI(QWidget *parent = nullptr);
     ~BankUI();
-     QTimer *timer;
 signals:
      void timeout();
      void poistuSignal();
@@ -39,7 +38,7 @@ private:
     TalletaWindow *pTalletaWindow;
     TapahtumatWindow *pTapahtumatWindow;
 
-
+    QTimer *timer;
     QElapsedTimer elapse_timer;
 
     QString saldo;
