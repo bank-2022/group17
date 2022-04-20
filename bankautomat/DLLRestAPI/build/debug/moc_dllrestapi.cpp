@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DLLRestAPI_t {
-    QByteArrayData data[7];
-    char stringdata0[121];
+    QByteArrayData data[8];
+    char stringdata0[140];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,13 +37,15 @@ QT_MOC_LITERAL(2, 31, 0), // ""
 QT_MOC_LITERAL(3, 32, 24), // "recvKorttiInfoFromEngine"
 QT_MOC_LITERAL(4, 57, 29), // "recvGenerateKorttiInfoCommand"
 QT_MOC_LITERAL(5, 87, 16), // "recvLoginCommand"
-QT_MOC_LITERAL(6, 104, 16) // "recvNostaCommand"
+QT_MOC_LITERAL(6, 104, 16), // "recvNostaCommand"
+QT_MOC_LITERAL(7, 121, 18) // "recvTalletaCommand"
 
     },
     "DLLRestAPI\0sendKorttiInfoToExe\0\0"
     "recvKorttiInfoFromEngine\0"
     "recvGenerateKorttiInfoCommand\0"
-    "recvLoginCommand\0recvNostaCommand"
+    "recvLoginCommand\0recvNostaCommand\0"
+    "recvTalletaCommand"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,7 +55,7 @@ static const uint qt_meta_data_DLLRestAPI[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,13 +63,14 @@ static const uint qt_meta_data_DLLRestAPI[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   39,    2, 0x06 /* Public */,
+       1,    1,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    1,   42,    2, 0x0a /* Public */,
-       4,    1,   45,    2, 0x0a /* Public */,
-       5,    2,   48,    2, 0x0a /* Public */,
-       6,    4,   53,    2, 0x0a /* Public */,
+       3,    1,   47,    2, 0x0a /* Public */,
+       4,    1,   50,    2, 0x0a /* Public */,
+       5,    2,   53,    2, 0x0a /* Public */,
+       6,    4,   58,    2, 0x0a /* Public */,
+       7,    4,   67,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -76,6 +79,7 @@ static const uint qt_meta_data_DLLRestAPI[] = {
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::Float, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
     QMetaType::Void, QMetaType::QString, QMetaType::Float, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
 
        0        // eod
@@ -92,6 +96,7 @@ void DLLRestAPI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->recvGenerateKorttiInfoCommand((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->recvLoginCommand((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 4: _t->recvNostaCommand((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< float(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
+        case 5: _t->recvTalletaCommand((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< float(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -135,13 +140,13 @@ int DLLRestAPI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

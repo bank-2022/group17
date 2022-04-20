@@ -44,3 +44,9 @@ void DLLRestAPI::recvNostaCommand(QString idtili, float amount, QString Korttinu
     pEngineClass->nosta(idtili,amount,Korttinumero,idKortti);
     qDebug()<<"Received nostaCommand from exe";
 }
+
+void DLLRestAPI::recvTalletaCommand(QString idtili, float amount, QString Korttinumero, QString idKortti)
+{
+    pEngineClass->talleta(idtili,amount,Korttinumero,idKortti);
+    qDebug()<<"Received talletaCommand from exe";
+}

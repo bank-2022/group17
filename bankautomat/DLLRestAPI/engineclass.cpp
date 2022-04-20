@@ -53,6 +53,23 @@ void EngineClass::nosta(QString idtili, float summa, QString Korttinumero, QStri
     nostaReply = nostaManager->put(request, QJsonDocument(jsonObj).toJson()); //Nosta put
 }
 
+void EngineClass::talleta(QString idtili, float summa, QString Korttinumero, QString idkortti)
+{
+    QJsonObject jsonObj; //Json object with nosta parameters
+    jsonObj.insert("Summa", summa);
+    jsonObj.insert("Korttinumero", Korttinumero);
+    jsonObj.insert("idkortti", idkortti); //Insert nosta parameters
+
+    QNetworkRequest request((base_url+"/tili/talleta/"+idtili));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"); //Data form in body
+    request.setRawHeader(QByteArray("Authorization"),(token)); //WEBTOKEN
+
+    talletaManager = new QNetworkAccessManager(this);
+    connect(talletaManager,SIGNAL(finished(QNetworkReply*)),this,SLOT(talletaSlot(QNetworkReply*)));
+
+    talletaReply = talletaManager->put(request, QJsonDocument(jsonObj).toJson()); //Nosta put
+}
+
 void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered when finish signal gets raised from login request
 {
     response_data=loginReply->readAll(); //Insert reply data to variable
@@ -94,4 +111,11 @@ void EngineClass::nostaSlot(QNetworkReply *nostaReply) //Slot for debug purposes
     response_data=nostaReply->readAll(); //Insert reply data to variable
     qDebug()<<response_data; //Debug response data
     qDebug()<<"Nosto slot executed";
+}
+
+void EngineClass::talletaSlot(QNetworkReply *talletaReply)
+{
+    response_data=talletaReply->readAll();
+    qDebug()<<response_data; //Debug response data
+    qDebug()<<"Talleta slot executed";
 }

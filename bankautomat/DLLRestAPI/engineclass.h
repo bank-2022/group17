@@ -19,6 +19,7 @@ public:
     void loginRequest(QString, QString);
     void GetKorttiInfo(QString);
     void nosta(QString,float,QString,QString);
+    void talleta(QString,float,QString,QString);
 protected:
 
 private:
@@ -41,10 +42,15 @@ private:
     QNetworkAccessManager *nostaManager;
     QNetworkReply *nostaReply;
 
+    //Talleta variables
+    QNetworkAccessManager *talletaManager;
+    QNetworkReply *talletaReply;
+
 private slots:
     void loginSlot(QNetworkReply *loginReply);
     void korttiInfoSlot(QNetworkReply *korttiInfoReply);
     void nostaSlot(QNetworkReply *nostaReply);
+    void talletaSlot(QNetworkReply *talletaReply);
 signals:
     void sendKorttiInfoToDLL(QString);
 };

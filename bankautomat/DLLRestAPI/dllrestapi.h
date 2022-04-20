@@ -26,6 +26,7 @@ public slots:
     void recvGenerateKorttiInfoCommand(QString);
     void recvLoginCommand(QString, QString);
     void recvNostaCommand(QString,float,QString,QString);
+    void recvTalletaCommand(QString,float,QString,QString);
 };
 
 #endif // DLLRESTAPI_H
