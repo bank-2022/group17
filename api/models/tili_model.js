@@ -1,3 +1,4 @@
+const connection = require('../database');
 const db = require('../database');
 
 const tili = {
@@ -23,6 +24,27 @@ const tili = {
       [tili.Saldo, tili.Tilinumero, id],
       callback
     );
+  },
+  nosta: function(id, myArray,callback){
+    var Summa=myArray.Summa;
+    var Korttinumero=myArray.Korttinumero;
+    var idkortti=myArray.idkortti;
+    return db.query(
+      'call nosta(?,?,?,?)',
+    [id,Summa,Korttinumero,idkortti],
+    callback
+    );
+  },
+  talleta: function(id, myArray,callback){
+    var Summa=myArray.Summa;
+    var Korttinumero=myArray.Korttinumero;
+    var idkortti=myArray.idkortti;
+    return db.query(
+      'call talleta(?,?,?,?)',
+    [id,Summa,Korttinumero,idkortti],
+    callback
+    );
   }
-};
+}
+
 module.exports = tili;

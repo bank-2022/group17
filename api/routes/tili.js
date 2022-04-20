@@ -59,4 +59,26 @@ function(request, response) {
   });
 });
 
+router.put('/nosta/:id', 
+function(request, response) {
+  tili.nosta(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
+
+router.put('/talleta/:id', 
+function(request, response) {
+  tili.talleta(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult);
+    }
+  });
+});
+
 module.exports = router;
