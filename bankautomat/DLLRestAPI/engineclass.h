@@ -17,9 +17,10 @@ class EngineClass : public QObject
 public:
     EngineClass(QObject *parent = nullptr);
     void loginRequest(QString, QString);
-    void GetKorttiInfo(QString);
+    void getKorttiInfo(QString);
     void nosta(QString,float,QString,QString);
     void talleta(QString,float,QString,QString);
+    void getTilitapahtumat(QString);
 protected:
 
 private:
@@ -46,13 +47,19 @@ private:
     QNetworkAccessManager *talletaManager;
     QNetworkReply *talletaReply;
 
+    //Tilitapahtumat variables
+    QNetworkAccessManager *tilitapahtumatManager;
+    QNetworkReply *tilitapahtumatReply;
+
 private slots:
     void loginSlot(QNetworkReply *loginReply);
     void korttiInfoSlot(QNetworkReply *korttiInfoReply);
     void nostaSlot(QNetworkReply *nostaReply);
     void talletaSlot(QNetworkReply *talletaReply);
+    void tilitapahtumatSlot(QNetworkReply *tilitapahtumatReply);
 signals:
     void sendKorttiInfoToDLL(QString);
+    void sendTilitapahtumatToDLL(QString);
 };
 
 #endif // ENGINECLASS_H

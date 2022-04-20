@@ -13,20 +13,19 @@ class DLLRESTAPI_EXPORT DLLRestAPI : public QObject
 public:
     DLLRestAPI(QObject *parent = nullptr);
     ~DLLRestAPI();
-    void login();
-    void putTili();
-    void postTilitapahtuma();
-    void getTilitapahtuma();
 private:
     EngineClass *pEngineClass;
 signals:
     void sendKorttiInfoToExe(QString);
+    void sendTilitapahtumatToExe(QString);
 public slots:
-    void recvKorttiInfoFromEngine(QString);
     void recvGenerateKorttiInfoCommand(QString);
+    void recvKorttiInfoFromEngine(QString);
     void recvLoginCommand(QString, QString);
     void recvNostaCommand(QString,float,QString,QString);
     void recvTalletaCommand(QString,float,QString,QString);
+    void recvGetTilitapahtumatCommand(QString);
+    void recvTilitapahtumatFromEngine(QString);
 };
 
 #endif // DLLRESTAPI_H

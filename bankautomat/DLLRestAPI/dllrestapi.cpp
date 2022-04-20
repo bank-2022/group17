@@ -7,8 +7,8 @@ DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
 
     connect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
             this,SLOT(recvKorttiInfoFromEngine(QString)));
-    //connect(parent, SIGNAL(generateKorttiInfo(QString)),
-    //        this, SLOT(recvGenerateKorttiInfoCommand(QString)));
+    connect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),
+            this,SLOT(recvTilitapahtumatFromEngine(QString)));
 }
 
 DLLRestAPI::~DLLRestAPI()
@@ -16,8 +16,17 @@ DLLRestAPI::~DLLRestAPI()
     qDebug()<<"DLL tuhottu";
     disconnect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
         this,SLOT(recvKorttiInfoFromEngine(QString)));
+    disconnect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),
+            this,SLOT(recvTilitapahtumatFromEngine(QString)));
     delete pEngineClass;
     pEngineClass = nullptr;
+}
+
+void DLLRestAPI::recvGenerateKorttiInfoCommand(QString Korttinumero)
+{
+    qDebug()<<"Received generatekorttiInfoCommand from exe";
+    pEngineClass->getKorttiInfo(Korttinumero);
+
 }
 
 void DLLRestAPI::recvKorttiInfoFromEngine(QString info)
@@ -26,12 +35,6 @@ void DLLRestAPI::recvKorttiInfoFromEngine(QString info)
     emit sendKorttiInfoToExe(info);
 }
 
-void DLLRestAPI::recvGenerateKorttiInfoCommand(QString Korttinumero)
-{
-    qDebug()<<"Received generatekorttiInfoCommand from exe";
-    pEngineClass->GetKorttiInfo(Korttinumero);
-
-}
 
 void DLLRestAPI::recvLoginCommand(QString Korttinumero, QString Pin)
 {
@@ -49,4 +52,16 @@ void DLLRestAPI::recvTalletaCommand(QString idtili, float amount, QString Kortti
 {
     pEngineClass->talleta(idtili,amount,Korttinumero,idKortti);
     qDebug()<<"Received talletaCommand from exe";
+}
+
+void DLLRestAPI::recvGetTilitapahtumatCommand(QString idtili)
+{
+    pEngineClass->getTilitapahtumat(idtili);
+    qDebug()<<"Received getTilitapahtumatCommand from exe";
+}
+
+void DLLRestAPI::recvTilitapahtumatFromEngine(QString tilitapahtumat)
+{
+    qDebug()<<"At DLL restapi SLOT function = recvTilitapahtumatFromEngine";
+    emit sendTilitapahtumatToExe(tilitapahtumat);
 }
