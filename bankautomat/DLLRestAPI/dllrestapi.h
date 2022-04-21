@@ -18,6 +18,9 @@ private:
 signals:
     void sendKorttiInfoToExe(QString);
     void sendTilitapahtumatToExe(QString);
+    void sendLoginResultToExe(bool);
+
+
 public slots:
     void recvGenerateKorttiInfoCommand(QString);
     void recvKorttiInfoFromEngine(QString);
@@ -26,6 +29,7 @@ public slots:
     void recvTalletaCommand(QString,float,QString,QString);
     void recvGetTilitapahtumatCommand(QString);
     void recvTilitapahtumatFromEngine(QString);
+    void recvLoginResultFromEngine(bool);
 };
 
 #endif // DLLRESTAPI_H

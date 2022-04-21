@@ -7,6 +7,7 @@
 #include <QTimer>
 #include "dllpincode.h"
 #include "dllserialport.h"
+#include "dllrestapi.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,11 +51,16 @@ public slots:
     void poistuHandler();
     void pinCodeNum(QString pin); //slot for receiving pincode signal
     void readyToReadCardNum();
+    void recvKorttiInfoFunct(QString info);
+    void recvLoginInfo(bool login);
 
 signals:
     void cardReadDone();  //test signal
     void pinReadDone();   //test signal
     void eventSignal(states,events); //signal for state & event changes
+    void loginCommand(QString,QString);
+    void generateKorttiInfo(QString);
+    void sendKorttiInfoToBankUi(QStringList);
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button
@@ -68,9 +74,13 @@ private:
 
     QString CardNum;
     QString CardPin;
+    QString CardInfo;
+    QStringList list1;
+
     states state = start;
     events event;
 
+    DLLRestAPI *pDllRestApi;
     DLLPinCode *pDllPinCode;
     DLLSerialPort *pDllSerialPort;
 

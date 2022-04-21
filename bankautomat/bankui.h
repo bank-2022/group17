@@ -20,6 +20,8 @@ class BankUI : public QDialog
 public:
     explicit BankUI(QWidget *parent = nullptr);
     ~BankUI();
+public slots:
+    void getKorttiInfo(QStringList);
 signals:
      void timeout();
      void poistuSignal();
@@ -37,9 +39,12 @@ private:
     TalletaWindow *pTalletaWindow;
     TapahtumatWindow *pTapahtumatWindow;
 
+
     QTimer *timer;
     QElapsedTimer elapse_timer;
 
+
+    QString asiakkaanNimi;
     QString saldo;
     float getsaldo;
 };

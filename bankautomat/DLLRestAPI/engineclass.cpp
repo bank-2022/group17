@@ -89,10 +89,13 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
     if(response_data!="false")
     {
         token="Bearer "+response_data; //Set token to be Bearer token with response data
+        qDebug()<<"at restApiEngine login slot true";
+        emit sendLoginResult(true);
     }
     else
     {
         qDebug()<<"Login failed";
+        emit sendLoginResult(false);
     }
 }
 

@@ -5,10 +5,12 @@ DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
     qDebug()<<"DLL luotu";
     pEngineClass = new EngineClass(this);
 
+
     connect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
             this,SLOT(recvKorttiInfoFromEngine(QString)));
     connect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),
             this,SLOT(recvTilitapahtumatFromEngine(QString)));
+    connect(pEngineClass,SIGNAL(sendLoginResult(bool)),this,SLOT(recvLoginResultFromEngine(bool)));
 }
 
 DLLRestAPI::~DLLRestAPI()
@@ -64,4 +66,10 @@ void DLLRestAPI::recvTilitapahtumatFromEngine(QString tilitapahtumat)
 {
     qDebug()<<"At DLL restapi SLOT function = recvTilitapahtumatFromEngine";
     emit sendTilitapahtumatToExe(tilitapahtumat);
+}
+
+void DLLRestAPI::recvLoginResultFromEngine(bool result)
+{
+    qDebug()<<"At DLL restapi SLOT function = recvLoginResultFromEngine";
+    emit sendLoginResultToExe(result);
 }
