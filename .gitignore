@@ -3,7 +3,6 @@ api/node_modules/
 api/.env
 
 bankautomat/build/
-bankautomat/DLLRestAPI/build/
 
 bankautomat/*.user
 
@@ -14,3 +13,7 @@ bankautomat/DLLPinCode/build/
 bankautomat/DLLSerialPort/*.user
 
 bankautomat/DLLSerialPort/build/
+
+bankautomat/DLLRestAPI/build/
+
+bankautomat/DLLRestAPI/*.user
