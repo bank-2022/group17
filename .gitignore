@@ -13,3 +13,7 @@ bankautomat/DLLPinCode/build/
 bankautomat/DLLSerialPort/*.user
 
 bankautomat/DLLSerialPort/build/
+
+bankautomat/DLLRestAPI/build/
+
+bankautomat/DLLRestAPI/*.user
