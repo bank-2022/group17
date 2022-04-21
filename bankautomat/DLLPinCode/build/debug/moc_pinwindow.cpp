@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 #include <memory>
-#include "../../../../../../../KOULU/kevät projekti 22/group17-ilari_exedev_bank/bankautomat/Pincode/DLLPinCode/pinwindow.h"
+#include "../../pinwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
