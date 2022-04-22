@@ -50,7 +50,7 @@ private slots:
 
 signals:
     void sendPinCode(QString);
-    //int checkLineEdit(bool f);
+    //void checkLineEdit(bool f);
 
 public slots:
       //  void lineEditChecker(bool);
