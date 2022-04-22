@@ -90,12 +90,12 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
     {
         token="Bearer "+response_data; //Set token to be Bearer token with response data
         qDebug()<<"at restApiEngine login slot true";
-        emit sendLoginResult(true);
+        emit sendLoginResultToDLL(true);
     }
     else
     {
         qDebug()<<"Login failed";
-        emit sendLoginResult(false);
+        emit sendLoginResultToDLL(false);
     }
 }
 
@@ -126,6 +126,7 @@ void EngineClass::nostaSlot(QNetworkReply *nostaReply) //Slot for debug purposes
     response_data=nostaReply->readAll(); //Insert reply data to variable
     qDebug()<<response_data; //Debug response data
     qDebug()<<"Nosto slot executed";
+    emit sendTransactionFinishedToDLL(); //Emit signal to show transaction is finished
 }
 
 void EngineClass::talletaSlot(QNetworkReply *talletaReply)
@@ -133,6 +134,7 @@ void EngineClass::talletaSlot(QNetworkReply *talletaReply)
     response_data=talletaReply->readAll();
     qDebug()<<response_data; //Debug response data
     qDebug()<<"Talleta slot executed";
+    emit sendTransactionFinishedToDLL(); //Emit signal to show transaction is finished
 }
 
 void EngineClass::tilitapahtumatSlot(QNetworkReply *tilitapahtumatReply)
