@@ -8,7 +8,6 @@ PinWindow::PinWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEdit->setText("Syötä pin");
-    //ui->lineEdit->setEchoMode(QLineEdit::Password);
     ui->lineEdit->setEchoMode(QLineEdit::Normal);
     //connect(this,SIGNAL(checkLineEdit(bool)),
     //         this,SLOT(lineEditChecker(bool)));
