@@ -17,6 +17,7 @@ public:
 
 signals:
     void resetTimer();
+    void talletaSumma(float);
 
 private slots:
     void on_PoistuButton_clicked();    

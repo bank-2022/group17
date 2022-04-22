@@ -55,6 +55,8 @@ public slots:
     void recvLoginInfo(bool login);
     void recvRefreshRestApi();
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
+    void recvTalletaAndEmitToRestApi(QString,float,QString,QString);
+    void recvPinWrongFromDllPinCode();
 
 signals:
     void cardReadDone();  //test signal
@@ -64,6 +66,8 @@ signals:
     void generateKorttiInfo(QString);
     void sendKorttiInfoToBankUi(QStringList);
     void sendNostoToRestApi(QString,float,QString,QString);
+    void sendTalletaToRestApi(QString,float,QString,QString);
+    void loginFailureToDllPinCode();
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button

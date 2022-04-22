@@ -15,6 +15,7 @@ PinWindow::PinWindow(QWidget *parent) :
 
 PinWindow::~PinWindow()
 {
+    qDebug()<<"pinwindow.ccp destro";
     delete ui;
 }
 
@@ -206,7 +207,6 @@ void PinWindow::on_PushButton_Back_clicked()
 void PinWindow::on_PushButton_Ok_clicked()
 {
     emit sendPinCode(ui->lineEdit->text());
-    close();
     ui->lineEdit->clear();
     checker = false;
     ui->lineEdit->setText("Syötä pin");

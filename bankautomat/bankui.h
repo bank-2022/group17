@@ -24,10 +24,12 @@ public:
 public slots:
     void getKorttiInfo(QStringList);
     void nostoSumma(float);
+    void talletaSumma(float);
 signals:
      void timeout();
      void poistuSignal();
      void nostaCommandToMainWindow(QString,float,QString,QString);
+     void talletaCommandToMainWindow(QString,float,QString,QString);
 private slots:
     void on_NostaBtn_clicked();
     void on_TalletaBtn_clicked();

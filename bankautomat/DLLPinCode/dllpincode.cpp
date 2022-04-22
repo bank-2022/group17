@@ -3,18 +3,16 @@
 
 DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
 {
-    qDebug()<<"DLL luotu";
+    qDebug()<<"DLLpin luotu";
     //pPinCodeEngine = new PinCodeEngine;
     pPinWindow = new PinWindow();
     connect(pPinWindow,SIGNAL(sendPinCode(QString)),
-             this,SLOT(returnPinCode(QString)));
-    pinYritysKerta = 0;
-
+             this,SLOT(returnPinCode(QString)));   
 }
 
 DLLPinCode::~DLLPinCode()
 {
-    qDebug()<<"DLL tuhottu";
+    qDebug()<<"DLLpin tuhottu";
     //delete pPinCodeEngine;
     //pPinCodeEngine = nullptr;
     disconnect(pPinWindow,SIGNAL(sendPinCode(QString)),
@@ -25,8 +23,8 @@ DLLPinCode::~DLLPinCode()
 
 void DLLPinCode::openPinWindow()
 {
-
-    pPinWindow->exec();
+    pinYritysKerta = 0;
+    pPinWindow->show();
 
 }
 
@@ -48,10 +46,13 @@ void DLLPinCode::vaaraPinTarkistus()
     pinYritysKerta++;
 
     if(pinYritysKerta >= 3){
-        emit void vaaraPin();
+        emit vaaraPin();
+        qDebug()<<"emit vääräpin";
     }
+    else{
     qDebug()<<"Pin yrityskerrat: "<<pinYritysKerta;
-
+    //openPinWindow();
+    }
 }
 
 

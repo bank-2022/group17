@@ -43,6 +43,7 @@ void BankUI::getKorttiInfo(QStringList info)
     qDebug()<<"asiakkaan saldo = "<<saldo;
 
     ui->Asiakkaan_nimi_label->setText(asiakkaanNimi);
+    ui->saldo_label->setText(saldo);
 
 }
 
@@ -51,6 +52,12 @@ void BankUI::nostoSumma(float nostoSumma)
     qDebug()<<"vastaanotettu nosto = "<<nostoSumma;
     emit nostaCommandToMainWindow(idTili,nostoSumma,korttiNumero,idKortti);
 
+}
+
+void BankUI::talletaSumma(float talletaSumma)
+{
+    qDebug()<<"vastaannotettu talletus = "<<talletaSumma;
+    emit talletaCommandToMainWindow(idTili,talletaSumma,korttiNumero,idKortti);
 }
 
 void BankUI::on_NostaBtn_clicked()
@@ -70,6 +77,7 @@ void BankUI::on_TalletaBtn_clicked()
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
     connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
 }
 
 void BankUI::on_TapahtumatBtn_clicked()
