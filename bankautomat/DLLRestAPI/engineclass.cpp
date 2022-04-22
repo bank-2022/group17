@@ -89,10 +89,13 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
     if(response_data!="false")
     {
         token="Bearer "+response_data; //Set token to be Bearer token with response data
+        qDebug()<<"at restApiEngine login slot true";
+        emit sendLoginResultToDLL(true);
     }
     else
     {
         qDebug()<<"Login failed";
+        emit sendLoginResultToDLL(false);
     }
 }
 
@@ -107,7 +110,7 @@ void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply) //Read json dat
         QJsonObject json_obj = value.toObject();
         info=json_obj["nimi"].toString()+","+json_obj["Korttinumero"].toString()+","+
             QString::number(json_obj["idAsiakas"].toInt())+","+QString::number(json_obj["idKortti"].toInt())+","+
-            QString::number(json_obj["idtili"].toInt())+","+QString::number(json_obj["saldo"].toDouble())+"\r";
+            QString::number(json_obj["idtili"].toInt())+","+QString::number(json_obj["saldo"].toDouble());
     }
     qDebug()<<info;
 
@@ -123,6 +126,7 @@ void EngineClass::nostaSlot(QNetworkReply *nostaReply) //Slot for debug purposes
     response_data=nostaReply->readAll(); //Insert reply data to variable
     qDebug()<<response_data; //Debug response data
     qDebug()<<"Nosto slot executed";
+    emit sendTransactionFinishedToDLL(); //Emit signal to show transaction is finished
 }
 
 void EngineClass::talletaSlot(QNetworkReply *talletaReply)
@@ -130,6 +134,7 @@ void EngineClass::talletaSlot(QNetworkReply *talletaReply)
     response_data=talletaReply->readAll();
     qDebug()<<response_data; //Debug response data
     qDebug()<<"Talleta slot executed";
+    emit sendTransactionFinishedToDLL(); //Emit signal to show transaction is finished
 }
 
 void EngineClass::tilitapahtumatSlot(QNetworkReply *tilitapahtumatReply)
