@@ -53,7 +53,7 @@ public slots:
     void readyToReadCardNum();
     void recvKorttiInfoFunct(QString info);
     void recvLoginInfo(bool login);
-
+    void recvRefreshRestApi();
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
 
 signals:

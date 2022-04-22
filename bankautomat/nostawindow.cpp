@@ -1,6 +1,7 @@
 #include "nostawindow.h"
 #include "ui_nostawindow.h"
 #include <QDebug>
+#include <QMessageBox>
 
 NostaWindow::NostaWindow(QWidget *parent) :
     QDialog(parent),
@@ -24,6 +25,7 @@ void NostaWindow::on_PoistuButton_clicked()
 
 void NostaWindow::on_VahvitaNostoBtn_clicked()
 {
+    emit resetTimer();
     nostaSum=ui->NostaLe->text();
     qDebug()<<"nosta summa"<<nostaSum;
     float nostoSum = nostaSum.toFloat();
@@ -31,8 +33,12 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
     if(tarkastus%20==0){
         emit nostoSumma(nostoSum);
     }
-    emit resetTimer();
-    this->close();
+    else{
+        QMessageBox::critical(this,"VIRHE","VIRHEELLINEN SUMMA!");
+        this->close();
+    }
+
+
 }
 
 void NostaWindow::on_Nosta20Btn_clicked()

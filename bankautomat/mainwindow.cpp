@@ -135,10 +135,14 @@ void MainWindow::recvLoginInfo(bool login)
     }
 }
 
+void MainWindow::recvRefreshRestApi()
+{
+
+}
+
 void MainWindow::recvNostoAndEmitToRestApi(QString idTili, float nostoSumma, QString KorttiNumero, QString idKortti)
 {
     emit sendNostoToRestApi(idTili,nostoSumma,KorttiNumero,idKortti);
-    emit generateKorttiInfo(CardNum);
 }
 
 void MainWindow::on_LuekorttiBtn_clicked()
