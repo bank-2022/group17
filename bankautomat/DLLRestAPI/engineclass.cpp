@@ -89,6 +89,7 @@ void EngineClass::loginSlot(QNetworkReply *loginReply) //Login slot is triggered
     if(response_data!="false")
     {
         token="Bearer "+response_data; //Set token to be Bearer token with response data
+        qDebug()<<"at restApiEngine login slot true";
         emit sendLoginResultToDLL(true);
     }
     else
@@ -109,7 +110,7 @@ void EngineClass::korttiInfoSlot(QNetworkReply *korttiInfoReply) //Read json dat
         QJsonObject json_obj = value.toObject();
         info=json_obj["nimi"].toString()+","+json_obj["Korttinumero"].toString()+","+
             QString::number(json_obj["idAsiakas"].toInt())+","+QString::number(json_obj["idKortti"].toInt())+","+
-            QString::number(json_obj["idtili"].toInt())+","+QString::number(json_obj["saldo"].toDouble())+"\r";
+            QString::number(json_obj["idtili"].toInt())+","+QString::number(json_obj["saldo"].toDouble());
     }
     qDebug()<<info;
 

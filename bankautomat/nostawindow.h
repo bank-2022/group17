@@ -17,6 +17,7 @@ public:
 
 signals:
     void resetTimer();
+    void nostoSumma(float);
 
 private slots:
     void on_PoistuButton_clicked();
@@ -44,6 +45,8 @@ private:
 
     QString nostaSum;
     QString buttonNum;
+
+
 
 };
 

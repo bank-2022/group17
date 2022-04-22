@@ -2,8 +2,9 @@
 
 DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
 {
-    qDebug()<<"DLL luotu";
+    qDebug()<<"DLLRestApi luotu";
     pEngineClass = new EngineClass(this);
+
 
     connect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
             this,SLOT(recvKorttiInfoFromEngine(QString)));

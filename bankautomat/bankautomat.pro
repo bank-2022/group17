@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT +=network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -45,3 +45,8 @@ win32: LIBS += -L$$PWD/DLLSerialPort/build/debug/ -lDLLSerialPort
 
 INCLUDEPATH += $$PWD/DLLSerialPort
 DEPENDPATH += $$PWD/DLLSerialPort
+
+win32: LIBS += -L$$PWD/DLLRestAPI/build/debug/ -lDLLRestAPI
+
+INCLUDEPATH += $$PWD/DLLRestAPI
+DEPENDPATH += $$PWD/DLLRestAPI

@@ -9,6 +9,7 @@
 #include "tapahtumatwindow.h"
 
 
+
 namespace Ui {
 class BankUI;
 }
@@ -20,9 +21,13 @@ class BankUI : public QDialog
 public:
     explicit BankUI(QWidget *parent = nullptr);
     ~BankUI();
+public slots:
+    void getKorttiInfo(QStringList);
+    void nostoSumma(float);
 signals:
      void timeout();
      void poistuSignal();
+     void nostaCommandToMainWindow(QString,float,QString,QString);
 private slots:
     void on_NostaBtn_clicked();
     void on_TalletaBtn_clicked();
@@ -37,11 +42,17 @@ private:
     TalletaWindow *pTalletaWindow;
     TapahtumatWindow *pTapahtumatWindow;
 
+
     QTimer *timer;
     QElapsedTimer elapse_timer;
 
+    QString asiakkaanNimi;
+    QString korttiNumero;
+    QString idAsiakas;
+    QString idKortti;
+    QString idTili;
     QString saldo;
-    float getsaldo;
+
 };
 
 #endif // BANKUI_H
