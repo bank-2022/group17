@@ -60,6 +60,8 @@ private slots:
 signals:
     void sendKorttiInfoToDLL(QString);
     void sendTilitapahtumatToDLL(QString);
+    void sendLoginResultToDLL(bool);
+    void sendTransactionFinishedToDLL();
 };
 
 #endif // ENGINECLASS_H
