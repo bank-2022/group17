@@ -18,4 +18,4 @@ GRANT ALL ON banksimuldb.* to 'netuser'@'localhost';
 
 ## ER-Kaavio
 
-<img src="Documents/banksimulERDiagram">
+<img src="Documents/banksimulERDiagram.png">
