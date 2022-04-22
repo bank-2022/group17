@@ -9,6 +9,10 @@ DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
             this,SLOT(recvKorttiInfoFromEngine(QString)));
     connect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),
             this,SLOT(recvTilitapahtumatFromEngine(QString)));
+    connect(pEngineClass, SIGNAL(sendLoginResultToDLL(bool)),
+            this,SLOT(recvLoginResultFromEngine(bool)));
+    connect(pEngineClass,SIGNAL(sendTransactionFinishedToDLL()),
+            this,SLOT(recvTransactionFinishedFromEngine()));
 }
 
 DLLRestAPI::~DLLRestAPI()
@@ -18,6 +22,10 @@ DLLRestAPI::~DLLRestAPI()
         this,SLOT(recvKorttiInfoFromEngine(QString)));
     disconnect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),
             this,SLOT(recvTilitapahtumatFromEngine(QString)));
+    disconnect(pEngineClass, SIGNAL(sendLoginResultToDLL(bool)),
+            this,SLOT(recvLoginResultFromEngine(bool)));
+    disconnect(pEngineClass,SIGNAL(sendTransactionFinishedToDLL()),
+            this,SLOT(recvTransactionFinishedFromEngine()));
     delete pEngineClass;
     pEngineClass = nullptr;
 }
@@ -64,4 +72,16 @@ void DLLRestAPI::recvTilitapahtumatFromEngine(QString tilitapahtumat)
 {
     qDebug()<<"At DLL restapi SLOT function = recvTilitapahtumatFromEngine";
     emit sendTilitapahtumatToExe(tilitapahtumat);
+}
+
+void DLLRestAPI::recvLoginResultFromEngine(bool result)
+{
+    qDebug()<<"At DLL restapi SLOT function = recvLoginResultFromEngine";
+    emit sendLoginResultToExe(result);
+}
+
+void DLLRestAPI::recvTransactionFinishedFromEngine()
+{
+    qDebug()<<"At DLL restapi SLOT function = recvTransactionFinishedFromEngine";
+    emit sendTransactionFinishedToExe();
 }
