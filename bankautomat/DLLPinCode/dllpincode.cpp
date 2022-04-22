@@ -8,6 +8,7 @@ DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
     pPinWindow = new PinWindow();
     connect(pPinWindow,SIGNAL(sendPinCode(QString)),
              this,SLOT(returnPinCode(QString)));
+    pinYritysKerta = 0;
 
 }
 
@@ -39,6 +40,18 @@ void DLLPinCode::returnPinCode(QString pin)
 {
     qDebug()<<"SignalPinToExe";
     emit sendPinToExe(pin);
+}
+
+
+void DLLPinCode::vaaraPinTarkistus()
+{
+    pinYritysKerta++;
+
+    if(pinYritysKerta >= 3){
+        emit void vaaraPin();
+    }
+    qDebug()<<"Pin yrityskerrat: "<<pinYritysKerta;
+
 }
 
 

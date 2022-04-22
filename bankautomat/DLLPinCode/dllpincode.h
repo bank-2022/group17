@@ -19,14 +19,17 @@ public:
     void closePinWindow();
 signals:
     void sendPinToExe(QString pin);
+    void vaaraPin();
 
 public slots:
     void returnPinCode(QString);
+    void vaaraPinTarkistus();
 
 private:
     PinCodeEngine * pPinCodeEngine;
     PinWindow * pPinWindow;
     QString cardPin;
+    int pinYritysKerta;
 
 };
 
