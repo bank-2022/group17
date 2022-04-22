@@ -18,7 +18,7 @@ public:
     explicit PinWindow(QWidget *parent = nullptr);
     ~PinWindow();
     QString returnPinCode();
-    bool checker = false;
+
 
 private slots:
     void on_pushButton_1_clicked();
@@ -60,6 +60,7 @@ private:
     Ui::PinWindow *ui;
     QString text;
     PinWindow * pPinWindow;
+    bool checker = false;
 
 
 };
