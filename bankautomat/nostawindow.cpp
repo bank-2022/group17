@@ -26,7 +26,11 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
 {
     nostaSum=ui->NostaLe->text();
     qDebug()<<"nosta summa"<<nostaSum;
-    //signal & put tili?
+    float nostoSum = nostaSum.toFloat();
+    int tarkastus = nostaSum.toInt();
+    if(tarkastus%20==0){
+        emit nostoSumma(nostoSum);
+    }
     emit resetTimer();
     this->close();
 }

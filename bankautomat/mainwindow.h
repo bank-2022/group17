@@ -54,6 +54,8 @@ public slots:
     void recvKorttiInfoFunct(QString info);
     void recvLoginInfo(bool login);
 
+    void recvNostoAndEmitToRestApi(QString,float,QString,QString);
+
 signals:
     void cardReadDone();  //test signal
     void pinReadDone();   //test signal
@@ -61,6 +63,7 @@ signals:
     void loginCommand(QString,QString);
     void generateKorttiInfo(QString);
     void sendKorttiInfoToBankUi(QStringList);
+    void sendNostoToRestApi(QString,float,QString,QString);
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button

@@ -2,7 +2,7 @@
 
 DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
 {
-    qDebug()<<"DLL luotu";
+    qDebug()<<"DLLRestApi luotu";
     pEngineClass = new EngineClass(this);
 
 

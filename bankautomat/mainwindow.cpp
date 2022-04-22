@@ -14,18 +14,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
     connect(pDllPinCode,SIGNAL(sendPinToExe(QString)),this,SLOT(pinCodeNum(QString)));
-    connect(this,SIGNAL(loginCommand(QString,QString)),
-                pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
-
-    connect(this,SIGNAL(generateKorttiInfo(QString)),
-                pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
-        connect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),
-                this,SLOT(recvKorttiInfoFunct(QString)));
+    connect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),this,SLOT(recvKorttiInfoFunct(QString)));
     connect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
 
+    connect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
+    connect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states, events)));
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
     connect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
+    connect(this,SIGNAL(sendNostoToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvNostaCommand(QString,float,QString,QString)));
 
     state=start;
     event=clearAll;
@@ -36,20 +33,15 @@ MainWindow::~MainWindow()
 {
     disconnect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
     disconnect(pDllPinCode,SIGNAL(sendPinToExe(QString)),this,SLOT(pinCodeNum(QString)));
-    disconnect(this,SIGNAL(loginCommand(QString,QString)),
-                pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
+    disconnect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),this,SLOT(recvKorttiInfoFunct(QString)));
+    disconnect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
 
-    disconnect(this,SIGNAL(generateKorttiInfo(QString)),
-                pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
-        disconnect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),
-                this,SLOT(recvKorttiInfoFunct(QString)));
-   disconnect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
-
+    disconnect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
+    disconnect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
     disconnect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states, events)));
     disconnect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
     disconnect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
-    //disconnect(this,SIGNAL(sendKorttiInfoToBankUi(QStringList)),pBankUI,SLOT(getKorttiInfo(QStringList)));
-
+    disconnect(this,SIGNAL(sendNostoToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvNostaCommand(QString,float,QString,QString)));
     delete ui;
     delete pDllSerialPort;
     delete pDllPinCode;
@@ -141,6 +133,12 @@ void MainWindow::recvLoginInfo(bool login)
         event=openPinWindow;
         emit eventSignal(state,event);
     }
+}
+
+void MainWindow::recvNostoAndEmitToRestApi(QString idTili, float nostoSumma, QString KorttiNumero, QString idKortti)
+{
+    emit sendNostoToRestApi(idTili,nostoSumma,KorttiNumero,idKortti);
+    emit generateKorttiInfo(CardNum);
 }
 
 void MainWindow::on_LuekorttiBtn_clicked()
@@ -249,6 +247,7 @@ void MainWindow::inBankHandler(events e)
         connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
         connect(pBankUI,SIGNAL(poistuSignal()),this,SLOT(poistuHandler()));
         connect(this,SIGNAL(sendKorttiInfoToBankUi(QStringList)),pBankUI,SLOT(getKorttiInfo(QStringList)));
+        connect(pBankUI,SIGNAL(nostaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvNostoAndEmitToRestApi(QString,float,QString,QString)));
         emit generateKorttiInfo(CardNum);
     }
     else if(e==tilitapahtumat){
@@ -273,6 +272,10 @@ void MainWindow::inBankHandler(events e)
     }
     else if(e==poistu){
         qDebug()<<"e=poistu";
+        disconnect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
+        disconnect(pBankUI,SIGNAL(poistuSignal()),this,SLOT(poistuHandler()));
+        disconnect(this,SIGNAL(sendKorttiInfoToBankUi(QStringList)),pBankUI,SLOT(getKorttiInfo(QStringList)));
+        disconnect(pBankUI,SIGNAL(nostaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvNostoAndEmitToRestApi(QString,float,QString,QString)));
         pBankUI->close();
         pBankUI->deleteLater();
         pBankUI=nullptr;
