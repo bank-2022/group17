@@ -96,7 +96,7 @@ void MainWindow::poistuHandler()
 void MainWindow::pinCodeNum(QString pin)
 {
     CardPin=pin;
-    qDebug()<<"Sain numeron"<<CardPin;
+    qDebug()<<"Got Pin number = "<<CardPin;
     state=readPin;
     event=login;
     emit eventSignal(state,event);
@@ -105,6 +105,7 @@ void MainWindow::pinCodeNum(QString pin)
 
 void MainWindow::readyToReadCardNum()
 {
+    qDebug()<<"Got ready to readCardNum";
     state=readCard;
     event=readCardNum;
     emit eventSignal(state,event);
@@ -143,16 +144,19 @@ void MainWindow::recvLoginInfo(bool login)
 
 void MainWindow::recvRefreshRestApi()
 {
+    qDebug()<<"After transaction refresh";
     emit generateKorttiInfo(CardNum);
 }
 
 void MainWindow::recvNostoAndEmitToRestApi(QString idTili, float nostoSumma, QString KorttiNumero, QString idKortti)
 {
+    qDebug()<<"Exe emit nosto to RestApi";
     emit sendNostoToRestApi(idTili,nostoSumma,KorttiNumero,idKortti);
 }
 
 void MainWindow::recvTalletaAndEmitToRestApi(QString idTili, float talletaSumma, QString KorttiNumero, QString idKortti)
 {
+    qDebug()<<"Exe emit talleta to RestApi";
     emit sendTalletaToRestApi(idTili,talletaSumma,KorttiNumero,idKortti);
 }
 
@@ -234,7 +238,7 @@ void MainWindow::readPinHandler(events e)
     }
     else if(e==closePinWindow){
         qDebug()<<"e=closePinWindow";
-        //pDllPinCode->closePinWindow(); //not working now
+        //pDllPinCode->closePinWindow(); //not in use
         state=readPin;
         event=login;
         emit eventSignal(state, event);

@@ -19,6 +19,7 @@ NostaWindow::~NostaWindow()
 
 void NostaWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
 {
+    tilinfSaldo=tilinSaldo.toFloat();
     ui->asiakas_label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
 }
 
@@ -35,9 +36,14 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
     qDebug()<<"nosta summa"<<nostaSum;
     float nostoSum = nostaSum.toFloat();
     int tarkastus = nostaSum.toInt();
-    if(tarkastus%20==0){
+    if((tarkastus%20==0)|(tarkastus%50==0)){
+        if(nostoSum<tilinfSaldo){
         emit nostoSumma(nostoSum);
         this->close();
+        }
+        else{
+            QMessageBox::critical(this,"VIRHE","TILILLÄSI EI OLE RIITTÄVÄSTI KATETTA!");
+        }
     }
     else{
         QMessageBox::critical(this,"VIRHE","VIRHEELLINEN SUMMA!");

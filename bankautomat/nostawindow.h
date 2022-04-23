@@ -45,6 +45,7 @@ private slots:
 private:
     Ui::NostaWindow *ui;
 
+    float tilinfSaldo;
     QString nostaSum;
     QString buttonNum;
 
