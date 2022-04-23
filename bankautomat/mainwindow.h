@@ -53,7 +53,7 @@ public slots:
     void readyToReadCardNum();  //recv signal from dllserial when cardnum is ready to be read to exe
     void recvKorttiInfoFunct(QString info);
     void recvLoginInfo(bool login); //Get response if login was succesful
-    void recvRefreshRestApi();
+    void recvRefreshRestApi();  //when  bank transaction is done get signal to refresh account info
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
     void recvTalletaAndEmitToRestApi(QString,float,QString,QString);
     void recvPinWrongFromDllPinCode(); //If pincode is wrong 3 times program returns to start

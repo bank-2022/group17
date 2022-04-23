@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),this,SLOT(recvKorttiInfoFunct(QString)));
     connect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
     connect(pDllPinCode,SIGNAL(vaaraPin()),this,SLOT(recvPinWrongFromDllPinCode()));
+    connect(pDllRestApi,SIGNAL(sendTransactionFinishedToExe()),this,SLOT(recvRefreshRestApi()));
 
     connect(this,SIGNAL(loginFailureToDllPinCode()),pDllPinCode,SLOT(vaaraPinTarkistus()));
     connect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
@@ -38,6 +39,7 @@ MainWindow::~MainWindow()
     disconnect(pDllRestApi,SIGNAL(sendKorttiInfoToExe(QString)),this,SLOT(recvKorttiInfoFunct(QString)));
     disconnect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
     disconnect(pDllPinCode,SIGNAL(vaaraPin()),this,SLOT(recvPinWrongFromDllPinCode()));
+    disconnect(pDllRestApi,SIGNAL(sendTransactionFinishedToExe()),this,SLOT(recvRefreshRestApi()));
 
     disconnect(this,SIGNAL(sendTalletaToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvTalletaCommand(QString,float,QString,QString)));
     disconnect(this,SIGNAL(loginFailureToDllPinCode()),pDllPinCode,SLOT(vaaraPinTarkistus()));
@@ -141,7 +143,7 @@ void MainWindow::recvLoginInfo(bool login)
 
 void MainWindow::recvRefreshRestApi()
 {
-    //do stuff
+    emit generateKorttiInfo(CardNum);
 }
 
 void MainWindow::recvNostoAndEmitToRestApi(QString idTili, float nostoSumma, QString KorttiNumero, QString idKortti)
@@ -182,6 +184,7 @@ void MainWindow::startHandler(events e)
         //set all variables to default
         CardNum=nullptr;
         CardPin=nullptr;
+        CardInfo=nullptr;
 
         state=readCard;
         event=openSerial;
@@ -248,7 +251,6 @@ void MainWindow::readPinHandler(events e)
 void MainWindow::inBankHandler(events e)
 {
     if(e==bankUi){
-        emit generateKorttiInfo(CardNum);
         qDebug()<<"e=bankui";
         pBankUI = new BankUI;
         pBankUI->setModal(true);

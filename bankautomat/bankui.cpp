@@ -43,7 +43,7 @@ void BankUI::getKorttiInfo(QStringList info)
     qDebug()<<"asiakkaan saldo = "<<saldo;
 
     ui->Asiakkaan_nimi_label->setText(asiakkaanNimi);
-    ui->saldo_label->setText(saldo);
+    ui->saldo_label->setText("Tilin saldo = "+saldo+"€");
 
 }
 
