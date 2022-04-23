@@ -15,6 +15,8 @@ public:
     explicit NostaWindow(QWidget *parent = nullptr);
     ~NostaWindow();
 
+    void setKorttiInfo(QString,QString);
+
 signals:
     void resetTimer();
     void nostoSumma(float);

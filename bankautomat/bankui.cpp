@@ -64,6 +64,7 @@ void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
     pNostaWindow = new NostaWindow(this);
+    pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
     pNostaWindow->show();
     connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));

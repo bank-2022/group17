@@ -17,6 +17,11 @@ NostaWindow::~NostaWindow()
     delete ui;
 }
 
+void NostaWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
+{
+    ui->asiakas_label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
+}
+
 void NostaWindow::on_PoistuButton_clicked()
 {
     this->close();
