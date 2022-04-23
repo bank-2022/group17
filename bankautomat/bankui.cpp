@@ -74,6 +74,7 @@ void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
     pTalletaWindow = new TalletaWindow(this);
+    pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
     connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));

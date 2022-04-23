@@ -22,8 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
     connect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states, events)));
-    connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
-    connect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
+    connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(sendNostoToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvNostaCommand(QString,float,QString,QString)));
     connect(this,SIGNAL(sendTalletaToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvTalletaCommand(QString,float,QString,QString)));
 
@@ -45,8 +44,7 @@ MainWindow::~MainWindow()
     disconnect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
     disconnect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
     disconnect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states, events)));
-    disconnect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));
-    disconnect(this,SIGNAL(pinReadDone()),this,SLOT(pinNumReadDone()));
+    disconnect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     disconnect(this,SIGNAL(sendNostoToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvNostaCommand(QString,float,QString,QString)));
     delete ui;
     delete pDllSerialPort;
@@ -143,7 +141,7 @@ void MainWindow::recvLoginInfo(bool login)
 
 void MainWindow::recvRefreshRestApi()
 {
-
+    //do stuff
 }
 
 void MainWindow::recvNostoAndEmitToRestApi(QString idTili, float nostoSumma, QString KorttiNumero, QString idKortti)
@@ -167,27 +165,13 @@ void MainWindow::recvPinWrongFromDllPinCode()
 
 void MainWindow::on_LuekorttiBtn_clicked()
 {
-
     emit cardReadDone();
-}
-
-void MainWindow::on_AnnaPinBtn_clicked()
-{
-
 }
 
 void MainWindow::cardNumReadDone()
 {
     state=readCard;
     event=readCardNum;
-    emit eventSignal(state,event);
-}
-
-void MainWindow::pinNumReadDone()
-{
-    //login
-    state=readPin;
-    event=login;
     emit eventSignal(state,event);
 }
 

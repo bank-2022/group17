@@ -6,105 +6,137 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>393</width>
-    <height>410</height>
+    <width>371</width>
+    <height>426</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="5" column="0">
-    <widget class="QPushButton" name="pushButton_7">
-     <property name="text">
-      <string>7</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QPushButton" name="pushButton_1">
      <property name="text">
       <string>1</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="2">
-    <widget class="QPushButton" name="pushButton_9">
-     <property name="text">
-      <string>9</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="1">
-    <widget class="QPushButton" name="pushButton_0">
-     <property name="text">
-      <string>0</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
+   <item row="5" column="1">
     <widget class="QPushButton" name="pushButton_5">
      <property name="text">
       <string>5</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <widget class="QPushButton" name="pushButton_8">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="pushButton_2">
      <property name="text">
-      <string>8</string>
+      <string>2</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="6" column="0">
+    <widget class="QPushButton" name="pushButton_7">
+     <property name="text">
+      <string>7</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
     <widget class="QPushButton" name="pushButton_4">
      <property name="text">
       <string>4</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="pushButton_6">
-     <property name="text">
-      <string>6</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="3">
-    <widget class="QLineEdit" name="Talleta_lineEdit"/>
-   </item>
-   <item row="6" column="2">
+   <item row="7" column="2">
     <widget class="QPushButton" name="TalletaButton">
      <property name="text">
       <string>Talleta</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="2">
-    <widget class="QPushButton" name="pushButton_3">
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pushButton_9">
      <property name="text">
-      <string>3</string>
+      <string>9</string>
      </property>
     </widget>
    </item>
-   <item row="6" column="0">
-    <widget class="QPushButton" name="PeruutaButton">
-     <property name="text">
-      <string>Peruuta</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
+   <item row="8" column="1">
     <widget class="QPushButton" name="PoistuButton">
      <property name="text">
       <string>Poistu</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="pushButton_2">
+   <item row="7" column="1">
+    <widget class="QPushButton" name="pushButton_0">
      <property name="text">
-      <string>2</string>
+      <string>0</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QPushButton" name="pushButton_8">
+     <property name="text">
+      <string>8</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="text">
+      <string>6</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="text">
+      <string>3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QPushButton" name="PeruutaButton">
+     <property name="text">
+      <string>Peruuta</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QLineEdit" name="Talleta_lineEdit"/>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>MS Shell Dlg 2</family>
+       <pointsize>12</pointsize>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>ASIAKKAAN NIMI + TILIN SALDO TÄHÄN</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::NoTextInteraction</set>
      </property>
     </widget>
    </item>
@@ -123,6 +155,7 @@
   <zorder>TalletaButton</zorder>
   <zorder>PeruutaButton</zorder>
   <zorder>PoistuButton</zorder>
+  <zorder>label</zorder>
  </widget>
  <resources/>
  <connections/>

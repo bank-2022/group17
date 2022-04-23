@@ -16,6 +16,11 @@ TalletaWindow::~TalletaWindow()
     qDebug()<<"talleta destro";
 }
 
+void TalletaWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
+{
+    ui->label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo);
+}
+
 void TalletaWindow::on_PoistuButton_clicked()
 {
     this->close();

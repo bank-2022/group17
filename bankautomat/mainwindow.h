@@ -50,17 +50,16 @@ public slots:
     void timeoutHandler();
     void poistuHandler();
     void pinCodeNum(QString pin); //slot for receiving pincode signal
-    void readyToReadCardNum();
+    void readyToReadCardNum();  //recv signal from dllserial when cardnum is ready to be read to exe
     void recvKorttiInfoFunct(QString info);
-    void recvLoginInfo(bool login);
+    void recvLoginInfo(bool login); //Get response if login was succesful
     void recvRefreshRestApi();
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
     void recvTalletaAndEmitToRestApi(QString,float,QString,QString);
-    void recvPinWrongFromDllPinCode();
+    void recvPinWrongFromDllPinCode(); //If pincode is wrong 3 times program returns to start
 
 signals:
     void cardReadDone();  //test signal
-    void pinReadDone();   //test signal
     void eventSignal(states,events); //signal for state & event changes
     void loginCommand(QString,QString);
     void generateKorttiInfo(QString);
@@ -71,9 +70,7 @@ signals:
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button
-    void on_AnnaPinBtn_clicked();   //test button
     void cardNumReadDone();         //test slot
-    void pinNumReadDone ();         //test slot
 
 private:
     Ui::MainWindow *ui;

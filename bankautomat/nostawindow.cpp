@@ -32,6 +32,7 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
     int tarkastus = nostaSum.toInt();
     if(tarkastus%20==0){
         emit nostoSumma(nostoSum);
+        this->close();
     }
     else{
         QMessageBox::critical(this,"VIRHE","VIRHEELLINEN SUMMA!");
