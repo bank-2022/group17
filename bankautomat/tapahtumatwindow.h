@@ -28,6 +28,13 @@ private slots:
 private:
     Ui::TapahtumatWindow *ui;
 
+    void readTilitapahtumatForward();
+    void readTilitapahtumatBackward();
+
+    int tapahtumatIndex;
+
+    QString tapahtumat;
+    QStringList tapahtumatList;
     QString idtilitapahtumat;
     QString kortinnumero;
     QString paivays;
