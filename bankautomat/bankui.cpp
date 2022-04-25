@@ -60,6 +60,13 @@ void BankUI::talletaSumma(float talletaSumma)
     emit talletaCommandToMainWindow(idTili,talletaSumma,korttiNumero,idKortti);
 }
 
+void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
+{
+    qDebug()<<"at bankui recvtilitapahtumat";
+    qDebug()<<tiliTapahtumat;
+    pTapahtumatWindow->setTilitapahtumat(tiliTapahtumat);
+}
+
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
@@ -88,21 +95,13 @@ void BankUI::on_TapahtumatBtn_clicked()
     pTapahtumatWindow=new TapahtumatWindow(this);
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
-    //get tapahtumat
+    emit requestTiliTapahtumat(idTili);
     connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 void BankUI::on_PoistuBtn_clicked()
 {
     emit poistuSignal();
-}
-
-void BankUI::on_SaldoBtn_clicked()
-{
-    elapse_timer.restart();
-    //get saldo
-    ui->saldo_label->setText(saldo);
-    ui->saldo_label->setText(saldo+" €");
 }
 
 void BankUI::timerReset()

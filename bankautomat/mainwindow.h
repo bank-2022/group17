@@ -29,7 +29,6 @@ enum events{
     closePinWindow,
     login,
     bankUi,
-    tilitapahtumat,
     saldo,
     nosto,
     talletus,
@@ -57,6 +56,8 @@ public slots:
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
     void recvTalletaAndEmitToRestApi(QString,float,QString,QString);
     void recvPinWrongFromDllPinCode(); //If pincode is wrong 3 times program returns to start
+    void recvTilitapahtumatFromDllRestApi(QString);
+    void requestTilitapahtumatFromDllRestApi(QString);
 
 signals:
     void cardReadDone();  //test signal
@@ -67,6 +68,8 @@ signals:
     void sendNostoToRestApi(QString,float,QString,QString);
     void sendTalletaToRestApi(QString,float,QString,QString);
     void loginFailureToDllPinCode();
+    void getTilitapahtumat(QString);
+    void sendTilitapahtumatToUi(QString);
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button

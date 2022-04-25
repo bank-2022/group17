@@ -18,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
     connect(pDllPinCode,SIGNAL(vaaraPin()),this,SLOT(recvPinWrongFromDllPinCode()));
     connect(pDllRestApi,SIGNAL(sendTransactionFinishedToExe()),this,SLOT(recvRefreshRestApi()));
+    connect(pDllRestApi,SIGNAL(sendTilitapahtumatToExe(QString)),this,SLOT(recvTilitapahtumatFromDllRestApi(QString)));
 
+    connect(this,SIGNAL(getTilitapahtumat(QString)),pDllRestApi,SLOT( recvGetTilitapahtumatCommand(QString)));
     connect(this,SIGNAL(loginFailureToDllPinCode()),pDllPinCode,SLOT(vaaraPinTarkistus()));
     connect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
     connect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
@@ -40,7 +42,9 @@ MainWindow::~MainWindow()
     disconnect(pDllRestApi,SIGNAL(sendLoginResultToExe(bool)),this,SLOT(recvLoginInfo(bool)));
     disconnect(pDllPinCode,SIGNAL(vaaraPin()),this,SLOT(recvPinWrongFromDllPinCode()));
     disconnect(pDllRestApi,SIGNAL(sendTransactionFinishedToExe()),this,SLOT(recvRefreshRestApi()));
+    disconnect(pDllRestApi,SIGNAL(sendTilitapahtumatToExe(QString)),this,SLOT(recvTilitapahtumatFromDllRestApi(QString)));
 
+    disconnect(this,SIGNAL(getTilitapahtumat(QString)),pDllRestApi,SLOT( recvGetTilitapahtumatCommand(QString)));
     disconnect(this,SIGNAL(sendTalletaToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvTalletaCommand(QString,float,QString,QString)));
     disconnect(this,SIGNAL(loginFailureToDllPinCode()),pDllPinCode,SLOT(vaaraPinTarkistus()));
     disconnect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
@@ -120,7 +124,6 @@ void MainWindow::recvKorttiInfoFunct(QString info)
     qDebug()<<"split info "<<list1;
     emit sendKorttiInfoToBankUi(list1);
     qDebug()<<"emit kortti info to ui";
-
 }
 
 void MainWindow::recvLoginInfo(bool login)
@@ -167,6 +170,18 @@ void MainWindow::recvPinWrongFromDllPinCode()
     state=start;
     event=clearAll;
     emit eventSignal(state,event);
+}
+
+void MainWindow::recvTilitapahtumatFromDllRestApi(QString tilitapahtumat)
+{
+    qDebug()<<"received tilitapahtumat to exe";
+     qDebug()<<tilitapahtumat;
+     emit sendTilitapahtumatToUi(tilitapahtumat);
+}
+
+void MainWindow::requestTilitapahtumatFromDllRestApi(QString idTili)
+{
+    emit getTilitapahtumat(idTili);
 }
 
 void MainWindow::on_LuekorttiBtn_clicked()
@@ -264,12 +279,10 @@ void MainWindow::inBankHandler(events e)
         connect(this,SIGNAL(sendKorttiInfoToBankUi(QStringList)),pBankUI,SLOT(getKorttiInfo(QStringList)));
         connect(pBankUI,SIGNAL(nostaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvNostoAndEmitToRestApi(QString,float,QString,QString)));
         connect(pBankUI,SIGNAL(talletaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvTalletaAndEmitToRestApi(QString,float,QString,QString)));
+        connect(pBankUI,SIGNAL(requestTiliTapahtumat(QString)),this,SLOT(requestTilitapahtumatFromDllRestApi(QString)));
+        connect(this,SIGNAL(sendTilitapahtumatToUi(QString)),pBankUI,SLOT(recvTilitapahtumatFromMain(QString)));
         emit generateKorttiInfo(CardNum);
-    }
-    else if(e==tilitapahtumat){
-         qDebug()<<"e=tapahtumat";
-        //get tilitapahtumat       
-    }
+    }  
     else if(e==saldo){
         qDebug()<<"e=saldo";
         //get tili        
@@ -293,6 +306,9 @@ void MainWindow::inBankHandler(events e)
         disconnect(this,SIGNAL(sendKorttiInfoToBankUi(QStringList)),pBankUI,SLOT(getKorttiInfo(QStringList)));
         disconnect(pBankUI,SIGNAL(nostaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvNostoAndEmitToRestApi(QString,float,QString,QString)));
         disconnect(pBankUI,SIGNAL(talletaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvTalletaAndEmitToRestApi(QString,float,QString,QString)));
+        disconnect(pBankUI,SIGNAL(requestTiliTapahtumat(QString)),this,SLOT(requestTilitapahtumatFromDllRestApi(QString)));
+        disconnect(this,SIGNAL(sendTilitapahtumatToUi(QString)),pBankUI,SLOT(recvTilitapahtumatFromMain(QString)));
+
 
         pBankUI->close();
         pBankUI->deleteLater();

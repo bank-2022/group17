@@ -15,9 +15,12 @@ public:
     explicit TapahtumatWindow(QWidget *parent = nullptr);
     ~TapahtumatWindow();
 
+    void setTilitapahtumat(QString);
+
 signals:
     void resetTimer();
 private slots:
+
     void on_Ed10tapahtBtn_clicked();
     void on_poistuBtn_clicked();
     void on_Seur10tapahtBtn_clicked();
@@ -25,7 +28,13 @@ private slots:
 private:
     Ui::TapahtumatWindow *ui;
 
-    QString tilitapahtumat;
+    QString idtilitapahtumat;
+    QString kortinnumero;
+    QString paivays;
+    QString tapahtuma;
+    QString summa;
+    QString idkortti;
+    QString idtili;
 };
 
 #endif // TAPAHTUMATWINDOW_H

@@ -36,7 +36,7 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
     qDebug()<<"nosta summa"<<nostaSum;
     float nostoSum = nostaSum.toFloat();
     int tarkastus = nostaSum.toInt();
-    if((tarkastus%20==0)|(tarkastus%50==0)){
+    if((tarkastus%20==0)|(tarkastus%50==0)){ //mahdollisuus myös nostaa 70€ ja 90€?
         if(nostoSum<tilinfSaldo){
         emit nostoSumma(nostoSum);
         this->close();
