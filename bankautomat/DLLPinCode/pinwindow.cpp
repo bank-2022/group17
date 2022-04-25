@@ -23,6 +23,12 @@ QString PinWindow::returnPinCode()
     return text;
 }
 
+void PinWindow::wrongPin()
+{
+    ui->lineEdit->setText("Väärä pin");
+    ui->lineEdit->setEchoMode(QLineEdit::Normal);
+}
+
 
 void PinWindow::on_pushButton_1_clicked()
 {
