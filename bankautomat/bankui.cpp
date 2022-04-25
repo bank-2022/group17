@@ -17,6 +17,13 @@ BankUI::BankUI(QWidget *parent) :
 
 BankUI::~BankUI()
 {
+    disconnect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
+    disconnect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
+    disconnect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
+
     qDebug()<<"bank destro";
     delete ui;
     timer->deleteLater();
