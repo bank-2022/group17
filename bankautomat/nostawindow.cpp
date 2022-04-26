@@ -40,7 +40,7 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
     qDebug()<<"nosta summa"<<nostaSum;
     float nostoSum = nostaSum.toFloat();
     int tarkastus = nostaSum.toInt();           // TODO //!!!!
-    if((tarkastus%20==0)|(tarkastus%50==0)){ //tarkastaa %20 jos =0 jatkaa nostoon
+    if(tarkastus%20==0){ //tarkastaa %20 jos =0 jatkaa nostoon
         if(nostoSum<=tilinfSaldo){              //muuten tarkastus x-50<0 ja sitten %20 jos =0 jatkaa nostoon
         emit nostoSumma(nostoSum);
         this->close();

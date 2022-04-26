@@ -10,6 +10,10 @@ BankUI::BankUI(QWidget *parent) :
     ui->setupUi(this);
     elapse_timer.start();
     timer=new QTimer(this);
+     pNostaWindow = new NostaWindow(this);
+     pTalletaWindow = new TalletaWindow(this);
+     pTapahtumatWindow=new TapahtumatWindow(this);
+
     timer->start(1000);     //1s timer to timeout check
     qDebug()<<"bank constru";
     connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
@@ -77,7 +81,7 @@ void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
-    pNostaWindow = new NostaWindow(this);
+
     pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
     pNostaWindow->show();
@@ -88,7 +92,7 @@ void BankUI::on_NostaBtn_clicked()
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
-    pTalletaWindow = new TalletaWindow(this);
+
     pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
@@ -99,7 +103,7 @@ void BankUI::on_TalletaBtn_clicked()
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
-    pTapahtumatWindow=new TapahtumatWindow(this);
+
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
     emit requestTiliTapahtumat(idTili);
