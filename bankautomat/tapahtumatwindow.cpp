@@ -24,6 +24,11 @@ void TapahtumatWindow::setTilitapahtumat(QString tiliTapahtumat)
     readTilitapahtumatForward();
 }
 
+void TapahtumatWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
+{
+    ui->label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
+}
+
 void TapahtumatWindow::on_Ed10tapahtBtn_clicked()
 {
     emit resetTimer();

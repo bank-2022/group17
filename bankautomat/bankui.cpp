@@ -27,11 +27,17 @@ BankUI::~BankUI()
     disconnect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
     disconnect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
     disconnect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
-
     qDebug()<<"bank destro";
+
+    delete pNostaWindow;
+    delete pTalletaWindow;
+    delete pTapahtumatWindow;
     delete ui;
     timer->deleteLater();
     timer=nullptr;
+    pNostaWindow=nullptr;
+    pTalletaWindow=nullptr;
+    pTapahtumatWindow=nullptr;
 }
 
 void BankUI::getKorttiInfo(QStringList info)
@@ -103,7 +109,7 @@ void BankUI::on_TalletaBtn_clicked()
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
-
+    pTapahtumatWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
     emit requestTiliTapahtumat(idTili);

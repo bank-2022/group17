@@ -16,6 +16,7 @@ public:
     ~TapahtumatWindow();
 
     void setTilitapahtumat(QString);
+    void setKorttiInfo(QString,QString);
 
 signals:
     void resetTimer();
