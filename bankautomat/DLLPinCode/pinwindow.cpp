@@ -15,13 +15,18 @@ PinWindow::PinWindow(QWidget *parent) :
 
 PinWindow::~PinWindow()
 {
-    qDebug()<<"pinwindow.ccp destro";
     delete ui;
 }
 
 QString PinWindow::returnPinCode()
 {
     return text;
+}
+
+void PinWindow::wrongPin()
+{
+    ui->lineEdit->setText("Väärä pin");
+    ui->lineEdit->setEchoMode(QLineEdit::Normal);
 }
 
 
@@ -213,24 +218,5 @@ void PinWindow::on_PushButton_Ok_clicked()
     ui->lineEdit->setEchoMode(QLineEdit::Normal);
 
 }
-/*
-void PinWindow::lineEditChecker(bool f)
-{
-    qDebug()<<"lineeditchecker signal";
-
-    if(f == true){
-        ui->lineEdit->clear();
-        ui->lineEdit->setEchoMode(QLineEdit::Password);
-        qDebug()<<f;
-
-
-
-    }
-    qDebug()<<f;
-
-}
-
-*/
-
 
 

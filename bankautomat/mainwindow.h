@@ -29,10 +29,6 @@ enum events{
     closePinWindow,
     login,
     bankUi,
-    saldo,
-    nosto,
-    talletus,
-    uusisaldo,
     poistu,
     timeout
 };

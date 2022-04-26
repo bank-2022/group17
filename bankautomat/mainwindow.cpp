@@ -104,7 +104,6 @@ void MainWindow::pinCodeNum(QString pin)
     state=readPin;
     event=login;
     emit eventSignal(state,event);
-    //pDllPinCode->closePinWindow();
 }
 
 void MainWindow::readyToReadCardNum()
@@ -138,10 +137,7 @@ void MainWindow::recvLoginInfo(bool login)
 
     }
     else{
-        emit loginFailureToDllPinCode();
-//        state=readPin;
-//        event=openPinWindow;
-//        emit eventSignal(state,event);
+        emit loginFailureToDllPinCode();        
     }
 }
 
@@ -283,22 +279,6 @@ void MainWindow::inBankHandler(events e)
         connect(this,SIGNAL(sendTilitapahtumatToUi(QString)),pBankUI,SLOT(recvTilitapahtumatFromMain(QString)));
         emit generateKorttiInfo(CardNum);
     }  
-    else if(e==saldo){
-        qDebug()<<"e=saldo";
-        //get tili        
-    }
-    else if(e==nosto){
-        qDebug()<<"e=nosto";
-        //put tili       
-    }
-    else if(e==talletus){
-        qDebug()<<"e=talletus";
-        //put tili       
-    }
-    else if(e==uusisaldo){
-        qDebug()<<"e=uusi saldo";
-        // get tili
-    }
     else if(e==poistu){
         qDebug()<<"e=poistu";
         disconnect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
@@ -308,7 +288,6 @@ void MainWindow::inBankHandler(events e)
         disconnect(pBankUI,SIGNAL(talletaCommandToMainWindow(QString,float,QString,QString)),this,SLOT(recvTalletaAndEmitToRestApi(QString,float,QString,QString)));
         disconnect(pBankUI,SIGNAL(requestTiliTapahtumat(QString)),this,SLOT(requestTilitapahtumatFromDllRestApi(QString)));
         disconnect(this,SIGNAL(sendTilitapahtumatToUi(QString)),pBankUI,SLOT(recvTilitapahtumatFromMain(QString)));
-
 
         pBankUI->close();
         pBankUI->deleteLater();
