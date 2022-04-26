@@ -26,7 +26,7 @@ public slots:
     void vaaraPinTarkistus();
 
 private:
-    PinCodeEngine * pPinCodeEngine;
+    //PinCodeEngine * pPinCodeEngine;
     PinWindow * pPinWindow;
     QString cardPin;
     int pinYritysKerta;

@@ -25,8 +25,7 @@ QString PinWindow::returnPinCode()
 
 void PinWindow::wrongPin()
 {
-    ui->lineEdit->setText("Väärä pin");
-    ui->lineEdit->setEchoMode(QLineEdit::Normal);
+    ui->label->setText("Väärä pin");
 }
 
 
@@ -216,7 +215,27 @@ void PinWindow::on_PushButton_Ok_clicked()
     checker = false;
     ui->lineEdit->setText("Syötä pin");
     ui->lineEdit->setEchoMode(QLineEdit::Normal);
+    ui->label->clear();
 
 }
+/*
+void PinWindow::lineEditChecker(bool f)
+{
+    qDebug()<<"lineeditchecker signal";
+
+    if(f == true){
+        ui->lineEdit->clear();
+        ui->lineEdit->setEchoMode(QLineEdit::Password);
+        qDebug()<<f;
+
+
+
+    }
+    qDebug()<<f;
+
+}
+
+*/
+
 
 
