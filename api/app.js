@@ -14,11 +14,6 @@ var korttiRouter = require('./routes/kortti');
 var asiakastiliRouter = require('./routes/asiakastili');
 var loginRouter = require('./routes/login');
 
-
-const helmet = require('helmet');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-
 var app = express(); 
 
 app.use(helmet());
