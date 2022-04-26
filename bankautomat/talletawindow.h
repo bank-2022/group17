@@ -15,8 +15,11 @@ public:
     explicit TalletaWindow(QWidget *parent = nullptr);
     ~TalletaWindow();
 
+    void setKorttiInfo(QString,QString);
+
 signals:
     void resetTimer();
+    void talletaSumma(float);
 
 private slots:
     void on_PoistuButton_clicked();    

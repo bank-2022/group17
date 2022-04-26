@@ -16,6 +16,11 @@ TalletaWindow::~TalletaWindow()
     qDebug()<<"talleta destro";
 }
 
+void TalletaWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
+{
+    ui->label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
+}
+
 void TalletaWindow::on_PoistuButton_clicked()
 {
     this->close();
@@ -26,7 +31,8 @@ void TalletaWindow::on_TalletaButton_clicked()
 {
     talletaSum=ui->Talleta_lineEdit->text();
     qDebug()<<"talletus summa"<<talletaSum;
-    //signal from here?
+    float talletaSummaf = talletaSum.toFloat();
+    emit talletaSumma(talletaSummaf);
     emit resetTimer();
     this->close();
 }

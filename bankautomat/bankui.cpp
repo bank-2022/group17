@@ -10,6 +10,10 @@ BankUI::BankUI(QWidget *parent) :
     ui->setupUi(this);
     elapse_timer.start();
     timer=new QTimer(this);
+     pNostaWindow = new NostaWindow(this);
+     pTalletaWindow = new TalletaWindow(this);
+     pTapahtumatWindow=new TapahtumatWindow(this);
+
     timer->start(1000);     //1s timer to timeout check
     qDebug()<<"bank constru";
     connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
@@ -17,6 +21,13 @@ BankUI::BankUI(QWidget *parent) :
 
 BankUI::~BankUI()
 {
+    disconnect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
+    disconnect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
+    disconnect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
+
     qDebug()<<"bank destro";
     delete ui;
     timer->deleteLater();
@@ -43,6 +54,7 @@ void BankUI::getKorttiInfo(QStringList info)
     qDebug()<<"asiakkaan saldo = "<<saldo;
 
     ui->Asiakkaan_nimi_label->setText(asiakkaanNimi);
+    ui->saldo_label->setText("Tilin saldo = "+saldo+"€");
 
 }
 
@@ -53,10 +65,24 @@ void BankUI::nostoSumma(float nostoSumma)
 
 }
 
+void BankUI::talletaSumma(float talletaSumma)
+{
+    qDebug()<<"vastaannotettu talletus = "<<talletaSumma;
+    emit talletaCommandToMainWindow(idTili,talletaSumma,korttiNumero,idKortti);
+}
+
+void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
+{
+    qDebug()<<"at bankui recvtilitapahtumat";
+    qDebug()<<tiliTapahtumat;
+    pTapahtumatWindow->setTilitapahtumat(tiliTapahtumat);
+}
+
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
-    pNostaWindow = new NostaWindow(this);
+
+    pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
     pNostaWindow->show();
     connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
@@ -66,33 +92,27 @@ void BankUI::on_NostaBtn_clicked()
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
-    pTalletaWindow = new TalletaWindow(this);
+
+    pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
     connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
 }
 
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
-    pTapahtumatWindow=new TapahtumatWindow(this);
+
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
-    //get tapahtumat
+    emit requestTiliTapahtumat(idTili);
     connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 void BankUI::on_PoistuBtn_clicked()
 {
     emit poistuSignal();
-}
-
-void BankUI::on_SaldoBtn_clicked()
-{
-    elapse_timer.restart();
-    //get saldo
-    ui->saldo_label->setText(saldo);
-    ui->saldo_label->setText(saldo+" €");
 }
 
 void BankUI::timerReset()
