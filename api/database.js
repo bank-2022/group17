@@ -5,9 +5,12 @@ const connection = mysql.createPool({
   user: 'netuser',
   password: 'netpass',
 <<<<<<< HEAD
+<<<<<<< HEAD
   database: 'banksimuldb',
   dateStrings:true
 =======
+=======
+>>>>>>> 39c911a62a5d62efe35fea9fb6d8e35eca8f7838
 =======
   user: 'banksimuldbuser',
   password: 'banksimuldbpass',
