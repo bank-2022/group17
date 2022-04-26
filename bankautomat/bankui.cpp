@@ -17,6 +17,11 @@ BankUI::BankUI(QWidget *parent) :
     timer->start(1000);     //1s timer to timeout check
     qDebug()<<"bank constru";
     connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
+    connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
+    connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
+    connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 BankUI::~BankUI()
@@ -87,23 +92,17 @@ void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
-
     pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
     pNostaWindow->show();
-    connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
-    connect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
 }
 
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
-
     pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
-    connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
-    connect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
 }
 
 void BankUI::on_TapahtumatBtn_clicked()
@@ -113,7 +112,6 @@ void BankUI::on_TapahtumatBtn_clicked()
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
     emit requestTiliTapahtumat(idTili);
-    connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
 }
 
 void BankUI::on_PoistuBtn_clicked()
