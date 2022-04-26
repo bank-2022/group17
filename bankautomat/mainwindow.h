@@ -29,11 +29,6 @@ enum events{
     closePinWindow,
     login,
     bankUi,
-    tilitapahtumat,
-    saldo,
-    nosto,
-    talletus,
-    uusisaldo,
     poistu,
     timeout
 };
@@ -50,26 +45,31 @@ public slots:
     void timeoutHandler();
     void poistuHandler();
     void pinCodeNum(QString pin); //slot for receiving pincode signal
-    void readyToReadCardNum();
+    void readyToReadCardNum();  //recv signal from dllserial when cardnum is ready to be read to exe
     void recvKorttiInfoFunct(QString info);
-    void recvLoginInfo(bool login);
-    void recvRefreshRestApi();
+    void recvLoginInfo(bool login); //Get response if login was succesful
+    void recvRefreshRestApi();  //when  bank transaction is done get signal to refresh account info
     void recvNostoAndEmitToRestApi(QString,float,QString,QString);
+    void recvTalletaAndEmitToRestApi(QString,float,QString,QString);
+    void recvPinWrongFromDllPinCode(); //If pincode is wrong 3 times program returns to start
+    void recvTilitapahtumatFromDllRestApi(QString);
+    void requestTilitapahtumatFromDllRestApi(QString);
 
 signals:
     void cardReadDone();  //test signal
-    void pinReadDone();   //test signal
     void eventSignal(states,events); //signal for state & event changes
     void loginCommand(QString,QString);
     void generateKorttiInfo(QString);
     void sendKorttiInfoToBankUi(QStringList);
     void sendNostoToRestApi(QString,float,QString,QString);
+    void sendTalletaToRestApi(QString,float,QString,QString);
+    void loginFailureToDllPinCode();
+    void getTilitapahtumat(QString);
+    void sendTilitapahtumatToUi(QString);
 
 private slots:
     void on_LuekorttiBtn_clicked(); //test button
-    void on_AnnaPinBtn_clicked();   //test button
     void cardNumReadDone();         //test slot
-    void pinNumReadDone ();         //test slot
 
 private:
     Ui::MainWindow *ui;

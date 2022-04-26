@@ -18,6 +18,7 @@ public:
     explicit PinWindow(QWidget *parent = nullptr);
     ~PinWindow();
     QString returnPinCode();
+    void wrongPin();
 
 
 private slots:
