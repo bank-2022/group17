@@ -18,6 +18,7 @@ TalletaWindow::~TalletaWindow()
 
 void TalletaWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
 {
+    ui->Talleta_lineEdit->clear();
     ui->label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
 }
 

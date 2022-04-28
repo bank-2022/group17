@@ -200,6 +200,7 @@ void MainWindow::startHandler(events e)
         CardNum=nullptr;
         CardPin=nullptr;
         CardInfo=nullptr;
+        list1.clear();
 
         state=readCard;
         event=openSerial;
@@ -290,7 +291,7 @@ void MainWindow::inBankHandler(events e)
         disconnect(this,SIGNAL(sendTilitapahtumatToUi(QString)),pBankUI,SLOT(recvTilitapahtumatFromMain(QString)));
 
         pBankUI->close();
-        pBankUI->deleteLater();
+        delete  pBankUI;
         pBankUI=nullptr;
         state=start;
         event=clearAll;

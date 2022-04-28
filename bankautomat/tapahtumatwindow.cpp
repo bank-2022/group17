@@ -7,11 +7,13 @@ TapahtumatWindow::TapahtumatWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     tapahtumatIndex=0;
+    qDebug()<<"tapahtumat constru";
 }
 
 TapahtumatWindow::~TapahtumatWindow()
 {
     delete ui;
+    qDebug()<<"tapahtumat destro";
 }
 
 void TapahtumatWindow::setTilitapahtumat(QString tiliTapahtumat)
@@ -20,8 +22,13 @@ void TapahtumatWindow::setTilitapahtumat(QString tiliTapahtumat)
 //    qDebug()<<tiliTapahtumat;
     tapahtumatList = tiliTapahtumat.split(QString("\r"));
   //  qDebug()<<;
-
+    tapahtumatIndex=0;
     readTilitapahtumatForward();
+}
+
+void TapahtumatWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
+{
+    ui->label->setText(asiakkaanNimi+" Tilin saldo = "+tilinSaldo+"€");
 }
 
 void TapahtumatWindow::on_Ed10tapahtBtn_clicked()

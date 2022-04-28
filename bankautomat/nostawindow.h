@@ -2,6 +2,7 @@
 #define NOSTAWINDOW_H
 
 #include <QDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class NostaWindow;
@@ -44,7 +45,12 @@ private slots:
 
 private:
     Ui::NostaWindow *ui;
+    QMessageBox msgBox;
 
+    bool seteliLaskuri(int sum);
+
+    int seteli20;
+    int seteli50;
     float tilinfSaldo;
     QString nostaSum;
     QString buttonNum;
