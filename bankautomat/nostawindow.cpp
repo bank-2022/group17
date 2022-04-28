@@ -1,7 +1,7 @@
 #include "nostawindow.h"
 #include "ui_nostawindow.h"
 #include <QDebug>
-#include <QMessageBox>
+
 
 NostaWindow::NostaWindow(QWidget *parent) :
     QDialog(parent),
@@ -36,25 +36,47 @@ void NostaWindow::on_PoistuButton_clicked()
 
 void NostaWindow::on_VahvitaNostoBtn_clicked()
 {
+    seteli20=0;
+    seteli50=0;
     emit resetTimer();
     nostaSum=ui->NostaLe->text();
     qDebug()<<"nosta summa"<<nostaSum;
-    float nostoSum = nostaSum.toFloat();
-    int tarkastus = nostaSum.toInt();           // TODO //!!!!
-    if((tarkastus%20==0)|(tarkastus%50==0)){ //tarkastaa %20 jos =0 jatkaa nostoon
-        if(nostoSum<=tilinfSaldo){              //muuten tarkastus x-50<0 ja sitten %20 jos =0 jatkaa nostoon
-        emit nostoSumma(nostoSum);
-        this->close();
+    int nostoSumInt = nostaSum.toInt();
+    float nostoSumFloat = nostaSum.toFloat();
+    bool tarkistus = seteliLaskuri(nostoSumInt);
+
+    if (nostoSumFloat<=tilinfSaldo){
+
+        if(tarkistus==true){
+            emit nostoSumma(nostoSumFloat);
+            msgBox.setText("Tulostetaan seteleitä..");
+            if(seteli50>0&&seteli20>0){
+                msgBox.setInformativeText("50€ seteleitä = "+QString::number(seteli50)+"\n"+"20€ seteleitä = "+QString::number(seteli20));
+            }
+            else if(seteli50>0&&seteli20==0){
+                msgBox.setInformativeText("50€ seteleitä = "+QString::number(seteli50));
+            }
+            else {
+                msgBox.setInformativeText("20€ seteleitä = "+QString::number(seteli20));
+            }
+            msgBox.show();
+            this->close();
+            msgBox.button(QMessageBox::Ok)->animateClick(5000);
         }
         else{
-
-            QMessageBox::critical(this,"VIRHE","TILILLÄSI EI OLE RIITTÄVÄSTI KATETTA!");
+            msgBox.setText("Virhe!");
+            msgBox.setInformativeText("Syötit virheellisen summan!");
+            msgBox.show();
+            msgBox.button(QMessageBox::Ok)->animateClick(5000);
         }
     }
-    else{
-
-        QMessageBox::critical(this,"VIRHE","VIRHEELLINEN SUMMA!");
+    else {
+        msgBox.setText("Virhe!");
+        msgBox.setInformativeText("Tililläsi ei ole riittävästi katetta!");
+        msgBox.show();
+        msgBox.button(QMessageBox::Ok)->animateClick(5000);
     }
+
 }
 
 void NostaWindow::on_Nosta20Btn_clicked()
@@ -173,5 +195,42 @@ void NostaWindow::on_pushButton_0_clicked()
     buttonNum="0";
     ui->NostaLe->insert(buttonNum);
     emit resetTimer();
+}
+
+bool NostaWindow::seteliLaskuri(int sum)
+{
+    int laskukelpoisuus=0; //Onnistuuko lasku 20€ ja 50€ seteleillä
+    int tulos=0;
+    seteli20=0; seteli50=0; //Headerin INT muuttujat (setelien kpl määrät)
+
+    if(sum%50==0)   //50:llä jaollinen luku
+    {
+        do{
+            tulos+=50;
+            seteli50++;
+        }while(tulos<sum);
+
+    }
+    else if(sum>=20)    //Muut luvut 20:stä ylöspäin
+    {
+        do{
+            tulos+=20;
+            seteli20++;
+            if((sum-tulos)%50==0)
+                break;
+        }while(tulos<sum);
+
+        while(tulos<sum){
+            tulos+=50;
+            seteli50++;
+        }
+    }
+
+    if(tulos==sum)  //Tarkistetaan vielä pitääkö laskettu tulos paikkaansa
+        laskukelpoisuus=true;
+    else
+        laskukelpoisuus=false;
+
+    return laskukelpoisuus;
 }
 
