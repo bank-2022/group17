@@ -200,6 +200,7 @@ void MainWindow::startHandler(events e)
         CardNum=nullptr;
         CardPin=nullptr;
         CardInfo=nullptr;
+        list1.clear();
 
         state=readCard;
         event=openSerial;
