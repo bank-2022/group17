@@ -104,11 +104,11 @@ void TapahtumatWindow::readTilitapahtumatBackward()
         if(tapahtumatIndex<0)
         {
             tapahtumatIndex=0;
+            readTilitapahtumatForward();
 
             qDebug()<<tapahtumatIndex;
             qDebug()<<tapahtumatList.size();
             qDebug()<<"index out of range";
-            ui->TapahtumaList->addItem("Tapahtumat loppu...");
             break;
         }
         else{
