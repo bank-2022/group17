@@ -19,7 +19,7 @@ public:
     void setKorttiInfo(QString,QString);
 
 signals:
-    void resetTimer();
+    void resetTimer(int);
 private slots:
 
     void on_Ed10tapahtBtn_clicked();

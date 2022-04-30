@@ -19,7 +19,7 @@ public:
     void setKorttiInfo(QString,QString);
 
 signals:
-    void resetTimer();
+    void resetTimer(int);
     void nostoSumma(float);
 
 private slots:
