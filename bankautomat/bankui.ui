@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Pictures/src.qrc">
+    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="Asiakkaan_nimi_label">
@@ -156,6 +160,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Pictures/src.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,15 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include <QPixmap>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("../Pictures/insert-card.png");
-    ui->picture_card_label->setPixmap(pix); // set card icon in mainwindow
 
     pDllPinCode=new DLLPinCode;
     pDllSerialPort=new DLLSerialPort;
