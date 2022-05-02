@@ -4,6 +4,6 @@ const connection = mysql.createPool({
   user: 'netuser',
   password: 'netpass',
   database: 'banksimuldb',
-  dateStrings: true
+  dateStrings:true
 });
 module.exports = connection;
