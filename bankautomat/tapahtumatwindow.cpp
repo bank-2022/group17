@@ -33,7 +33,7 @@ void TapahtumatWindow::setKorttiInfo(QString asiakkaanNimi, QString tilinSaldo)
 
 void TapahtumatWindow::on_Ed10tapahtBtn_clicked()
 {
-    emit resetTimer();
+    emit resetTimer(3);
     readTilitapahtumatBackward();
 }
 
@@ -41,13 +41,13 @@ void TapahtumatWindow::on_Ed10tapahtBtn_clicked()
 void TapahtumatWindow::on_poistuBtn_clicked()
 {
     this->close();
-    emit resetTimer();
+    emit resetTimer(0);
 }
 
 
 void TapahtumatWindow::on_Seur10tapahtBtn_clicked()
 {
-    emit resetTimer();
+    emit resetTimer(3);
     readTilitapahtumatForward();
 }
 
@@ -104,11 +104,11 @@ void TapahtumatWindow::readTilitapahtumatBackward()
         if(tapahtumatIndex<0)
         {
             tapahtumatIndex=0;
+            readTilitapahtumatForward();
 
             qDebug()<<tapahtumatIndex;
             qDebug()<<tapahtumatList.size();
             qDebug()<<"index out of range";
-            ui->TapahtumaList->addItem("Tapahtumat loppu...");
             break;
         }
         else{

@@ -37,7 +37,7 @@ private slots:
     void on_TalletaBtn_clicked();
     void on_TapahtumatBtn_clicked();
     void on_PoistuBtn_clicked();
-    void timerReset();
+    void timerReset(int);
     void timeoutcheck();
 private:
     Ui::BankUI *ui;
@@ -49,6 +49,7 @@ private:
     QTimer *timer;
     QElapsedTimer elapse_timer;
 
+    int windowIndex;
     QString asiakkaanNimi;
     QString korttiNumero;
     QString idAsiakas;

@@ -1,12 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap pix("C:/projektit/banksimul/group17/bankautomat/Pictures/insert-card.png");
+    ui->picture_card_label->setPixmap(pix); // set card icon in mainwindow
 
     pDllPinCode=new DLLPinCode;
     pDllSerialPort=new DLLSerialPort;
@@ -24,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(loginFailureToDllPinCode()),pDllPinCode,SLOT(vaaraPinTarkistus()));
     connect(this,SIGNAL(loginCommand(QString,QString)),pDllRestApi,SLOT(recvLoginCommand(QString,QString)));
     connect(this,SIGNAL(generateKorttiInfo(QString)),pDllRestApi,SLOT(recvGenerateKorttiInfoCommand(QString)));
-    connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states, events)));
+    connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states,events)));
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(sendNostoToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvNostaCommand(QString,float,QString,QString)));
     connect(this,SIGNAL(sendTalletaToRestApi(QString,float,QString,QString)),pDllRestApi,SLOT(recvTalletaCommand(QString,float,QString,QString)));
@@ -220,7 +223,7 @@ void MainWindow::readCardHandler(events e)
     else if(e==readCardNum){
         qDebug()<<"e=readCardNum";
         CardNum=pDllSerialPort->interfaceFunctionReturnCardSerialNumber();
-        CardNum="42316"; //test
+        CardNum="0500CB615F"; //test.. pincode is = 9010..
         qDebug()<<"cardnum is "<<CardNum;
         state=readCard;
         event=closeSerial;

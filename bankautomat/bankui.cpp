@@ -10,27 +10,27 @@ BankUI::BankUI(QWidget *parent) :
     ui->setupUi(this);
     elapse_timer.start();
     timer=new QTimer(this);
-     pNostaWindow = new NostaWindow(this);
-     pTalletaWindow = new TalletaWindow(this);
-     pTapahtumatWindow=new TapahtumatWindow(this);
-
+    pNostaWindow = new NostaWindow(this);
+    pTalletaWindow = new TalletaWindow(this);
+    pTapahtumatWindow=new TapahtumatWindow(this);
+    windowIndex=0;  //set default index
     timer->start(1000);     //1s timer to timeout check
     qDebug()<<"bank constru";
     connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
-    connect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pNostaWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     connect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
-    connect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pTalletaWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     connect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
-    connect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    connect(pTapahtumatWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
 }
 
 BankUI::~BankUI()
 {
-    disconnect(pNostaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pNostaWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     disconnect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
-    disconnect(pTalletaWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pTalletaWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     disconnect(pTalletaWindow,SIGNAL(talletaSumma(float)),this,SLOT(talletaSumma(float)));
-    disconnect(pTapahtumatWindow,SIGNAL(resetTimer()),this,SLOT(timerReset()));
+    disconnect(pTapahtumatWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     disconnect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
     qDebug()<<"bank destro";
 
@@ -92,6 +92,7 @@ void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
+    windowIndex=1;
     pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
     pNostaWindow->show();
@@ -100,6 +101,7 @@ void BankUI::on_NostaBtn_clicked()
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
+    windowIndex=2;
     pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
     pTalletaWindow->show();
@@ -108,6 +110,7 @@ void BankUI::on_TalletaBtn_clicked()
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
+    windowIndex=3;
     pTapahtumatWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTapahtumatWindow->setModal(true);
     pTapahtumatWindow->show();
@@ -119,14 +122,45 @@ void BankUI::on_PoistuBtn_clicked()
     emit poistuSignal();
 }
 
-void BankUI::timerReset()
+void BankUI::timerReset(int index)
 {
+    /* index=0 bankUI
+     * index=1 NostaWindow
+     * index=2 TalletaWindow
+     * index=3 TapahtumatWindow
+    */
+    windowIndex=index;
     elapse_timer.restart();
     //qDebug()<<"timer reset";
 }
 
 void BankUI::timeoutcheck()
 {
+    qDebug()<<"window index = "<<windowIndex;
+    if(windowIndex!=0){
+        if(elapse_timer.elapsed()>=10000){
+            switch (windowIndex) {
+            case 1:
+                pNostaWindow->close();
+                windowIndex=0;
+                elapse_timer.restart();
+                break;
+            case 2:
+                pTalletaWindow->close();
+                windowIndex=0;
+                elapse_timer.restart();
+                break;
+            case 3:
+                pTapahtumatWindow->close();
+                windowIndex=0;
+                elapse_timer.restart();
+                break;
+            default:
+                qDebug()<<"Default at BankUi.timeoutcheck!";
+
+            }
+        }
+    }
     //qDebug()<<"timeout check.. elapsed time= "<<elapse_timer.elapsed();
     if(elapse_timer.elapsed()>30000){ // 30s to timeout
         qDebug()<<"emit timeout";
