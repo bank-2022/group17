@@ -136,6 +136,7 @@ void BankUI::timerReset(int index)
 
 void BankUI::timeoutcheck()
 {
+
     qDebug()<<"window index = "<<windowIndex;
     if(windowIndex!=0){
         if(elapse_timer.elapsed()>=10000){
