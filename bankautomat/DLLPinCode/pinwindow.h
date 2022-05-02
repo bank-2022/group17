@@ -4,7 +4,6 @@
 
 #include <QDialog>
 
-
 namespace Ui {
 class PinWindow;
 }
@@ -51,6 +50,7 @@ private slots:
 
 signals:
     void sendPinCode(QString);
+    void timerReset();
     //void checkLineEdit(bool f);
 
 public slots:
@@ -62,6 +62,7 @@ private:
     QString text;
     PinWindow * pPinWindow;
     bool checker = false;
+
 
 
 };
