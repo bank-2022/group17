@@ -20,7 +20,6 @@ public:
 private:
     QString dllCardSerialNumber;
     SerialEngine *objectSerialEngine;
-    char isObjectSerialEngineCreated='n'; // yes / no
 
 private slots:
     void dllSerialPortSlot();
