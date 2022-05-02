@@ -25,7 +25,7 @@ DLLPinCode::~DLLPinCode()
              this,SLOT(returnPinCode(QString)));
     disconnect(pPinWindow,SIGNAL(timerReset()),
              this,SLOT(resetTimer()));
-    disconnect(this->timer,SIGNAL(timeOut()),
+    disconnect(this->timer,SIGNAL(timeout()),
              this,SLOT(timeOutCheck()));
     delete pPinWindow;
     pPinWindow = nullptr;
