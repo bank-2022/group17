@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    serialPort = new DLLSerialPort;
 
-    connect(serialPort,SIGNAL(dataReadDone()),this, SLOT(cardReadDoneSlot()));
+    //serialPort = new DLLSerialPort;
+    //connect(serialPort,SIGNAL(dataReadDone()),this, SLOT(cardReadDoneSlot()));
     ui->labelReadySignal->setStyleSheet("QLabel { background-color : red; color : black; }");
 
 }
@@ -21,6 +21,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnOpenSerialPort_clicked()
 {
+
+    serialPort = new DLLSerialPort;
+    connect(serialPort,SIGNAL(dataReadDone()),this, SLOT(cardReadDoneSlot()));
     //serialPortDLLTest->interfaceSetSerialPortManually("COM4"); //Change port manually
     serialPort->interfaceFunctionOpenSerialPort();
     ui->labelSerialInfo->setText("Serial port: OPEN");
@@ -34,6 +37,7 @@ void MainWindow::on_btnCloseSerialPort_clicked()
     ui->labelSerialInfo->setText("Serial port: CLOSED");
     ui->labelReadySignal->setStyleSheet("QLabel { background-color : red; color : black; }");
     ui->labelCardNumber->setText("-");
+    delete serialPort;
 
 }
 
