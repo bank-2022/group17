@@ -8,7 +8,10 @@ DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
     pPinWindow = new PinWindow();
     connect(pPinWindow,SIGNAL(sendPinCode(QString)),
              this,SLOT(returnPinCode(QString)));
+    connect(pPinWindow,SIGNAL(timerReset()),
+             this,SLOT(resetTimer()));
     pinYritysKerta = 0;
+
 
 
 }
@@ -20,20 +23,32 @@ DLLPinCode::~DLLPinCode()
     //pPinCodeEngine = nullptr;
     disconnect(pPinWindow,SIGNAL(sendPinCode(QString)),
              this,SLOT(returnPinCode(QString)));
+    disconnect(pPinWindow,SIGNAL(timerReset()),
+             this,SLOT(resetTimer()));
+    disconnect(this->timer,SIGNAL(timeOut()),
+             this,SLOT(timeOutCheck()));
     delete pPinWindow;
     pPinWindow = nullptr;
+    delete timer;
+    timer=nullptr;
 }
 
 void DLLPinCode::openPinWindow()
 {
-    pPinWindow->setModal(true);
     pPinWindow->show();
+    pPinWindow->setModal(true);
+    elapse_timer.start();
+    elapse_timer.restart();
+    timer=new QTimer(this);
+    timer->start(1000);
+    connect(this->timer,SIGNAL(timeout()),
+             this,SLOT(timeOutCheck()));
+
 }
 
 void DLLPinCode::closePinWindow()
 {
     pPinWindow->close();
-
 }
 
 void DLLPinCode::returnPinCode(QString pin)
@@ -60,6 +75,18 @@ void DLLPinCode::vaaraPinTarkistus()
     }
 
 
+}
+
+void DLLPinCode::resetTimer()
+{
+    elapse_timer.restart();
+}
+
+void DLLPinCode::timeOutCheck()
+{
+    if(elapse_timer.elapsed()>10000){
+        emit vaaraPin();
+    }
 }
 
 
