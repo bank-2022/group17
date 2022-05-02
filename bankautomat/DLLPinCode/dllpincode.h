@@ -4,6 +4,8 @@
 #include "DLLPinCode_global.h"
 #include <QDebug>
 #include <QObject>
+#include <QTimer>
+#include <QElapsedTimer>
 #include "pincodeengine.h"
 #include "pinwindow.h"
 
@@ -20,16 +22,21 @@ public:
 signals:
     void sendPinToExe(QString pin);
     void vaaraPin();
+    void timeout();
 
 public slots:
     void returnPinCode(QString);
     void vaaraPinTarkistus();
+    void resetTimer();
+    void timeOutCheck();
 
 private:
     //PinCodeEngine * pPinCodeEngine;
     PinWindow * pPinWindow;
     QString cardPin;
     int pinYritysKerta;
+    QTimer * timer;
+    QElapsedTimer elapse_timer;
 
 };
 
