@@ -3,7 +3,7 @@
 
 DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
 {
-    qDebug()<<"DLL luotu";
+    qDebug()<<"DLLPinCode luotu";
     //pPinCodeEngine = new PinCodeEngine;
     pPinWindow = new PinWindow();
     connect(pPinWindow,SIGNAL(sendPinCode(QString)),
@@ -18,14 +18,14 @@ DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
 
 DLLPinCode::~DLLPinCode()
 {
-    qDebug()<<"DLL tuhottu";
+    qDebug()<<"DLLPinCode tuhottu";
     //delete pPinCodeEngine;
     //pPinCodeEngine = nullptr;
     disconnect(pPinWindow,SIGNAL(sendPinCode(QString)),
              this,SLOT(returnPinCode(QString)));
     disconnect(pPinWindow,SIGNAL(timerReset()),
              this,SLOT(resetTimer()));
-    disconnect(this->timer,SIGNAL(timeOut()),
+    disconnect(this->timer,SIGNAL(timeout()),
              this,SLOT(timeOutCheck()));
     delete pPinWindow;
     pPinWindow = nullptr;

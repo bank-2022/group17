@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Pictures/src.qrc">
+    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="4" column="0">
     <widget class="QPushButton" name="pushButton_1">
@@ -175,6 +179,8 @@
   <zorder>PoistuButton</zorder>
   <zorder>label</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="Pictures/src.qrc"/>
+ </resources>
  <connections/>
 </ui>

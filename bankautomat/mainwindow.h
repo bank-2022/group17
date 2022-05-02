@@ -91,6 +91,9 @@ private:
     void readCardHandler(events e);
     void readPinHandler(events e);
     void inBankHandler(events e);
+    void deleteDllPinCode();
+    void deleteDllSerialPort();
+    void deleteDllRestApi();
 
 };
 #endif // MAINWINDOW_H

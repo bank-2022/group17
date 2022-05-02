@@ -50,3 +50,6 @@ win32: LIBS += -L$$PWD/DLLRestAPI/build/debug/ -lDLLRestAPI
 
 INCLUDEPATH += $$PWD/DLLRestAPI
 DEPENDPATH += $$PWD/DLLRestAPI
+
+RESOURCES += \
+    Pictures/src.qrc

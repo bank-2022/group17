@@ -31,6 +31,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Pictures/src.qrc">
+    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" colspan="3">
     <widget class="QListWidget" name="TapahtumaList"/>
@@ -75,6 +79,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Pictures/src.qrc"/>
+ </resources>
  <connections/>
 </ui>

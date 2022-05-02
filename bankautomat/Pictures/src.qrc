@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>insert-card.png</file>
+        <file>piggy-bank.png</file>
+    </qresource>
+</RCC>

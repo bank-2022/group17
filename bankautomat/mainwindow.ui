@@ -29,7 +29,14 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string/>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Pictures/src.qrc">
+    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -45,6 +52,9 @@
      <font>
       <pointsize>50</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
      <string>ASETA KORTTI</string>
@@ -94,25 +104,16 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>Pictures/insert-card.png</pixmap>
+     <pixmap resource="Pictures/src.qrc">:/images/insert-card.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>791</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Pictures/src.qrc"/>
+ </resources>
  <connections/>
 </ui>
