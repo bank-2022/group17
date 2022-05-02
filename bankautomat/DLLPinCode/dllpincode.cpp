@@ -26,7 +26,7 @@ DLLPinCode::~DLLPinCode()
 
 void DLLPinCode::openPinWindow()
 {
-
+    pPinWindow->setModal(true);
     pPinWindow->show();
 }
 

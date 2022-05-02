@@ -38,7 +38,7 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
 {
     seteli20=0;
     seteli50=0;
-    emit resetTimer(1);
+
     nostaSum=ui->NostaLe->text();
     qDebug()<<"nosta summa"<<nostaSum;
     int nostoSumInt = nostaSum.toInt();
@@ -59,11 +59,13 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
             else {
                 msgBox.setInformativeText("20€ seteleitä = "+QString::number(seteli20));
             }
+            emit resetTimer(0);
             msgBox.show();
-            //this->close();
+            this->close();
             msgBox.button(QMessageBox::Ok)->animateClick(5000);
         }
         else{
+            emit resetTimer(1);
             msgBox.setText("Virhe!");
             msgBox.setInformativeText("Syötit virheellisen summan!");
             msgBox.show();
@@ -71,6 +73,7 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
         }
     }
     else {
+        emit resetTimer(1);
         msgBox.setText("Virhe!");
         msgBox.setInformativeText("Tililläsi ei ole riittävästi katetta!");
         msgBox.show();
