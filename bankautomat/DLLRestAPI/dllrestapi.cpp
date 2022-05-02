@@ -18,7 +18,7 @@ DLLRestAPI::DLLRestAPI(QObject *parent) : QObject(parent)
 
 DLLRestAPI::~DLLRestAPI()
 {
-    qDebug()<<"DLL tuhottu";
+    qDebug()<<"DLLRestApi tuhottu";
     disconnect(pEngineClass, SIGNAL(sendKorttiInfoToDLL(QString)),
         this,SLOT(recvKorttiInfoFromEngine(QString)));
     disconnect(pEngineClass, SIGNAL(sendTilitapahtumatToDLL(QString)),

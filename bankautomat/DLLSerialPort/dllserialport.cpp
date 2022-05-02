@@ -7,12 +7,15 @@ void DLLSerialPort::interfaceFunctionOpenSerialPort()
         objectSerialEngine = new SerialEngine;
         isObjectSerialEngineCreated='y';
     }
+    qDebug()<<"DllSerialPort luotu";
     connect(objectSerialEngine,SIGNAL(readySignal()), this, SLOT(dllSerialPortSlot()));
     objectSerialEngine->openSerialPort();
+
 }
 
 void DLLSerialPort::interfaceFunctionCloseSerialPort()
 {
+    qDebug()<<"DllSerialPort tuhottu";
     isObjectSerialEngineCreated=0;
     disconnect(objectSerialEngine,SIGNAL(readySignal()), this, SIGNAL(dataReadDone()));
     objectSerialEngine->closeSerialPort();
