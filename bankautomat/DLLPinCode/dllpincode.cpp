@@ -3,7 +3,7 @@
 
 DLLPinCode::DLLPinCode(QObject *parent) : QObject(parent)
 {
-    qDebug()<<"DLL luotuuuuu1";
+    qDebug()<<"DLL luotu";
     //pPinCodeEngine = new PinCodeEngine;
     pPinWindow = new PinWindow();
     connect(pPinWindow,SIGNAL(sendPinCode(QString)),
