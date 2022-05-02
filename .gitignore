@@ -8,5 +8,15 @@ bankautomat/*.user
 
 bankautomat/DLLSerialPort/*.user
 
+bankautomat/DLLSerialPort/build
+
+bankautomat/DLLPinCode
+
+bankautomat/DLLRestAPI
+
+bankautomat/debug
+
+bankautomat/db
+
 
 
