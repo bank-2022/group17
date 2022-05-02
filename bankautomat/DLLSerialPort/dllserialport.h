@@ -10,6 +10,8 @@ class DLLSERIALPORT_EXPORT DLLSerialPort : public QObject
 {
 Q_OBJECT
 public:
+    DLLSerialPort();
+    ~DLLSerialPort();
     void interfaceFunctionOpenSerialPort();
     void interfaceFunctionCloseSerialPort();
     QString interfaceFunctionReturnCardSerialNumber();

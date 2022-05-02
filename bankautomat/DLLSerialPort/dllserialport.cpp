@@ -1,6 +1,16 @@
 #include "dllserialport.h"
 
 
+DLLSerialPort::DLLSerialPort()
+{
+    interfaceFunctionOpenSerialPort();
+}
+
+DLLSerialPort::~DLLSerialPort()
+{
+    interfaceFunctionCloseSerialPort();
+}
+
 void DLLSerialPort::interfaceFunctionOpenSerialPort()
 {
     if(isObjectSerialEngineCreated!='y'){
