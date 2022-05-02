@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("C:/projektit/banksimul/group17/bankautomat/Pictures/insert-card.png");
+    QPixmap pix("../Pictures/insert-card.png");
     ui->picture_card_label->setPixmap(pix); // set card icon in mainwindow
 
     pDllPinCode=new DLLPinCode;
