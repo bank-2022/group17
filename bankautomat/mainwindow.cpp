@@ -265,6 +265,7 @@ void MainWindow::inBankHandler(events e)
         qDebug()<<"e=bankui";
         pBankUI = new BankUI;
         pBankUI->setModal(true);
+        pBankUI->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
         pBankUI->show();
         connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
         connect(pBankUI,SIGNAL(poistuSignal()),this,SLOT(poistuHandler()));
