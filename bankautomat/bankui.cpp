@@ -53,7 +53,7 @@ void BankUI::getKorttiInfo(QStringList info)
 {
 
     qDebug()<<"at bankui getkorttiInfo";
-    qDebug()<<info;
+//    qDebug()<<info;
 
     asiakkaanNimi=info.at(0);
     korttiNumero=info.at(1);
@@ -144,7 +144,7 @@ void BankUI::timerReset(int index)
 void BankUI::timeoutcheck()
 {
 
-    qDebug()<<"window index = "<<windowIndex;
+    //qDebug()<<"window index = "<<windowIndex;
     if(windowIndex!=0){
         if(elapse_timer.elapsed()>=10000){
             switch (windowIndex) {
