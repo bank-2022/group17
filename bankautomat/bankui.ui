@@ -31,18 +31,18 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="Pictures/src.qrc">
-    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
   <property name="styleSheet">
    <string notr="true">QDialog {
 background-color: rgb(200, 214, 229);
 color: rgb(34, 47, 62);
-border-style: inset;
-border-width: 1px;
+border-style: outset;
+border-top-width: 1px;
+border-left-width: 1px;
+border-right-width: 1px;
+border-bottom-width: 1px;
 border-radius: 4px;
-border-color: #364767;
-padding: 4px;
+border-offset: -1px;
+border-color: #222f3e;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -92,45 +92,6 @@ padding: 4px;
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="NostaBtn">
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>30</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-color: rgb(34, 47, 62);
-background-color: rgb(84, 160, 255);
-border-style: outset;
-border-width: 1px;
-border-radius: 10px;
-border-color: #364767;
-padding: 4px;
-}
-QPushButton:hover{
-background-color: rgba(84, 160, 255,150);
-border-style: inset;
-}
-QPushButton:pressed{
-background-color: rgba(84, 160, 255,70);
-border-style: inset;
-}</string>
-     </property>
-     <property name="text">
-      <string>Nosta</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPushButton" name="TalletaBtn">
      <property name="maximumSize">
       <size>
@@ -152,7 +113,7 @@ background-color: rgb(84, 160, 255);
 border-style: outset;
 border-width: 1px;
 border-radius: 10px;
-border-color: #364767;
+border-color: #222f3e;
 padding: 4px;
 }
 QPushButton:hover{
@@ -166,6 +127,45 @@ border-style: inset;
      </property>
      <property name="text">
       <string>Talleta</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="NostaBtn">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+background-color: rgb(84, 160, 255);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(84, 160, 255,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(84, 160, 255,70);
+border-style: inset;
+}</string>
+     </property>
+     <property name="text">
+      <string>Nosta</string>
      </property>
     </widget>
    </item>
@@ -191,7 +191,7 @@ background-color: rgb(84, 160, 255);
 border-style: outset;
 border-width: 1px;
 border-radius: 10px;
-border-color: #364767;
+border-color: #222f3e;
 padding: 4px;
 }
 QPushButton:hover{
@@ -230,7 +230,7 @@ background-color: rgb(238, 82, 83);
 border-style: outset;
 border-width: 1px;
 border-radius: 10px;
-border-color: #364767;
+border-color: #222f3e;
 padding: 4px;
 }
 QPushButton:hover{
@@ -249,8 +249,6 @@ border-style: inset;
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Pictures/src.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
