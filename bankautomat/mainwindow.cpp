@@ -1,19 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-
+#include <QPixmap>
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->showFullScreen();
+    QPixmap backround("../Pictures/asetakorttiback.png");
+    backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background,backround);
+    this->setPalette(palette);
+
 
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states,events)));
 
-    //pDllSerialPort=new DLLSerialPort;
-    //connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
 
 
     state=start;
@@ -190,6 +196,8 @@ void MainWindow::readCardHandler(events e)
         qDebug()<<"e=OpenSerial";
         pDllSerialPort=new DLLSerialPort;
         connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
+
+
         pDllSerialPort->interfaceFunctionOpenSerialPort();
     }
     else if(e==readCardNum){
