@@ -4,20 +4,16 @@ void SerialEngine::openSerialPort() //Read the serial port data and make signal
 {
     int portSize=objectInfo->availablePorts().length();
     QString currentPortToUse;
-    qDebug() << portSize << "serial ports found:";
+    qDebug() << portSize << "Serial port - ports found:";
 
-    if(manualSerialPort=="")//Uses the last port available
-    {
-        for(const QSerialPortInfo &info : objectInfo->availablePorts()){
-            qDebug() << info.portName();
-            currentPortToUse = info.portName();
-        }
+
+    for(const QSerialPortInfo &info : objectInfo->availablePorts()){
+        qDebug() << info.portName();
+        currentPortToUse = info.portName();
     }
-    else //Uses manually set port
-        currentPortToUse = manualSerialPort;
 
     objectQSerialPort = new QSerialPort(this);
-    qDebug() << "Using port: " << currentPortToUse;
+    qDebug() << "Serial port - using serial port: " << currentPortToUse;
     objectQSerialPort->setPortName(currentPortToUse);
     objectQSerialPort->setBaudRate(QSerialPort::Baud9600);
     objectQSerialPort->setDataBits(QSerialPort::Data8);
@@ -31,9 +27,6 @@ void SerialEngine::openSerialPort() //Read the serial port data and make signal
     connect(objectQSerialPort,SIGNAL(readyRead()),
             this, SLOT(readPort()));
 
-    qDebug() << "Card signal connected";
-
-
 }
 
 void SerialEngine::closeSerialPort()
@@ -41,18 +34,19 @@ void SerialEngine::closeSerialPort()
     disconnect(objectQSerialPort,SIGNAL(readyRead()),
                this, SLOT(readPort()));
     delete objectQSerialPort;
-    qDebug() << "Card signal disconnected";
+    qDebug() << "Serial port - card signal disconnected";
 }
 
 QString SerialEngine::returnCardSerialNumber()
 {
-    qDebug() << "Card serial number = " << cardSerialNumber;
+    qDebug() << "Serial port - card serial number = " << cardSerialNumber;
     return cardSerialNumber;
 }
 
 void SerialEngine::setSerialPortManually(QString port)
 {
-    manualSerialPort = port;
+    qDebug() << "Serial port - port changed to: " << port;
+    objectQSerialPort->setPortName(port);
 }
 
 void SerialEngine::readPort()
@@ -61,15 +55,14 @@ void SerialEngine::readPort()
     byteArray=objectQSerialPort->readAll();
 
     if(byteArray=="")
-        qDebug() << "Can't read card value...";
+        qDebug() << "Serial port - can't read card value...";
     else
     {
-        //qDebug() << "-Signal read:- " << byteArray; //Full card number data
+        //qDebug() << "Serial port - signal read: " << byteArray; //Full card number data
 
         QByteArray slicedByteArray = byteArray.mid(3,10);
         cardSerialNumber=slicedByteArray;
-
-        qDebug() << "Card serial number = " << slicedByteArray; //Shows only card number
+        qDebug() << "Serial port - card serial number = " << slicedByteArray; //Shows only card number
         emit readySignal();
     }
 

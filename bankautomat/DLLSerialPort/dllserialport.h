@@ -10,6 +10,8 @@ class DLLSERIALPORT_EXPORT DLLSerialPort : public QObject
 {
 Q_OBJECT
 public:
+    DLLSerialPort();
+    ~DLLSerialPort();
     void interfaceFunctionOpenSerialPort();
     void interfaceFunctionCloseSerialPort();
     QString interfaceFunctionReturnCardSerialNumber();
@@ -18,7 +20,6 @@ public:
 private:
     QString dllCardSerialNumber;
     SerialEngine *objectSerialEngine;
-    char isObjectSerialEngineCreated='n'; // yes / no
 
 private slots:
     void dllSerialPortSlot();
