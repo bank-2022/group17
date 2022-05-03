@@ -11,14 +11,7 @@ BankUI::BankUI(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BankUI)
 {
-    ui->setupUi(this);
-    this->showFullScreen();
-    QPixmap backround("../Pictures/flatbackround.png");
-        backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
-        QPalette palette;
-        palette.setBrush(QPalette::Background,backround);
-        this->setPalette(palette);
-
+    ui->setupUi(this);    
     elapse_timer.start();
     timer=new QTimer(this);
     pNostaWindow = new NostaWindow(this);

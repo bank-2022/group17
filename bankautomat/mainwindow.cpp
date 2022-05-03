@@ -175,6 +175,15 @@ void MainWindow::startHandler(events e)
     if(e==clearAll){
         qDebug()<<"e=clearAll";
 
+
+        QPixmap backround("../Pictures/asetakorttiback.png");
+        backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background,backround);
+        this->setPalette(palette);
+
+
+
         //set all variables to default
         CardNum=nullptr;
         CardPin=nullptr;
@@ -271,6 +280,14 @@ void MainWindow::inBankHandler(events e)
 {
     if(e==bankUi){
         qDebug()<<"e=bankui";
+
+        QPixmap backround("../Pictures/flatbackround.png");
+        backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background,backround);
+        this->setPalette(palette);
+
+
         pBankUI = new BankUI;
         pBankUI->setModal(true);
         pBankUI->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
