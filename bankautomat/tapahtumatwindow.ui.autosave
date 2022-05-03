@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TapahtumatWindow</class>
+ <widget class="QDialog" name="TapahtumatWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>722</width>
+    <height>347</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>722</width>
+    <height>347</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>722</width>
+    <height>347</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+background-color: rgb(200, 214, 229);
+color: rgb(34, 47, 62);
+border-style: outset;
+border-top-width: 1px;
+border-left-width: 1px;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-radius: 4px;
+border-color: #222f3e;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="3">
+    <widget class="QListWidget" name="TapahtumaList">
+     <property name="styleSheet">
+      <string notr="true">QListWidget{
+color: rgb(34, 47, 62);
+font-family: &quot;Segoe UI&quot;;
+}</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="Seur10tapahtBtn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+font-family: &quot;Segoe UI&quot;;
+font: bold;
+background-color: rgb(84, 160, 255);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(84, 160, 255,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(84, 160, 255,70);
+border-style: inset;
+}</string>
+     </property>
+     <property name="text">
+      <string>Seuraavat 10 tapahtumaa</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="poistuBtn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+font-family: &quot;Segoe UI&quot;;
+font: bold;
+background-color: rgb(238, 82, 83);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(238, 82, 83,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(238, 82, 83,70);
+border-style: inset;
+}</string>
+     </property>
+     <property name="text">
+      <string>poistu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="Ed10tapahtBtn">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+font-family: &quot;Segoe UI&quot;;
+font: bold;
+background-color: rgb(84, 160, 255);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(84, 160, 255,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(84, 160, 255,70);
+border-style: inset;
+}</string>
+     </property>
+     <property name="text">
+      <string>Edelliset 10 tapahtumaa</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>12</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+color: rgb(34, 47, 62);
+font-family: &quot;Segoe UI&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Asiakaan tiedot tähän</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
