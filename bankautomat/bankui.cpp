@@ -2,12 +2,16 @@
 #include "ui_bankui.h"
 #include <QDebug>
 
+#include <QPixmap>
+#include <QPalette>
+
+
 
 BankUI::BankUI(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BankUI)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    
     elapse_timer.start();
     timer=new QTimer(this);
     pNostaWindow = new NostaWindow(this);
