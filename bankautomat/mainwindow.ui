@@ -2,30 +2,22 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>791</width>
-    <height>634</height>
-   </rect>
-  </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>791</width>
-    <height>634</height>
+    <width>1920</width>
+    <height>1040</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>791</width>
-    <height>634</height>
+    <width>1920</width>
+    <height>1080</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -35,79 +27,43 @@
    <iconset resource="Pictures/src.qrc">
     <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>190</y>
-      <width>441</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>50</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
-    </property>
-    <property name="text">
-     <string>ASETA KORTTI</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="LuekorttiBtn">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>570</y>
+      <x>360</x>
+      <y>590</y>
       <width>80</width>
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+background-color: rgb(84, 160, 255);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(84, 160, 255,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(84, 160, 255,70);
+border-style: inset;
+}</string>
+    </property>
     <property name="text">
      <string>luekortti testi </string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="picture_card_label">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>310</y>
-      <width>131</width>
-      <height>131</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>16777215</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="Pictures/src.qrc">:/images/insert-card.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
     </property>
    </widget>
   </widget>

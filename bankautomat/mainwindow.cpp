@@ -1,19 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-
+#include <QPixmap>
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->showFullScreen();
+    QPixmap backround("../Pictures/asetakorttiback.png");
+    backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background,backround);
+    this->setPalette(palette);
+
 
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states,events)));
 
-    //pDllSerialPort=new DLLSerialPort;
-    //connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
 
 
     state=start;
@@ -169,6 +175,15 @@ void MainWindow::startHandler(events e)
     if(e==clearAll){
         qDebug()<<"e=clearAll";
 
+
+        QPixmap backround("../Pictures/asetakorttiback.png");
+        backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background,backround);
+        this->setPalette(palette);
+
+
+
         //set all variables to default
         CardNum=nullptr;
         CardPin=nullptr;
@@ -190,6 +205,8 @@ void MainWindow::readCardHandler(events e)
         qDebug()<<"e=OpenSerial";
         pDllSerialPort=new DLLSerialPort;
         connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
+
+
         pDllSerialPort->interfaceFunctionOpenSerialPort();
     }
     else if(e==readCardNum){
@@ -263,8 +280,17 @@ void MainWindow::inBankHandler(events e)
 {
     if(e==bankUi){
         qDebug()<<"e=bankui";
+
+        QPixmap backround("../Pictures/flatbackround.png");
+        backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
+        QPalette palette;
+        palette.setBrush(QPalette::Background,backround);
+        this->setPalette(palette);
+
+
         pBankUI = new BankUI;
         pBankUI->setModal(true);
+        pBankUI->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
         pBankUI->show();
         connect(pBankUI,SIGNAL(timeout()),this,SLOT(timeoutHandler()));
         connect(pBankUI,SIGNAL(poistuSignal()),this,SLOT(poistuHandler()));
