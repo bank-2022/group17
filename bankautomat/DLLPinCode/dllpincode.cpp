@@ -35,6 +35,7 @@ DLLPinCode::~DLLPinCode()
 
 void DLLPinCode::openPinWindow()
 {
+    pPinWindow->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     pPinWindow->show();
     pPinWindow->setModal(true);
     elapse_timer.start();
