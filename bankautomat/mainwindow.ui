@@ -43,6 +43,25 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+color: rgb(34, 47, 62);
+background-color: rgb(84, 160, 255);
+border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #222f3e;
+padding: 4px;
+}
+QPushButton:hover{
+background-color: rgba(84, 160, 255,150);
+border-style: inset;
+}
+QPushButton:pressed{
+background-color: rgba(84, 160, 255,70);
+border-style: inset;
+}</string>
+    </property>
     <property name="text">
      <string>luekortti testi </string>
     </property>

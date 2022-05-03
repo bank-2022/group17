@@ -99,6 +99,7 @@ void BankUI::on_NostaBtn_clicked()
     windowIndex=1;
     pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
+    pNostaWindow->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     pNostaWindow->show();
 }
 
@@ -108,6 +109,7 @@ void BankUI::on_TalletaBtn_clicked()
     windowIndex=2;
     pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
+    pTalletaWindow->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     pTalletaWindow->show();
 }
 
@@ -117,6 +119,7 @@ void BankUI::on_TapahtumatBtn_clicked()
     windowIndex=3;
     pTapahtumatWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTapahtumatWindow->setModal(true);
+    pTapahtumatWindow->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     pTapahtumatWindow->show();
     emit requestTiliTapahtumat(idTili);
 }
