@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states,events)));
 
-    pDllSerialPort=new DLLSerialPort;
-    connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
+    //pDllSerialPort=new DLLSerialPort;
+    //connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
 
 
     state=start;
@@ -188,8 +188,8 @@ void MainWindow::readCardHandler(events e)
 {
     if(e==openSerial){
         qDebug()<<"e=OpenSerial";
-
-
+        pDllSerialPort=new DLLSerialPort;
+        connect(pDllSerialPort,SIGNAL(dataReadDone()),this,SLOT(readyToReadCardNum()));
         pDllSerialPort->interfaceFunctionOpenSerialPort();
     }
     else if(e==readCardNum){
@@ -204,7 +204,7 @@ void MainWindow::readCardHandler(events e)
     else if(e==closeSerial){
         qDebug()<<"e=closeSerial";
         pDllSerialPort->interfaceFunctionCloseSerialPort();
-
+        delete pDllSerialPort;
         state=readPin;
         event=openPinWindow;
         emit eventSignal(state,event);
