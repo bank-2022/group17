@@ -49,6 +49,7 @@ private:
     QTimer *timer;
     QElapsedTimer elapse_timer;
 
+    bool bankUiOn;
     int windowIndex;
     QString asiakkaanNimi;
     QString korttiNumero;

@@ -9,6 +9,16 @@ NostaWindow::NostaWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     qDebug()<<"nosta constru";
+
+    msgBox.setStyleSheet("QMessageBox{background-color: rgb(200, 214, 229);color: rgb(34, 47, 62);border-style: outset;border-top-width: 1px;border-left-width: 1px;border-right-width: 1px;border-bottom-width: 1px; border-radius: 4px;border-color: #222f3e;}QLabel{color: rgb(34, 47, 62);}QPushButton {width:50px; height:22px; color: rgb(34, 47, 62);background-color: rgb(84, 160, 255);border-style: outset;border-width: 1px;border-radius: 10px;border-color: #222f3e;padding: 4px;}");
+
+    msgBox.setWindowFlags(Qt::Window|Qt::FramelessWindowHint);
+
+    QFont font;
+    font.setFamily("Segoe UI");
+    font.setBold(true);
+    msgBox.setFont(font);
+
 }
 
 NostaWindow::~NostaWindow()
@@ -59,10 +69,12 @@ void NostaWindow::on_VahvitaNostoBtn_clicked()
             else {
                 msgBox.setInformativeText("20€ seteleitä = "+QString::number(seteli20));
             }
-            emit resetTimer(0);
+
             msgBox.show();
             this->close();
             msgBox.button(QMessageBox::Ok)->animateClick(5000);
+            msgBox.exec();
+            emit resetTimer(0);
         }
         else{
             emit resetTimer(1);

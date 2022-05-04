@@ -14,8 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Background,backround);
     this->setPalette(palette);
-
-
+    //ui->LuekorttiBtn->hide();
     connect(this,SIGNAL(cardReadDone()),this,SLOT(cardNumReadDone()));//test signal connection
     connect(this,SIGNAL(eventSignal(states,events)),this,SLOT(runStateMachine(states,events)));
 
@@ -91,10 +90,10 @@ void MainWindow::readyToReadCardNum()
 void MainWindow::recvKorttiInfoFunct(QString info)
 {
     CardInfo=info;
-    qDebug()<<"Received card info "<<CardInfo;
+    qDebug()<<"Received card info "; //<<CardInfo;
 
     list1=CardInfo.split(QString(","));
-    qDebug()<<"split info "<<list1;
+    //qDebug()<<"split info "<<list1;
     emit sendKorttiInfoToBankUi(list1);
     qDebug()<<"emit kortti info to ui";
 }
@@ -148,7 +147,7 @@ void MainWindow::recvPinWrongFromDllPinCode()
 void MainWindow::recvTilitapahtumatFromDllRestApi(QString tilitapahtumat)
 {
     qDebug()<<"received tilitapahtumat to exe";
-     qDebug()<<tilitapahtumat;
+     //qDebug()<<tilitapahtumat;
      emit sendTilitapahtumatToUi(tilitapahtumat);
 }
 
@@ -159,7 +158,9 @@ void MainWindow::requestTilitapahtumatFromDllRestApi(QString idTili)
 
 void MainWindow::on_LuekorttiBtn_clicked()
 {
+
     emit cardReadDone();
+    CardNum="0500CB615F"; //test.. pincode is = 9010..
 }
 
 void MainWindow::cardNumReadDone()
@@ -211,7 +212,6 @@ void MainWindow::readCardHandler(events e)
     else if(e==readCardNum){
         qDebug()<<"e=readCardNum";
         CardNum=pDllSerialPort->interfaceFunctionReturnCardSerialNumber();
-        CardNum="0500CB615F"; //test.. pincode is = 9010..
         qDebug()<<"cardnum is "<<CardNum;
         state=readCard;
         event=closeSerial;

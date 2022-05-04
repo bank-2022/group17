@@ -18,8 +18,11 @@ BankUI::BankUI(QWidget *parent) :
     pTalletaWindow = new TalletaWindow(this);
     pTapahtumatWindow=new TapahtumatWindow(this);
     windowIndex=0;  //set default index
-    timer->start(1000);     //1s timer to timeout check
+    timer->start(100);     //1s timer to timeout check
     qDebug()<<"bank constru";
+
+    bankUiOn=true;
+
     connect(this->timer,SIGNAL(timeout()),this,SLOT(timeoutcheck()));
     connect(pNostaWindow,SIGNAL(resetTimer(int)),this,SLOT(timerReset(int)));
     connect(pNostaWindow,SIGNAL(nostoSumma(float)),this,SLOT(nostoSumma(float)));
@@ -53,7 +56,7 @@ void BankUI::getKorttiInfo(QStringList info)
 {
 
     qDebug()<<"at bankui getkorttiInfo";
-    qDebug()<<info;
+//    qDebug()<<info;
 
     asiakkaanNimi=info.at(0);
     korttiNumero=info.at(1);
@@ -89,13 +92,15 @@ void BankUI::talletaSumma(float talletaSumma)
 void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
 {
     qDebug()<<"at bankui recvtilitapahtumat";
-    qDebug()<<tiliTapahtumat;
+    //qDebug()<<tiliTapahtumat;
     pTapahtumatWindow->setTilitapahtumat(tiliTapahtumat);
 }
 
 void BankUI::on_NostaBtn_clicked()
 {
     elapse_timer.restart();
+    bankUiOn=false;
+    this->hide();
     windowIndex=1;
     pNostaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pNostaWindow->setModal(true);
@@ -106,6 +111,8 @@ void BankUI::on_NostaBtn_clicked()
 void BankUI::on_TalletaBtn_clicked()
 {
     elapse_timer.restart();
+    bankUiOn=false;
+    this->hide();
     windowIndex=2;
     pTalletaWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTalletaWindow->setModal(true);
@@ -116,6 +123,8 @@ void BankUI::on_TalletaBtn_clicked()
 void BankUI::on_TapahtumatBtn_clicked()
 {
     elapse_timer.restart();
+    bankUiOn=false;
+    this->hide();
     windowIndex=3;
     pTapahtumatWindow->setKorttiInfo(asiakkaanNimi,saldo);
     pTapahtumatWindow->setModal(true);
@@ -144,7 +153,10 @@ void BankUI::timerReset(int index)
 void BankUI::timeoutcheck()
 {
 
-    qDebug()<<"window index = "<<windowIndex;
+    if(windowIndex==0&&bankUiOn==false){
+        this->show();
+    }
+    //qDebug()<<"window index = "<<windowIndex;
     if(windowIndex!=0){
         if(elapse_timer.elapsed()>=10000){
             switch (windowIndex) {
