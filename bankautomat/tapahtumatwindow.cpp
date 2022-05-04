@@ -58,7 +58,7 @@ void TapahtumatWindow::readTilitapahtumatForward()
     qDebug()<<"list size:"<<tapahtumatList.size();
     for (int x=tapahtumatIndex;tapahtumatIndex<x+10; ++tapahtumatIndex){
 
-        qDebug()<<tapahtumatIndex<<" before if";
+        //qDebug()<<tapahtumatIndex<<" before if";
         if(tapahtumatIndex>tapahtumatList.size()-2)
         {
             qDebug()<<tapahtumatIndex;
@@ -100,7 +100,7 @@ void TapahtumatWindow::readTilitapahtumatBackward()
     }
     for (int x=tapahtumatIndex;tapahtumatIndex<x+10; ++tapahtumatIndex){
 
-        qDebug()<<tapahtumatIndex<<" before if";
+        //qDebug()<<tapahtumatIndex<<" before if";
         if(tapahtumatIndex<0)
         {
             tapahtumatIndex=0;

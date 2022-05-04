@@ -92,7 +92,7 @@ void BankUI::talletaSumma(float talletaSumma)
 void BankUI::recvTilitapahtumatFromMain(QString tiliTapahtumat)
 {
     qDebug()<<"at bankui recvtilitapahtumat";
-    qDebug()<<tiliTapahtumat;
+    //qDebug()<<tiliTapahtumat;
     pTapahtumatWindow->setTilitapahtumat(tiliTapahtumat);
 }
 

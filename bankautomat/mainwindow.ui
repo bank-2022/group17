@@ -45,8 +45,8 @@
    <widget class="QPushButton" name="LuekorttiBtn">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>590</y>
+      <x>1840</x>
+      <y>1020</y>
       <width>80</width>
       <height>21</height>
      </rect>
