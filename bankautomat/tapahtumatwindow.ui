@@ -32,7 +32,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Pictures/src.qrc">
+   <iconset>
     <normaloff>:/images/piggy-bank.png</normaloff>:/images/piggy-bank.png</iconset>
   </property>
   <property name="styleSheet">
@@ -45,7 +45,6 @@ border-left-width: 1px;
 border-right-width: 1px;
 border-bottom-width: 1px;
 border-radius: 4px;
-border-offset: -1px;
 border-color: #222f3e;
 }</string>
   </property>
@@ -170,8 +169,6 @@ font-family: &quot;Segoe UI&quot;;
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Pictures/src.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -9,7 +9,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->showFullScreen();
     QPixmap backround("../Pictures/asetakorttiback.png");
     backround=backround.scaled(this->size(),Qt::IgnoreAspectRatio);
     QPalette palette;
