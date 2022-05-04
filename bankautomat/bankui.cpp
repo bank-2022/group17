@@ -18,7 +18,7 @@ BankUI::BankUI(QWidget *parent) :
     pTalletaWindow = new TalletaWindow(this);
     pTapahtumatWindow=new TapahtumatWindow(this);
     windowIndex=0;  //set default index
-    timer->start(1);     //1s timer to timeout check
+    timer->start(100);     //1s timer to timeout check
     qDebug()<<"bank constru";
 
     bankUiOn=true;
